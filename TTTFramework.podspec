@@ -10,12 +10,12 @@ Pod::Spec.new do |s|
 
     s.name         = "TTTFramework"
     s.version      = "0.0.1"
-    s.summary      = "UI Framework for jia."
+    s.summary      = "UI Framework for TTTeam."
     s.description  = "A simple framework for building ui interfaces, which makes it easy to configure interface properties."
 
     s.homepage     = "https://github.com/windliketheman/TTTFramework.git"
     s.license      = { :type => "MIT", :file => "LICENSE" }
-    s.author       = { "wind" => "wind@icloud.com" }
+    s.author       = { "wind" => "wind.like.the.man@icloud.com" }
     s.source       = { :git => "https://github.com/windliketheman/TTTFramework.git", :tag => s.version }
 
     s.platform     = :ios
