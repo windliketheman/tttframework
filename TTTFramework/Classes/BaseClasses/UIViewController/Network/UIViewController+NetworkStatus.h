@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppNetworkMonitoring.h"
-#import "UIFrameworkNetworkStatusDefines.h"
+#import "TTTFrameworkNetworkStatusDefines.h"
 
 @protocol NetworkMonitoringProtocol <NSObject>
 

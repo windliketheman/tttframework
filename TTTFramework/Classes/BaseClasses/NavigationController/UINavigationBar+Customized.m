@@ -1,6 +1,6 @@
 //
 //  UINavigationBar+Customized.m
-//  UIFramework
+//  TTTFramework
 //
 //  Created by jia on 2016/12/5.
 //  Copyright © 2016年 jia. All rights reserved.
@@ -9,7 +9,7 @@
 #import "UINavigationBar+Customized.h"
 #import "UINavigationBar+Global.h"
 #import "UIImage+Extension.h"
-#import "UIImage+UIFramework.h"
+#import "UIImage+TTTFramework.h"
 #import "UIColor+Extension.h"
 #import "NSObject+Swizzle.h"
 #import <objc/runtime.h>

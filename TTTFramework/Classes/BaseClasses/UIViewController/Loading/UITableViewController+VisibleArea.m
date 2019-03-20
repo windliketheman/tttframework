@@ -1,6 +1,6 @@
 //
 //  UITableViewController+VisibleArea.m
-//  UIFramework
+//  TTTFramework
 //
 //  Created by jia on 2017/1/11.
 //  Copyright © 2017年 jia. All rights reserved.

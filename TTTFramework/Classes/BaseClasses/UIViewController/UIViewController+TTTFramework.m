@@ -1,12 +1,12 @@
 //
-//  UIViewController+UIFramework.m
-//  UIFramework
+//  UIViewController+TTTFramework.m
+//  TTTFramework
 //
 //  Created by jia on 2016/11/15.
 //  Copyright © 2016年 jia. All rights reserved.
 //
 
-#import "UIViewController+UIFramework.h"
+#import "UIViewController+TTTFramework.h"
 #import "UIViewController+.h"
 #import "UIViewController+Protected.h"
 #import "NSObject+Swizzle.h"
@@ -15,10 +15,10 @@
 #import "UINavigationBar+Customized.h"
 #import "UINavigationBar+Global.h"
 #import "UINavigationItem+BarButtonItem.h"
-#import "UIFrameworkScreenParameters.h"
+#import "TTTFrameworkScreenParameters.h"
 #import <objc/runtime.h>
 
-@implementation UIViewController (UIFramework)
+@implementation UIViewController (TTTFramework)
 
 #pragma mark - Swizzle
 + (void)load

@@ -1,6 +1,6 @@
 //
 //  WKWebViewController.m
-//  UIFramework
+//  TTTFramework
 //
 //  Created by jia on 2017/7/14.
 //  Copyright © 2017年 jia. All rights reserved.
@@ -9,7 +9,7 @@
 #import "WKWebViewController.h"
 #import "UIViewController+.h"
 #import "NSString+Encoding.h"
-#import "UIFrameworkCommonDefines.h"
+#import "TTTFrameworkCommonDefines.h"
 #import <MobileCoreServices/UTType.h>
 #import <Masonry/Masonry.h>
 

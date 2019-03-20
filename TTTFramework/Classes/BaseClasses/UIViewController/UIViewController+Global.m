@@ -1,6 +1,6 @@
 //
 //  UIViewController+Global.m
-//  UIFramework
+//  TTTFramework
 //
 //  Created by jia on 2017/10/15.
 //  Copyright © 2017年 jia. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "UIViewController+Global.h"
 #import <objc/runtime.h>
-#import "UIFrameworkCommonDefines.h"
+#import "TTTFrameworkCommonDefines.h"
 
 @implementation UIViewController (Global)
 

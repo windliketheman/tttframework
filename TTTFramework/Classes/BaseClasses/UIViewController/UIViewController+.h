@@ -9,7 +9,7 @@
 #ifndef UIViewController__h
 #define UIViewController__h
 
-#import "UIViewController+UIFramework.h"
+#import "UIViewController+TTTFramework.h"
 #import "UIViewController+Global.h"
 #import "UIViewController+NavigationBar.h"
 #import "UIViewController+Customized.h"

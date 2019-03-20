@@ -1,6 +1,6 @@
 //
 //  CTAssetCollectionViewController+Customized.m
-//  UIFramework
+//  TTTFramework
 //
 //  Created by jia on 2016/12/3.
 //  Copyright © 2016年 jia. All rights reserved.

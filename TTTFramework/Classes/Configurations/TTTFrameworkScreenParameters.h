@@ -1,13 +1,13 @@
 //
-//  UIFrameworkScreenParameters.h
-//  UIFramework
+//  TTTFrameworkScreenParameters.h
+//  TTTFramework
 //
 //  Created by jia on 2016/11/30.
 //  Copyright © 2016年 jia. All rights reserved.
 //
 
-#ifndef UIFrameworkScreenParameters_h
-#define UIFrameworkScreenParameters_h
+#ifndef TTTFrameworkScreenParameters_h
+#define TTTFrameworkScreenParameters_h
 
 // 屏幕属性：宽 高 缩放比
 #define SCREEN_WIDTH                   ([[UIScreen mainScreen] bounds].size.width)
@@ -43,4 +43,4 @@
 // 导航栏元素距离屏幕边距
 #define PREFERRED_SCREEN_SIDE_SPACING  (DEVICE_IS_IPHONE_PLUS ? 20.0 : 16.0)
 
-#endif /* UIFrameworkScreenParameters_h */
+#endif /* TTTFrameworkScreenParameters_h */

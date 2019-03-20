@@ -1,6 +1,6 @@
 //
 //  UINavigationItem+BarButtonItem.m
-//  UIFramework
+//  TTTFramework
 //
 //  Created by jia on 2017/3/11.
 //  Copyright © 2017年 jia. All rights reserved.
@@ -10,7 +10,7 @@
 #import "UINavigationItem+Global.h"
 #import "UIBarButtonItem+Extension.h"
 #import "UIButton+ImageWithColor.h"
-#import "UIFrameworkScreenParameters.h"
+#import "TTTFrameworkScreenParameters.h"
 #import <objc/runtime.h>
 
 @implementation UINavigationItem (BarButtonItem)

@@ -11,7 +11,7 @@
 #import "UINavigationController+Customized.h"
 #import "UINavigationItem+BarButtonItem.h"
 #import "UINavigationBar+Global.h"
-#import "UIViewController+UIFramework.h"
+#import "UIViewController+TTTFramework.h"
 #import <objc/runtime.h>
 
 @implementation UIViewController (Customized)

@@ -1,13 +1,13 @@
 //
-//  CommonDefines.h
-//  eCityToHome
+//  TTTFrameworkCommonDefines.h
+//  TTTFramework
 //
 //  Created by jia on 15/11/18.
 //  Copyright © 2015年 www.enn.cn. All rights reserved.
 //
 
-#ifndef UIFrameworkCommonDefines_h
-#define UIFrameworkCommonDefines_h
+#ifndef TTTFrameworkCommonDefines_h
+#define TTTFrameworkCommonDefines_h
 
 #define APP_VERSION            [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define APP_BUILD_VERSION      [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
@@ -31,4 +31,4 @@
 ((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
-#endif /* UIFrameworkCommonDefines_h */
+#endif /* TTTFrameworkCommonDefines_h */

@@ -28,7 +28,7 @@
 #import "NSBundle+CTAssetsPickerController.h"
 
 #ifdef CTAssetsPickerInFramework
-    #import "UIImage+UIFramework.h"
+    #import "UIImage+TTTFramework.h"
 #endif
 
 @implementation UIImage (CTAssetsPickerController)
@@ -37,7 +37,7 @@
 + (UIImage *)ctassetsPickerImageNamed:(NSString *)name
 {
     NSBundle *mainBundle = [NSBundle mainBundle];
-    NSBundle *libBundle = [NSBundle bundleWithPath:[mainBundle.resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle", UIFrameworkResourcesBundleName]]];
+    NSBundle *libBundle = [NSBundle bundleWithPath:[mainBundle.resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle", TTTFrameworkResourcesBundleName]]];
     
     BOOL isLoaded = NO;
     if (libBundle)
@@ -56,7 +56,7 @@
     }
     else
     {
-        return [UIImage imageNamed:name inAssets:@"CTAssetsPicker" ofBundle:UIFrameworkResourcesBundleName];
+        return [UIImage imageNamed:name inAssets:@"CTAssetsPicker" ofBundle:TTTFrameworkResourcesBundleName];
     }
 }
 

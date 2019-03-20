@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIFrameworkCommonDefines.h"
+#import "TTTFrameworkCommonDefines.h"
 
 #define SYSTEM_NAVIGATION_BAR_COLOR             nil
 #define SYSTEM_NAVIGATION_BAR_TITLE_COLOR       RGBCOLOR(0, 0, 0)

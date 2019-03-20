@@ -1,6 +1,6 @@
 //
-//  UIViewController+UIFramework.h
-//  UIFramework
+//  UIViewController+TTTFramework.h
+//  TTTFramework
 //
 //  Created by jia on 2016/11/15.
 //  Copyright © 2016年 jia. All rights reserved.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NSObject+Helper.h"
 
-@interface UIViewController (UIFramework)
+@interface UIViewController (TTTFramework)
 
 // defaults to YES;
 @property (nonatomic, readwrite, getter=isFirstTimeViewAppear) BOOL firstTimeViewAppear;

@@ -1,13 +1,13 @@
 //
-//  UIFrameworkNetworkStatusDefines.h
+//  TTTFrameworkNetworkStatusDefines.h
 //  TTTFramework
 //
 //  Created by jia on 2016/10/27.
 //  Copyright © 2016年 jia. All rights reserved.
 //
 
-#ifndef UIFrameworkNetworkStatusDefines_h
-#define UIFrameworkNetworkStatusDefines_h
+#ifndef TTTFrameworkNetworkStatusDefines_h
+#define TTTFrameworkNetworkStatusDefines_h
 
 // 通用
 #define kNetworkUnavailable    @"网络不可用，请检查后重试"
@@ -18,4 +18,4 @@
 #define kLoadDataFailed        @"数据加载失败，请稍后重试"
 #define kSendDataFailed        @"数据发送失败，请稍后重试"
 
-#endif /* UIFrameworkNetworkStatusDefines_h */
+#endif /* TTTFrameworkNetworkStatusDefines_h */

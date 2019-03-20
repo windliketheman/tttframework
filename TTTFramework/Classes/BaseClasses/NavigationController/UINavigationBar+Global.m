@@ -1,13 +1,13 @@
 //
 //  UINavigationBar+Global.m
-//  UIFramework
+//  TTTFramework
 //
 //  Created by jia on 2017/10/15.
 //  Copyright © 2017年 jia. All rights reserved.
 //
 
 #import "UINavigationBar+Global.h"
-#import "UIImage+UIFramework.h"
+#import "UIImage+TTTFramework.h"
 #import <objc/runtime.h>
 
 @implementation UINavigationBar (Global)
@@ -97,7 +97,7 @@
 + (UIImage *)backButtonImage
 {
     UIImage *backButtonImage = objc_getAssociatedObject(self.global, @selector(backButtonImage));
-    return backButtonImage ?: [UIImage imageNamed:@"navigation_back_image_default" inAssets:@"UIViewController" ofBundle:UIFrameworkResourcesBundleName];
+    return backButtonImage ?: [UIImage imageNamed:@"navigation_back_image_default" inAssets:@"UIViewController" ofBundle:TTTFrameworkResourcesBundleName];
 }
 
 + (void)setCloseButtonImage:(UIImage *)closeButtonImage
@@ -108,7 +108,7 @@
 + (UIImage *)closeButtonImage
 {
     UIImage *closeButtonImage = objc_getAssociatedObject(self.global, @selector(closeButtonImage));
-    return closeButtonImage ?: [UIImage imageNamed:@"navigation_close_image_default" inAssets:@"UIViewController" ofBundle:UIFrameworkResourcesBundleName];
+    return closeButtonImage ?: [UIImage imageNamed:@"navigation_close_image_default" inAssets:@"UIViewController" ofBundle:TTTFrameworkResourcesBundleName];
 }
 
 @end

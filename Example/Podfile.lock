@@ -1,7 +1,7 @@
 PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
-  - TTTFramework (0.0.1):
+  - TTTFramework (1.0.0):
     - Masonry
     - MBProgressHUD
     - uchardet
@@ -23,9 +23,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  TTTFramework: 0c3d1a5f345ce5be23cca1b8c9fe309346376640
+  TTTFramework: 09ef5208f8e8883b960e966632d3205a1f172844
   uchardet: 2b9643afef38946d1d20c124c9e2be6c028b543d
 
-PODFILE CHECKSUM: b46b3e43a3afc5add00429486d36628cf1e356e1
+PODFILE CHECKSUM: a3d4fab6a9130ec61519cb1a863d50e0f3b2801b
 
 COCOAPODS: 1.5.3

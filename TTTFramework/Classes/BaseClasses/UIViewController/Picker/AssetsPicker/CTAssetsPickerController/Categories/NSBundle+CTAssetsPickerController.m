@@ -29,7 +29,7 @@
 #import <objc/runtime.h>
 
 #ifdef CTAssetsPickerInFramework
-#import "UIImage+UIFramework.h"
+#import "UIImage+TTTFramework.h"
 #import "NSObject+Swizzle.h"
 #endif
 
@@ -51,7 +51,7 @@
 + (NSString *)ctassetsPickerLocalizedStringWithKey:(NSString *)key comment:(NSString *)comment
 {
     NSBundle *mainBundle = [NSBundle mainBundle];
-    NSBundle *libBundle = [NSBundle bundleWithPath:[mainBundle.resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle", UIFrameworkResourcesBundleName]]];
+    NSBundle *libBundle = [NSBundle bundleWithPath:[mainBundle.resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle", TTTFrameworkResourcesBundleName]]];
     
     NSString *currentLanguage = self.currentLanguage;
     if (!currentLanguage)

@@ -7,5 +7,6 @@ target 'Example' do
   platform :ios, '8.0'
   
   pod 'TTTFramework', :path => '../', :isSource => true
+  # pod 'TTTFramework'
 
 end

@@ -14,9 +14,9 @@ FOUNDATION_EXPORT double TTTFrameworkVersionNumber;
 //! Project version string for TTTFramework.
 FOUNDATION_EXPORT const unsigned char TTTFrameworkVersionString[];
 
-#import "UIFrameworkCommonDefines.h"
-#import "UIFrameworkScreenParameters.h"
-#import "UIFrameworkNetworkStatusDefines.h"
+#import "TTTFrameworkCommonDefines.h"
+#import "TTTFrameworkScreenParameters.h"
+#import "TTTFrameworkNetworkStatusDefines.h"
 
 #import "UIImage+Extension.h"
 #import "UIColor+Extension.h"

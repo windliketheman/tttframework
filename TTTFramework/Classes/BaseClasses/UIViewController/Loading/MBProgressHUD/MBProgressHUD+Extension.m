@@ -7,7 +7,7 @@
 //
 
 #import "MBProgressHUD+Extension.h"
-#import "UIFrameworkCommonDefines.h"
+#import "TTTFrameworkCommonDefines.h"
 
 @implementation MBProgressHUD (Extension)
 
