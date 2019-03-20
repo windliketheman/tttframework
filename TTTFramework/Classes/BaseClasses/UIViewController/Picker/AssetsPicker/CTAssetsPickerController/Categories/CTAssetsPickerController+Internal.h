@@ -24,6 +24,10 @@
  
  */
 
+#import "CTAssetsPickerController.h"
+
+@class PHImageRequestOptions;
+
 @interface CTAssetsPickerController (Internal)
 
 - (void)dismiss:(id)sender;

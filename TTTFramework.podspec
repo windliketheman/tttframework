@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
     s.source_files        = "#{s.name}/Classes/**/*.{h,m,mm,c,cpp,cc}"
     s.public_header_files = "#{s.name}/Classes/**/*.h"
-    s.vendored_frameworks = "#{s.name}/Assets/**/*.framework"
+    # s.vendored_frameworks = "#{s.name}/Assets/**/*.framework"
 
     s.resources    = "#{s.name}/Assets/#{s.name}.bundle"
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 jia. All rights reserved.
 //
 
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 typedef NS_ENUM (NSInteger, MBProgressHUDTheme)
 {
