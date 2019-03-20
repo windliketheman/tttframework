@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "TTTFramework"
-    s.version      = "0.0.1"
+    s.version      = "0.0.2"
     s.summary      = "UI Framework for TTTeam."
     s.description  = "A simple framework for building ui interfaces, which makes it easy to configure interface properties."
 
