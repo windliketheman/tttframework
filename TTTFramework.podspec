@@ -11,7 +11,10 @@ Pod::Spec.new do |s|
     s.name         = "TTTFramework"
     s.version      = "1.0.0"
     s.summary      = "UI Framework for TTTeam."
-    s.description  = "A simple framework for building ui interfaces, which makes it easy to configure interface properties."
+
+	s.description  = <<-DESC
+	TTTFramework is a simple framework for building ui interfaces, after you have configured the appropriate interface properties (especially the navigation bar), you don't have to worry about whether other interface modifications will have a negative impact on the interface. In fact, the interface will restore itself to its original appearance.
+	DESC
 
     s.homepage     = "https://github.com/windliketheman/TTTFramework.git"
     s.license      = { :type => "MIT", :file => "LICENSE" }
