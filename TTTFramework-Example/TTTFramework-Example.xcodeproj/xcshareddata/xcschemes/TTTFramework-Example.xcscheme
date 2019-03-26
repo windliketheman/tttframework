@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E7D5EEA72240DFC800DA8882"
-               BuildableName = "TTTFramework.app"
-               BlueprintName = "TTTFramework"
-               ReferencedContainer = "container:TTTFramework.xcodeproj">
+               BuildableName = "TTTFramework-Example.app"
+               BlueprintName = "TTTFramework-Example"
+               ReferencedContainer = "container:TTTFramework-Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E7D5EEA72240DFC800DA8882"
-            BuildableName = "TTTFramework.app"
-            BlueprintName = "TTTFramework"
-            ReferencedContainer = "container:TTTFramework.xcodeproj">
+            BuildableName = "TTTFramework-Example.app"
+            BlueprintName = "TTTFramework-Example"
+            ReferencedContainer = "container:TTTFramework-Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E7D5EEA72240DFC800DA8882"
-            BuildableName = "TTTFramework.app"
-            BlueprintName = "TTTFramework"
-            ReferencedContainer = "container:TTTFramework.xcodeproj">
+            BuildableName = "TTTFramework-Example.app"
+            BlueprintName = "TTTFramework-Example"
+            ReferencedContainer = "container:TTTFramework-Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E7D5EEA72240DFC800DA8882"
-            BuildableName = "TTTFramework.app"
-            BlueprintName = "TTTFramework"
-            ReferencedContainer = "container:TTTFramework.xcodeproj">
+            BuildableName = "TTTFramework-Example.app"
+            BlueprintName = "TTTFramework-Example"
+            ReferencedContainer = "container:TTTFramework-Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
