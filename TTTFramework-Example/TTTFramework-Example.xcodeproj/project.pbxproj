@@ -102,7 +102,7 @@
 		E7D5EE9F2240DFC800DA8882 = {
 			isa = PBXGroup;
 			children = (
-				E7D5EEAA2240DFC800DA8882 /* TTTFramework-Example */,
+				E7D5EEAA2240DFC800DA8882 /* Example */,
 				E7D5EEA92240DFC800DA8882 /* Products */,
 				889CDD8CA1C48FE2BCC3B51D /* Pods */,
 				74A510B3D54125BBBEBE3B2C /* Frameworks */,
@@ -117,7 +117,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E7D5EEAA2240DFC800DA8882 /* TTTFramework-Example */ = {
+		E7D5EEAA2240DFC800DA8882 /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				E7D5EEAB2240DFC800DA8882 /* AppDelegate.h */,
@@ -132,7 +132,7 @@
 				E7D5EEB92240DFCA00DA8882 /* Info.plist */,
 				E7D5EEBA2240DFCA00DA8882 /* main.m */,
 			);
-			path = "TTTFramework-Example";
+			path = Example;
 			sourceTree = "<group>";
 		};
 		E7DF2547224218E200A86C92 /* Utilities */ = {
@@ -473,7 +473,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6M2Z6C29XA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/TTTFramework-Example/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -493,7 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6M2Z6C29XA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/TTTFramework-Example/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
