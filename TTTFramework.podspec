@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
 	
     s.requires_arc = true
     
-    s.xcconfig     = { "GCC_PREPROCESSOR_DEFINITIONS" => 'TTTFRAMEWORK=1' }
+    s.xcconfig     = { "GCC_PREPROCESSOR_DEFINITIONS" => "#{s.name}=1" }
 
     s.preserve_paths = "#{s.name}/Classes/**/*", "#{s.name}/Assets/**/*", "#{s.name}/Framework/**/*", "#{s.name}/Archive/**/*"
 
