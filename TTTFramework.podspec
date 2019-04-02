@@ -26,6 +26,8 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = "8.0"
 	
     s.requires_arc = true
+    
+    s.xcconfig     = { "GCC_PREPROCESSOR_DEFINITIONS" => 'TTTFRAMEWORK=1' }
 
     s.preserve_paths = "#{s.name}/Classes/**/*", "#{s.name}/Assets/**/*", "#{s.name}/Framework/**/*", "#{s.name}/Archive/**/*"
 
