@@ -103,7 +103,9 @@
 
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         [self.scrollView updateZoomScalesAndZoom:YES];
-    } completion:nil];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        //
+    }];
 }
 
 

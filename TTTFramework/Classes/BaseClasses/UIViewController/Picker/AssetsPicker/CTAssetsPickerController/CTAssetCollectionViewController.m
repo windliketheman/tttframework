@@ -237,7 +237,9 @@
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         [self updateTitle:self.picker.selectedAssets];
         [self updateButton:self.picker.selectedAssets];
-    } completion:nil];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        //
+    }];
 }
 
 #pragma mark - Notifications
