@@ -431,7 +431,7 @@ NSString * const CTAssetsGridViewFooterIdentifier = @"CTAssetsGridViewFooterIden
             
             NSLog(@"min: %ld, max: %ld, minIsBegin: %d", minIndex, maxIndex, minIsBegin);
             
-            for (NSInteger i = _beginSlideIndexPath.row;
+            for (NSInteger i = self.beginSlideIndexPath.row;
                  minIsBegin ? i <= maxIndex : i>= minIndex;
                  minIsBegin ? i++ : i--) {
                 
