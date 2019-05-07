@@ -120,14 +120,14 @@
     }
 }
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    if (self.selectedViewController)
-    {
-        return [self.selectedViewController preferredInterfaceOrientationForPresentation];
-    }
-    return UIInterfaceOrientationPortrait;
-}
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+//{
+//    if (self.selectedViewController)
+//    {
+//        return [self.selectedViewController preferredInterfaceOrientationForPresentation];
+//    }
+//    return UIInterfaceOrientationPortrait;
+//}
 
 #pragma mark - Member Methods
 - (void)loadChildViewControllers
