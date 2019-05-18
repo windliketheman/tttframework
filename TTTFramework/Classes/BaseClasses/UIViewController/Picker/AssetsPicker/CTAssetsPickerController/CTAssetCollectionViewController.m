@@ -160,11 +160,19 @@
     self.doneButton =
     [[UIBarButtonItem alloc] initWithTitle:CTAssetsPickerLocalizedString(@"Done", nil)
                                      style:UIBarButtonItemStyleDone
-                                    target:self.picker
+                                    target:self
                                     action:@selector(finishPickingAssets:)];
     
     self.navigationItem.leftBarButtonItem = (self.picker.showsCancelButton) ? self.cancelButton : nil;
     self.navigationItem.rightBarButtonItem =  self.doneButton;
+}
+
+- (void)finishPickingAssets:(id)sender
+{
+    if (self.picker)
+    {
+        [self.picker finishPickingAssets:sender];
+    }
 }
 
 - (void)localize
