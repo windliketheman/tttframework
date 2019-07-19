@@ -111,7 +111,7 @@
     TabBarController *tabBarController = [[TabBarController alloc] init];
     tabBarController.tabBar.translucent = YES;
     
-    tabBarController.tabBarItemColor = RGBCOLOR(102, 102, 102);
+    tabBarController.tabBarItemNormalColor = RGBCOLOR(102, 102, 102);
     tabBarController.tabBarItemSelectedColor = RGBCOLOR(255, 0, 0);
     tabBarController.tabBarItemTitles = @[NSLocalizedString(@"首页", nil),
                                           NSLocalizedString(@"我的", nil)];

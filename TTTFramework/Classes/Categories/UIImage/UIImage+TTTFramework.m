@@ -10,7 +10,7 @@
 
 NSString *const TTTFrameworkResourcesBundleName = @"TTTFramework";
 
-@implementation UIImage (TTTFramework)
+@implementation UIImage (TTT)
 
 + (UIImage *)imageNamed:(NSString *)imageName inAssets:(NSString *)assetsName ofBundle:(NSString *)bundleName
 {

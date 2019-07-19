@@ -13,9 +13,7 @@
 // 系统Documents目录
 + (NSString *)systemDocumentsDirectory
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    return documentsDirectory;
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 }
 
 // 系统Documents目录

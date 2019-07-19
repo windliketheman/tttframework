@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NSObject+Helper.h"
 
-@interface UIViewController (TTTFramework)
+@interface UIViewController (TTT)
 
 // defaults to YES;
 @property (nonatomic, readwrite, getter=isFirstTimeViewAppear) BOOL firstTimeViewAppear;

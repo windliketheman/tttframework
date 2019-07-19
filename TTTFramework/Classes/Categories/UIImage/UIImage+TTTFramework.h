@@ -11,7 +11,7 @@
 // Framework 所依赖的资源（.bunndle）
 extern NSString *const TTTFrameworkResourcesBundleName;
 
-@interface UIImage (TTTFramework)
+@interface UIImage (TTT)
 
 + (UIImage *)imageNamed:(NSString *)imageName inAssets:(NSString *)assetsName ofBundle:(NSString *)bundleName;
 

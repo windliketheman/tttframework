@@ -21,7 +21,7 @@ typedef void (^NavigationControllerConstructor)(UINavigationController **nc, UIV
 @property (nonatomic, assign) UIOffset tabBarItemTitleOffset;
 
 // item color
-@property (nonatomic, strong) UIColor *tabBarItemColor;
+@property (nonatomic, strong) UIColor *tabBarItemNormalColor;
 @property (nonatomic, strong) UIColor *tabBarItemSelectedColor;
 
 @property (nonatomic, strong) UIFont *tabBarItemTitleFont;

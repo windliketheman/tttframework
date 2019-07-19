@@ -42,16 +42,6 @@
     [self setTabBarBGColor];
     
     // [self setupNotificationObserver];
-    
-#if 0
-    CGRect buttonRect;
-    buttonRect.size = CGSizeMake(kSystemTabBarHeight, kSystemTabBarHeight);
-    buttonRect.origin.x = (kScreenWidth - buttonRect.size.width) / 2;
-    buttonRect.origin.y = 0.0f;
-    UIButton *btn = [[UIButton alloc] initWithFrame:buttonRect];
-    btn.backgroundColor = [UIColor redColor];
-    [self.tabBar addSubview:btn];
-#endif
 }
 
 #pragma mark - Setup Methods
@@ -200,15 +190,15 @@
     UIImage *image = self.tabBarItemImages[index];
     UIImage *selectedImage = self.tabBarItemSelectedImages.count > index ? self.tabBarItemSelectedImages[index] : image;
     
-    if (self.tabBarItemColor)
-        item.image = [[image imageWithTintColor:self.tabBarItemColor] originalImage];
+    if (self.tabBarItemNormalColor)
+        item.image = [[image imageWithTintColor:self.tabBarItemNormalColor] originalImage];
     
     if (self.tabBarItemSelectedColor)
         item.selectedImage = [[selectedImage imageWithTintColor:self.tabBarItemSelectedColor] originalImage];
     
     // 不指定颜色 系统会自动设置title颜色，但未选中的title颜色比图片浅 选中的title颜色比图片深
     // 注意修改字体只能修改正常的字体 选中的字体会保持和正常时的一致 无法单独设置
-    if (self.tabBarItemColor)
+    if (self.tabBarItemNormalColor)
         [item setTitleTextAttributes:self.normalStateTitleTextAttributes forState:UIControlStateNormal];
     
     if (self.tabBarItemSelectedColor)
@@ -219,12 +209,12 @@
 {
     if (self.tabBarItemTitleFont)
     {
-        return @{NSForegroundColorAttributeName : self.tabBarItemColor,
+        return @{NSForegroundColorAttributeName : self.tabBarItemNormalColor,
                  NSFontAttributeName : self.tabBarItemTitleFont};
     }
     else
     {
-        return @{NSForegroundColorAttributeName : self.tabBarItemColor};
+        return @{NSForegroundColorAttributeName : self.tabBarItemNormalColor};
     }
 }
 

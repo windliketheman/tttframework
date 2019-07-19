@@ -18,7 +18,7 @@
 #import "TTTFrameworkScreenParameters.h"
 #import <objc/runtime.h>
 
-@implementation UIViewController (TTTFramework)
+@implementation UIViewController (TTT)
 
 #pragma mark - Swizzle
 + (void)load
