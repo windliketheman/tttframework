@@ -111,15 +111,17 @@
     TabBarController *tabBarController = [[TabBarController alloc] init];
     tabBarController.tabBar.translucent = YES;
     
-    tabBarController.tabBarItemNormalColor = RGBCOLOR(102, 102, 102);
-    tabBarController.tabBarItemSelectedColor = RGBCOLOR(255, 0, 0);
     tabBarController.tabBarItemTitles = @[NSLocalizedString(@"首页", nil),
                                           NSLocalizedString(@"我的", nil)];
-    tabBarController.tabBarItemTitleOffset = UIOffsetMake(0, -2);
     tabBarController.tabBarItemImages = @[[UIImage imageNamed:@"home_tab_bar_home"],
                                           [UIImage imageNamed:@"home_tab_bar_mine"]];
     tabBarController.tabBarItemSelectedImages = @[[UIImage imageNamed:@"home_tab_bar_home_selected"],
                                                   [UIImage imageNamed:@"home_tab_bar_mine_selected"]];
+    tabBarController.tabBarItemTitleOffset = UIOffsetMake(0, -2);
+    tabBarController.tabBarItemTitleNormalColor = RGBCOLOR(102, 102, 102);
+    tabBarController.tabBarItemTitleSelectedColor = [UIColor purpleColor];
+    tabBarController.tabBarItemImageNormalColor = RGBCOLOR(102, 102, 102);
+    tabBarController.tabBarItemImageSelectedColor = [UIColor purpleColor];
     tabBarController.contentViewControllers = @[[[ViewController alloc] init],
                                                 [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped]];
     tabBarController.navigationControllerConstructor = ncc;

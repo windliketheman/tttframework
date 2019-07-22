@@ -16,15 +16,16 @@ typedef void (^NavigationControllerConstructor)(UINavigationController **nc, UIV
 @property (nonatomic, strong) NSArray *tabBarItemImages;
 @property (nonatomic, strong) NSArray *tabBarItemSelectedImages;
 
+@property (nonatomic, strong) UIColor *tabBarItemImageNormalColor;
+@property (nonatomic, strong) UIColor *tabBarItemImageSelectedColor;
+
 // input titles
 @property (nonatomic, strong) NSArray *tabBarItemTitles;
+@property (nonatomic, strong) UIFont *tabBarItemTitleFont;
 @property (nonatomic, assign) UIOffset tabBarItemTitleOffset;
 
-// item color
-@property (nonatomic, strong) UIColor *tabBarItemNormalColor;
-@property (nonatomic, strong) UIColor *tabBarItemSelectedColor;
-
-@property (nonatomic, strong) UIFont *tabBarItemTitleFont;
+@property (nonatomic, strong) UIColor *tabBarItemTitleNormalColor;
+@property (nonatomic, strong) UIColor *tabBarItemTitleSelectedColor;
 
 @property (nonatomic, strong) NSArray *contentViewControllers;
 
