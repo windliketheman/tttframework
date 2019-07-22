@@ -16,10 +16,10 @@ Pod::Spec.new do |s|
 	TTTFramework is a simple framework for building ui interfaces, after you have configured the appropriate interface properties (especially the navigation bar), you don't have to worry about whether other interface modifications will have a negative impact on the interface. In fact, the interface will restore itself to its original appearance.
 	DESC
 
-    s.homepage     = "https://github.com/windliketheman/TTTFramework.git"
+    s.homepage     = "https://github.com/windliketheman/tttframework"
     s.license      = { :type => "MIT", :file => "LICENSE" }
     s.author       = { "wind" => "wind.like.the.man@icloud.com" }
-    s.source       = { :git => "https://github.com/windliketheman/TTTFramework.git", :tag => s.version }
+    s.source       = { :git => "https://github.com/windliketheman/tttframework.git", :tag => s.version }
 
     s.platform     = :ios
     s.platform     = :ios, "8.0"
