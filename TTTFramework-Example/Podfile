@@ -3,6 +3,8 @@
 
 inhibit_all_warnings!
 
+use_frameworks!
+
 target 'TTTFramework-Example' do
   platform :ios, '8.0'
   

@@ -36,28 +36,7 @@
 #ifndef AssetsPickerForFramework
 + (UIImage *)ctassetsPickerImageNamed:(NSString *)name
 {
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    NSBundle *libBundle = [NSBundle bundleWithPath:[mainBundle.resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle", TTTFrameworkResourcesBundleName]]];
-    
-    BOOL isLoaded = NO;
-    if (libBundle)
-    {
-        BOOL isLoaded = libBundle.isLoaded;
-        if (!isLoaded)
-        {
-            isLoaded = [libBundle load];
-        }
-    }
-    
-    if (isLoaded)
-    {
-        UIImage *image = [UIImage imageNamed:name inBundle:libBundle compatibleWithTraitCollection:nil];
-        return image;
-    }
-    else
-    {
-        return [UIImage imageNamed:name inAssets:@"CTAssetsPicker" ofBundle:TTTFrameworkResourcesBundleName];
-    }
+    return [UIImage imageNamed:name inAssets:@"CTAssetsPicker"];
 }
 
 #else

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		727112A1B4356A27B00111C4 /* libPods-TTTFramework-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E34C3BB4B96A30CDFE498D37 /* libPods-TTTFramework-Example.a */; };
+		99AC44C437A343766A146C34 /* Pods_TTTFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9983EE1CF3B83A2DD05E7D49 /* Pods_TTTFramework_Example.framework */; };
 		E7D5EEAD2240DFC800DA8882 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D5EEAC2240DFC800DA8882 /* AppDelegate.m */; };
 		E7D5EEB32240DFC800DA8882 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7D5EEB12240DFC800DA8882 /* Main.storyboard */; };
 		E7D5EEB52240DFCA00DA8882 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D5EEB42240DFCA00DA8882 /* Assets.xcassets */; };
@@ -31,9 +31,15 @@
 		161A34C9BD4558EE7FD85C6E /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		57A072C59D2B82C2BD9565F6 /* Pods-TTTFramework-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTTFramework-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTTFramework-Example/Pods-TTTFramework-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		621B4E4ED30B12936012BA72 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		9983EE1CF3B83A2DD05E7D49 /* Pods_TTTFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTTFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70510EC2AD6D3A46A6C143A /* Pods-TTTFramework-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTTFramework-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTTFramework-Example/Pods-TTTFramework-Example.release.xcconfig"; sourceTree = "<group>"; };
 		D9D6D7C6DF81E9F0A8E827E2 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E34C3BB4B96A30CDFE498D37 /* libPods-TTTFramework-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TTTFramework-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7979EAF22E5BD8700C8060B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		E7979EB022E5BD8700C8060B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E7979EB122E5BD9100C8060B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		E7979EB222E5BD9100C8060B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E7979EB322E5BD9600C8060B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
+		E7979EB422E5BD9600C8060B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E7D5EEA82240DFC800DA8882 /* TTTFramework-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TTTFramework-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7D5EEAB2240DFC800DA8882 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E7D5EEAC2240DFC800DA8882 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				727112A1B4356A27B00111C4 /* libPods-TTTFramework-Example.a in Frameworks */,
+				99AC44C437A343766A146C34 /* Pods_TTTFramework_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D6D7C6DF81E9F0A8E827E2 /* libPods-Example.a */,
-				E34C3BB4B96A30CDFE498D37 /* libPods-TTTFramework-Example.a */,
+				9983EE1CF3B83A2DD05E7D49 /* Pods_TTTFramework_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,7 +211,7 @@
 				E7D5EEA42240DFC800DA8882 /* Sources */,
 				E7D5EEA52240DFC800DA8882 /* Frameworks */,
 				E7D5EEA62240DFC800DA8882 /* Resources */,
-				9E8D49ADB359A34208E9FED2 /* [CP] Copy Pods Resources */,
+				74F9977E544CE7BA9043FC83 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -285,7 +291,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9E8D49ADB359A34208E9FED2 /* [CP] Copy Pods Resources */ = {
+		74F9977E544CE7BA9043FC83 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -293,18 +299,24 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TTTFramework-Example/Pods-TTTFramework-Example-resources.sh",
-				"${PODS_ROOT}/../../TTTFramework/Assets/TTTFramework.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-TTTFramework-Example/Pods-TTTFramework-Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/TTTFramework/TTTFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/uchardet/uchardet.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TTTFramework.bundle",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/uchardet.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TTTFramework-Example/Pods-TTTFramework-Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TTTFramework-Example/Pods-TTTFramework-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -337,6 +349,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				E7D5EEB22240DFC800DA8882 /* Base */,
+				E7979EAF22E5BD8700C8060B /* zh-Hans */,
+				E7979EB122E5BD9100C8060B /* zh-Hant */,
+				E7979EB322E5BD9600C8060B /* zh-HK */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -345,6 +360,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				E7D5EEB72240DFCA00DA8882 /* Base */,
+				E7979EB022E5BD8700C8060B /* zh-Hans */,
+				E7979EB222E5BD9100C8060B /* zh-Hant */,
+				E7979EB422E5BD9600C8060B /* zh-HK */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -356,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -415,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
