@@ -35,14 +35,10 @@
     picker.pickerDelegate = (id<AssetPickerViewControllerDelegate>)self;
     picker.navigationBar.translucent = YES;
     picker.selectionFilter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        
-        if ([[(ALAsset *)evaluatedObject valueForProperty:ALAssetPropertyType] isEqual:ALAssetTypeVideo])
-        {
+        if ([[(ALAsset *)evaluatedObject valueForProperty:ALAssetPropertyType] isEqual:ALAssetTypeVideo]) {
             NSTimeInterval duration = [[(ALAsset*)evaluatedObject valueForProperty:ALAssetPropertyDuration] doubleValue];
             return duration >= 0;
-        }
-        else
-        {
+        } else {
             return YES;
         }
     }];
@@ -56,14 +52,10 @@
 {
     // 判断是否已授权
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
-    
-    switch (status)
-    {
-        case PHAuthorizationStatusNotDetermined:
-        {
+    switch (status) {
+        case PHAuthorizationStatusNotDetermined: {
             [self requestAuthorizationBeforeDispatchAssetsPicker:^(CTAssetsPickerController * _Nullable picker) {
-                if (pickerCallback)
-                {
+                if (pickerCallback) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         pickerCallback(picker);
                     });
@@ -72,24 +64,20 @@
             break;
         }
         case PHAuthorizationStatusRestricted:
-        case PHAuthorizationStatusDenied:
-        {
+        case PHAuthorizationStatusDenied: {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showPhotoAccessDenied];
                 
-                if (pickerCallback)
-                {
+                if (pickerCallback) {
                     pickerCallback(nil);
                 }
             });
             break;
         }
         case PHAuthorizationStatusAuthorized:
-        default:
-        {
+        default: {
             [self dispatchAssetsPickerFinally:^(CTAssetsPickerController * _Nullable picker) {
-                if (pickerCallback)
-                {
+                if (pickerCallback) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         pickerCallback(picker);
                     });
@@ -104,20 +92,15 @@
 - (void)requestAuthorizationBeforeDispatchAssetsPicker:(void (^__nullable)(CTAssetsPickerController *__nullable picker))pickerCallback
 {
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        
-        switch (status)
-        {
-            case PHAuthorizationStatusAuthorized:
-            {
+        switch (status) {
+            case PHAuthorizationStatusAuthorized: {
                 [self dispatchAssetsPickerFinally:pickerCallback];
                 break;
             }
-            default:
-            {
+            default: {
                 [self showPhotoAccessDenied];
                 
-                if (pickerCallback)
-                {
+                if (pickerCallback) {
                     pickerCallback(nil);
                 }
                 break;
@@ -146,8 +129,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         picker.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    if (pickerCallback)
-    {
+    if (pickerCallback) {
         pickerCallback(picker);
     }
 }
@@ -157,17 +139,14 @@
 #pragma mark - Camera
 - (void)dispatchPhotoCameraPicker:(void (^__nullable)(UIImagePickerController *__nullable picker))pickerCallback
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self dispatchMediaTypes:@[(__bridge NSString *)kUTTypeImage] cameraPicker:^(UIImagePickerController * _Nullable photoCameraPicker) {
             
-            if (photoCameraPicker)
-            {
+            if (photoCameraPicker) {
                 photoCameraPicker.allowsEditing = NO;
             }
             
-            if (pickerCallback)
-            {
+            if (pickerCallback) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     pickerCallback(photoCameraPicker);
                 });
@@ -178,17 +157,14 @@
 
 - (void)dispatchVideoCameraPicker:(void (^__nullable)(UIImagePickerController *__nullable picker))pickerCallback
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self dispatchMediaTypes:@[(__bridge NSString *)kUTTypeMovie] cameraPicker:^(UIImagePickerController * _Nullable videoCameraPicker) {
             
-            if (videoCameraPicker)
-            {
+            if (videoCameraPicker) {
                 videoCameraPicker.allowsEditing = NO;
             }
             
-            if (pickerCallback)
-            {
+            if (pickerCallback) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     pickerCallback(videoCameraPicker);
                 });
@@ -199,17 +175,14 @@
 
 - (void)dispatchCameraPicker:(void (^__nullable)(UIImagePickerController *__nullable picker))pickerCallback
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self dispatchMediaTypes:@[(__bridge NSString *)kUTTypeImage, (__bridge NSString *)kUTTypeMovie] cameraPicker:^(UIImagePickerController * _Nullable cameraPicker) {
             
-            if (cameraPicker)
-            {
+            if (cameraPicker) {
                 cameraPicker.allowsEditing = NO;
             }
             
-            if (pickerCallback)
-            {
+            if (pickerCallback) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     pickerCallback(cameraPicker);
                 });
@@ -223,25 +196,20 @@
 {
     // 判断是否已授权
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    
-    switch (status)
-    {
+    switch (status) {
         case AVAuthorizationStatusNotDetermined:
             [self requestAuthorizationBeforeDispatchMediaTypes:mediaTypes cameraPicker:pickerCallback];
             break;
         case AVAuthorizationStatusRestricted:
-        case AVAuthorizationStatusDenied:
-        {
+        case AVAuthorizationStatusDenied: {
             [self showCameraAccessDenied];
-            if (pickerCallback)
-            {
+            if (pickerCallback) {
                 pickerCallback(nil);
             }
             break;
         }
         case AVAuthorizationStatusAuthorized:
-        default:
-        {
+        default: {
             [self dispatchMediaTypes:mediaTypes finallyCameraPicker:pickerCallback];
             break;
         }
@@ -252,12 +220,9 @@
 {
     // 相机权限
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-        if (granted)
-        {
+        if (granted) {
             [self dispatchMediaTypes:mediaTypes finallyCameraPicker:pickerCallback];
-        }
-        else
-        {
+        } else {
             [self showCameraAccessDenied];
             if (pickerCallback)
             {
@@ -276,13 +241,11 @@
 - (void)dispatchMediaTypes:(NSArray *)mediaTypes finallyCameraPicker:(void (^__nullable)(UIImagePickerController *__nullable picker))pickerCallback
 {
     // 判断是否可以打开相机
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         // Alert will be in main thread
         [self showAlertWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"您没有相机", nil) sureTitle:NSLocalizedString(@"确定", nil) sureHandler:nil];
         
-        if (pickerCallback)
-        {
+        if (pickerCallback) {
             pickerCallback(nil);
         }
         return;
@@ -298,8 +261,7 @@
     // kUTTypeImage kUTTypeJPEG kUTTypeMovie kUTTypeMPEG4
     ipc.mediaTypes = mediaTypes;
     
-    if (pickerCallback)
-    {
+    if (pickerCallback) {
         pickerCallback(ipc);
     }
 }
