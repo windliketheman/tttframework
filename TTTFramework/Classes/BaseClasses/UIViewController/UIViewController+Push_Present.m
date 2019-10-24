@@ -106,6 +106,8 @@
 
 - (void)pushViewController:(UIViewController *)vc animated:(BOOL)animated
 {
+    vc.hidesBottomBarWhenPushed = YES;
+    
     [self.navigationController pushViewController:vc animated:animated];
 }
 

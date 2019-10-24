@@ -31,7 +31,7 @@ NSString *const TTTFrameworkResourcesBundleName = @"TTTFramework";
         path = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.imageset", imageName]];
         path = [path stringByAppendingPathComponent:imageName];
         
-        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
         
         // NSLog(@"Testing Framework image size: %f, %f", image.size.width, image.size.height);
         return image;

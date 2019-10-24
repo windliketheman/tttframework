@@ -61,10 +61,8 @@
         }
         else
         {
-            __weak __typeof(self) wself = self;
             [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.top.left.right.bottom.equalTo(wself.view);
+                make.top.left.right.bottom.equalTo(self.view);
             }];
         }
     }

@@ -142,8 +142,7 @@ void DataProviderReleaseDataCallback(void *info, const void *data, size_t size)
 + (UIImage *)imageNotUsingCacheMode:(NSString *)imageName
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
-
-    return [UIImage imageWithContentsOfFile:path];
+    return [[UIImage alloc] initWithContentsOfFile:path];
 }
 
 // for bar, using our image

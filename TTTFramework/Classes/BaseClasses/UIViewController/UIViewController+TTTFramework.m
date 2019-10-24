@@ -617,13 +617,13 @@
 
 - (CGFloat)bottomBarsHeight
 {
-    CGFloat bottomBarsHeight = TAB_BAR_AREA_HEIGHT;
+    CGFloat bottomBarsHeight = 0.0;
     
     if (self.tabBarController)
     {
         if (self.navigationController && (self.navigationController.viewControllers.count == 1))
         {
-            bottomBarsHeight += CGRectGetHeight(self.tabBarController.tabBar.bounds);
+            bottomBarsHeight += CGRectGetHeight(self.tabBarController.tabBar.bounds) + SAFE_AREA_BOTTOM_SPACING;
         }
     }
     return bottomBarsHeight;

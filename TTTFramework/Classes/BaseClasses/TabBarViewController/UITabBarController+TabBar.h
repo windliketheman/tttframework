@@ -15,4 +15,8 @@
 - (void)showTabBar;
 - (void)hideTabBar;
 
+@property (nonatomic, getter=isTabBarHidden) BOOL tabBarHidden;
+
+- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated;
+
 @end
