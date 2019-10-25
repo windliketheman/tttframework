@@ -16,16 +16,16 @@
 {
     self.imageView.backgroundColor = [UIColor clearColor];
     
-    [self setImage:[image imageWithTintColor:color] forState:UIControlStateNormal];
-    [self setImage:[image imageWithTintColor:color.highlightedColor] forState:UIControlStateHighlighted];
-    [self setImage:[image imageWithTintColor:color.disabledColor] forState:UIControlStateDisabled];
+    [self setImage:[image imageWithCustomTintColor:color] forState:UIControlStateNormal];
+    [self setImage:[image imageWithCustomTintColor:color.highlightedColor] forState:UIControlStateHighlighted];
+    [self setImage:[image imageWithCustomTintColor:color.disabledColor] forState:UIControlStateDisabled];
 }
 
 - (void)setImageColor:(UIColor *)color
 {
-    [self setImage:[[self imageForState:UIControlStateNormal] imageWithTintColor:color] forState:UIControlStateNormal];
-    [self setImage:[[self imageForState:UIControlStateHighlighted] imageWithTintColor:color] forState:UIControlStateHighlighted];
-    [self setImage:[[self imageForState:UIControlStateDisabled] imageWithTintColor:color] forState:UIControlStateDisabled];
+    [self setImage:[[self imageForState:UIControlStateNormal] imageWithCustomTintColor:color] forState:UIControlStateNormal];
+    [self setImage:[[self imageForState:UIControlStateHighlighted] imageWithCustomTintColor:color] forState:UIControlStateHighlighted];
+    [self setImage:[[self imageForState:UIControlStateDisabled] imageWithCustomTintColor:color] forState:UIControlStateDisabled];
 }
 
 - (void)setTitle:(NSString *)title withColor:(UIColor *)color

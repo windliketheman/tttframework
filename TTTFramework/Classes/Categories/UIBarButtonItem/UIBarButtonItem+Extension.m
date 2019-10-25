@@ -51,7 +51,7 @@
     }
     else if (self.image)
     {
-        self.image = [self.image imageWithTintColor:color];
+        self.image = [self.image imageWithCustomTintColor:color];
     }
     else
     {

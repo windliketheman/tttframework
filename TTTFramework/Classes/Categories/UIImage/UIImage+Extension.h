@@ -34,9 +34,9 @@
 @interface UIImage (Tint)
 
 + (UIImage *)imageNamed:(NSString *)name withTintColor:(UIColor *)tintColor;
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor;
+- (UIImage *)imageWithCustomTintColor:(UIColor *)tintColor;
 - (UIImage *)imageWithGradientTintColor:(UIColor *)tintColor;
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode;
+- (UIImage *)imageWithCustomTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode;
 
 @end
 

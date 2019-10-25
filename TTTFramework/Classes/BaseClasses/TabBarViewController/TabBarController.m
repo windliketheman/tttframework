@@ -195,13 +195,13 @@
     UIImage *selectedImage = self.tabBarItemSelectedImages.count > index ? self.tabBarItemSelectedImages[index] : image;
     
     if (self.tabBarItemImageNormalColor) {
-        item.image = [[image imageWithTintColor:self.tabBarItemImageNormalColor] originalImage];
+        item.image = [[image imageWithCustomTintColor:self.tabBarItemImageNormalColor] originalImage];
     } else {
         item.image = image.originalImage;
     }
     
     if (self.tabBarItemImageSelectedColor) {
-        item.selectedImage = [[selectedImage imageWithTintColor:self.tabBarItemImageSelectedColor] originalImage];
+        item.selectedImage = [[selectedImage imageWithCustomTintColor:self.tabBarItemImageSelectedColor] originalImage];
     } else {
         item.selectedImage = selectedImage.originalImage;
     }

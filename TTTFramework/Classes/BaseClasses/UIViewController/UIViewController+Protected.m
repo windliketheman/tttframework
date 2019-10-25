@@ -71,14 +71,14 @@
 - (void)addCloseButton
 {
     UIImage *closeButtonImage = self.customCloseButtonImage ?: UINavigationBar.closeButtonImage;
-    closeButtonImage = [closeButtonImage imageWithTintColor:self.wantedNavigationItem.closeButtonItemColor];
+    closeButtonImage = [closeButtonImage imageWithCustomTintColor:self.wantedNavigationItem.closeButtonItemColor];
     [self addNavigationBarCloseButtonItemWithImage:closeButtonImage action:@selector(closeButtonClicked:)];
 }
 
 - (void)addBackButton
 {
     UIImage *backButtonImage = self.customBackButtonImage ?: UINavigationBar.backButtonImage;
-    backButtonImage = [backButtonImage imageWithTintColor:self.wantedNavigationItem.backButtonItemColor];
+    backButtonImage = [backButtonImage imageWithCustomTintColor:self.wantedNavigationItem.backButtonItemColor];
     [self addNavigationBarBackButtonItemWithImage:backButtonImage action:@selector(backButtonClicked:)];
 }
 

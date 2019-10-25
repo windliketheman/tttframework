@@ -175,20 +175,23 @@ void DataProviderReleaseDataCallback(void *info, const void *data, size_t size)
 {
     UIImage *image = [UIImage imageNamed:name];
 
-    return [image imageWithTintColor:tintColor];
+    return [image imageWithCustomTintColor:tintColor];
 }
 
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor
+- (UIImage *)imageWithCustomTintColor:(UIColor *)tintColor
 {
-    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
+    if (@available(iOS 13.0, *)) {
+        return [self imageWithTintColor:tintColor];
+    }
+    return [self imageWithCustomTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
 }
 
 - (UIImage *)imageWithGradientTintColor:(UIColor *)tintColor
 {
-    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
+    return [self imageWithCustomTintColor:tintColor blendMode:kCGBlendModeOverlay];
 }
 
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
+- (UIImage *)imageWithCustomTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
 {
     //We want to keep alpha, set opaque to NO; Use 0.0f for scale to use the scale factor of the device’s main screen.
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
