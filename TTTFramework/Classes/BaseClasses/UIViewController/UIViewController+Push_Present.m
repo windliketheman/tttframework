@@ -68,6 +68,7 @@
         navi = (UINavigationController *)vc;
     }
     navi.modalTransitionStyle = style;
+    navi.modalPresentationStyle = UIModalPresentationFullScreen; // ios13，默认值由0变为-2
 
     [self presentViewController:navi animated:animated completion:^{
         

@@ -126,8 +126,11 @@
     picker.preferredNavigationBarColor = self.preferredNavigationBarColor;
     
     // to present picker as a form sheet in iPad
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         picker.modalPresentationStyle = UIModalPresentationFormSheet;
+    } else {
+        picker.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
     
     if (pickerCallback) {
         pickerCallback(picker);
@@ -260,6 +263,8 @@
     
     // kUTTypeImage kUTTypeJPEG kUTTypeMovie kUTTypeMPEG4
     ipc.mediaTypes = mediaTypes;
+    
+    ipc.modalPresentationStyle = UIModalPresentationFullScreen;
     
     if (pickerCallback) {
         pickerCallback(ipc);
