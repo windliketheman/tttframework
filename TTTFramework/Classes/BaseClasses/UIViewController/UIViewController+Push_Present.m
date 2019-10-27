@@ -43,7 +43,7 @@
     [self presentRootViewController:vc
                            animated:YES
                     transitionStyle:transitionStyle
-                  presentationStyle:UIModalPresentationFullScreen
+                  presentationStyle:presentationStyle
                  navigationBarColor:self.navigationController.navigationBarColor
              navigationBarTextColor:self.navigationController.navigationBarTitleColor
                          completion:completion];
