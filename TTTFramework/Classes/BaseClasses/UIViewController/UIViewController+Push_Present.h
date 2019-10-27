@@ -14,19 +14,29 @@
 - (void)presentRootViewController:(UIViewController *)vc;
 
 // 动作开关
-- (void)presentRootViewController:(UIViewController *)vc animated:(BOOL)animated complection:(dispatch_block_t)complection;
+- (void)presentRootViewController:(UIViewController *)vc
+                         animated:(BOOL)animated
+                       completion:(dispatch_block_t)completion;
 
 // 动作开关＋动画类型
-- (void)presentRootViewController:(UIViewController *)vc animated:(BOOL)animated transitionStyle:(UIModalTransitionStyle)style complection:(dispatch_block_t)complection;
+- (void)presentRootViewController:(UIViewController *)vc
+                  transitionStyle:(UIModalTransitionStyle)transitionStyle
+                presentationStyle:(UIModalPresentationStyle)presentationStyle
+                       completion:(dispatch_block_t)completion;
 
 // 动作开＋设置导航栏背景＋文字颜色
-- (void)presentRootViewController:(UIViewController *)vc navigationBarColor:(UIColor *)barColor navigationBarTextColor:(UIColor *)barTextColor;
+- (void)presentRootViewController:(UIViewController *)vc
+               navigationBarColor:(UIColor *)barColor
+           navigationBarTextColor:(UIColor *)barTextColor;
 
 // 动作开＋设置导航栏背景＋文字颜色 完成回调
-- (void)presentRootViewController:(UIViewController *)vc navigationBarColor:(UIColor *)barColor navigationBarTextColor:(UIColor *)barTextColor complection:(dispatch_block_t)complection;
+- (void)presentRootViewController:(UIViewController *)vc
+               navigationBarColor:(UIColor *)barColor
+           navigationBarTextColor:(UIColor *)barTextColor
+                       completion:(dispatch_block_t)completion;
 
 - (void)dismiss;
-- (void)dismissAnimated:(BOOL)animated complection:(dispatch_block_t)complection;
+- (void)dismissAnimated:(BOOL)animated completion:(dispatch_block_t)completion;
 
 - (void)pushViewController:(UIViewController *)vc;
 - (void)pushViewController:(UIViewController *)vc animated:(BOOL)animated;

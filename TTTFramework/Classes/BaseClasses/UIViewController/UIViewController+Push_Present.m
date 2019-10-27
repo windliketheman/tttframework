@@ -16,42 +16,89 @@
 // 动作开
 - (void)presentRootViewController:(UIViewController *)vc
 {
-    [self presentRootViewController:vc animated:YES transitionStyle:UIModalTransitionStyleCoverVertical complection:nil];
+    [self presentRootViewController:vc
+                    transitionStyle:UIModalTransitionStyleCoverVertical
+                  presentationStyle:UIModalPresentationFullScreen
+                         completion:nil];
 }
 
 // 动作开关
-- (void)presentRootViewController:(UIViewController *)vc animated:(BOOL)animated complection:(dispatch_block_t)complection
+- (void)presentRootViewController:(UIViewController *)vc animated:(BOOL)animated completion:(dispatch_block_t)completion
 {
-    [self presentRootViewController:vc animated:animated transitionStyle:UIModalTransitionStyleCoverVertical complection:complection];
+    [self presentRootViewController:vc
+                           animated:animated
+                    transitionStyle:UIModalTransitionStyleCoverVertical
+                  presentationStyle:UIModalPresentationFullScreen
+                 navigationBarColor:self.navigationController.navigationBarColor
+             navigationBarTextColor:self.navigationController.navigationBarTitleColor
+                         completion:completion];
 }
 
 // 动作开关＋动画类型
-- (void)presentRootViewController:(UIViewController *)vc animated:(BOOL)animated transitionStyle:(UIModalTransitionStyle)style complection:(dispatch_block_t)complection
+- (void)presentRootViewController:(UIViewController *)vc
+                  transitionStyle:(UIModalTransitionStyle)transitionStyle
+                presentationStyle:(UIModalPresentationStyle)presentationStyle
+                       completion:(dispatch_block_t)completion
 {
-    [self presentRootViewController:vc animated:animated transitionStyle:style navigationBarColor:self.navigationController.navigationBarColor navigationBarTextColor:self.navigationController.navigationBarTitleColor complection:complection];
+    [self presentRootViewController:vc
+                           animated:YES
+                    transitionStyle:transitionStyle
+                  presentationStyle:UIModalPresentationFullScreen
+                 navigationBarColor:self.navigationController.navigationBarColor
+             navigationBarTextColor:self.navigationController.navigationBarTitleColor
+                         completion:completion];
 }
 
 #pragma mark --- 定制导航栏
 // 动作开＋设置导航栏背景＋文字颜色
-- (void)presentRootViewController:(UIViewController *)vc navigationBarColor:(UIColor *)barColor navigationBarTextColor:(UIColor *)barTextColor
+- (void)presentRootViewController:(UIViewController *)vc
+               navigationBarColor:(UIColor *)barColor
+           navigationBarTextColor:(UIColor *)barTextColor
 {
-    [self presentRootViewController:vc animated:YES navigationBarColor:barColor navigationBarTextColor:barTextColor complection:nil];
+    [self presentRootViewController:vc
+                           animated:YES
+                 navigationBarColor:barColor
+             navigationBarTextColor:barTextColor
+                         completion:nil];
 }
 
 // 动作开＋设置导航栏背景＋文字颜色 完成回调
-- (void)presentRootViewController:(UIViewController *)vc navigationBarColor:(UIColor *)barColor navigationBarTextColor:(UIColor *)barTextColor complection:(dispatch_block_t)complection
+- (void)presentRootViewController:(UIViewController *)vc
+               navigationBarColor:(UIColor *)barColor
+           navigationBarTextColor:(UIColor *)barTextColor
+                       completion:(dispatch_block_t)completion
 {
-    [self presentRootViewController:vc animated:YES navigationBarColor:barColor navigationBarTextColor:barTextColor complection:complection];
+    [self presentRootViewController:vc
+                           animated:YES
+                 navigationBarColor:barColor
+             navigationBarTextColor:barTextColor
+                         completion:completion];
 }
 
 // 动作开关＋设置导航栏背景＋文字颜色
-- (void)presentRootViewController:(UIViewController *)vc animated:(BOOL)animated navigationBarColor:(UIColor *)barColor navigationBarTextColor:(UIColor *)barTextColor complection:(dispatch_block_t)complection
+- (void)presentRootViewController:(UIViewController *)vc
+                         animated:(BOOL)animated
+               navigationBarColor:(UIColor *)barColor
+           navigationBarTextColor:(UIColor *)barTextColor
+                       completion:(dispatch_block_t)completion
 {
-    [self presentRootViewController:vc animated:animated transitionStyle:UIModalTransitionStyleCoverVertical navigationBarColor:barColor navigationBarTextColor:barTextColor complection:complection];
+    [self presentRootViewController:vc
+                           animated:animated
+                    transitionStyle:UIModalTransitionStyleCoverVertical
+                  presentationStyle:UIModalPresentationFullScreen
+                 navigationBarColor:barColor
+             navigationBarTextColor:barTextColor
+                         completion:completion];
 }
 
 // 动作开关＋动画类型＋设置导航栏背景＋文字颜色
-- (void)presentRootViewController:(UIViewController *)vc animated:(BOOL)animated transitionStyle:(UIModalTransitionStyle)style navigationBarColor:(UIColor *)barColor navigationBarTextColor:(UIColor *)barTextColor complection:(dispatch_block_t)complection
+- (void)presentRootViewController:(UIViewController *)vc
+                         animated:(BOOL)animated
+                  transitionStyle:(UIModalTransitionStyle)style
+                presentationStyle:(UIModalPresentationStyle)presentationStyle
+               navigationBarColor:(UIColor *)barColor
+           navigationBarTextColor:(UIColor *)barTextColor
+                      completion:(dispatch_block_t)completion
 {
 #if 0
     CGFloat red, green, blue, alpha;
@@ -68,12 +115,12 @@
         navi = (UINavigationController *)vc;
     }
     navi.modalTransitionStyle = style;
-    navi.modalPresentationStyle = UIModalPresentationFullScreen; // ios13，默认值由0变为-2
+    navi.modalPresentationStyle = presentationStyle; // ios13，默认值由0变为-2
 
     [self presentViewController:navi animated:animated completion:^{
         
-        if (complection) {
-            complection();
+        if (completion) {
+            completion();
         }
     }];
 }
@@ -81,20 +128,22 @@
 #pragma mark --- Dismiss
 - (void)dismiss
 {
-    [self dismissAnimated:YES complection:^{
+    [self dismissAnimated:YES completion:^{
         //
     }];
 }
 
-- (void)dismissAnimated:(BOOL)animated complection:(dispatch_block_t)complection
+- (void)dismissAnimated:(BOOL)animated completion:(dispatch_block_t)completion
 {
     if (self.navigationController) {
         [self.navigationController dismissViewControllerAnimated:animated completion:^{
-            if (complection) complection();
+            if (completion)
+                completion();
         }];
     } else {
         [self dismissViewControllerAnimated:animated completion:^{
-            if (complection) complection();
+            if (completion)
+                completion();
         }];
     }
 }
