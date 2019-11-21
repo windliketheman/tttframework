@@ -30,7 +30,7 @@
 #import "NSBundle+CTAssetsPickerController.h"
 #import "UIImage+CTAssetsPickerController.h"
 #import "NSNumberFormatter+CTAssetsPickerController.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 @interface CTAssetCollectionViewCell ()
@@ -61,11 +61,15 @@
     {
         _thumbnailSize = size;
         
-        self.opaque                             = YES;
-        self.isAccessibilityElement             = YES;
-        self.textLabel.backgroundColor          = self.backgroundColor;
-        self.detailTextLabel.backgroundColor    = self.backgroundColor;
-        self.accessoryType                      = UITableViewCellAccessoryDisclosureIndicator;
+        self.opaque                          = YES;
+        self.isAccessibilityElement          = YES;
+        self.backgroundColor                 = CTAssetsPickerSettings.defaultSettings.backgroundColor();
+        self.textLabel.backgroundColor       = self.backgroundColor;
+        self.detailTextLabel.backgroundColor = self.backgroundColor;
+        self.accessoryType                   = UITableViewCellAccessoryDisclosureIndicator;
+        
+        self.selectedBackgroundView = [[UIView alloc] init];
+        self.selectedBackgroundView.backgroundColor = CTAssetsPickerSettings.defaultSettings.cellSelectedColor();
         
         [self setupViews];
     }

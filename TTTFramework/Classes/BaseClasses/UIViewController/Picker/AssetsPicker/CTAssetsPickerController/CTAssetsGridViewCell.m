@@ -31,7 +31,7 @@
 #import "PHAsset+CTAssetsPickerController.h"
 #import "NSDateFormatter+CTAssetsPickerController.h"
 #import "UIImage+CTAssetsPickerController.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 @interface CTAssetsGridViewCell ()

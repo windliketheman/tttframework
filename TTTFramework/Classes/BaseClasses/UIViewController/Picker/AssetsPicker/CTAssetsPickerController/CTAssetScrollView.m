@@ -30,7 +30,7 @@
 #import "PHAsset+CTAssetsPickerController.h"
 #import "NSBundle+CTAssetsPickerController.h"
 #import "UIImage+CTAssetsPickerController.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 
@@ -106,6 +106,7 @@ NSString * const CTAssetScrollViewPlayerWillPauseNotification = @"CTAssetScrollV
     imageView.isAccessibilityElement    = YES;
     imageView.accessibilityTraits       = UIAccessibilityTraitImage;
     self.imageView = imageView;
+    self.imageView.backgroundColor = CTAssetsPickerSettings.defaultSettings.backgroundColor();
     
     [self addSubview:self.imageView];
     

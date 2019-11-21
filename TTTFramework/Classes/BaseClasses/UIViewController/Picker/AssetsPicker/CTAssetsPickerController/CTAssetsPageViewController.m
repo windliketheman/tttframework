@@ -31,7 +31,7 @@
 #import "NSBundle+CTAssetsPickerController.h"
 #import "UIImage+CTAssetsPickerController.h"
 #import "PHAsset+CTAssetsPickerController.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 
@@ -109,7 +109,7 @@
 
 - (void)setupViews
 {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = CTAssetsPickerSettings.defaultSettings.backgroundColor();
 }
 
 - (void)setupButtons

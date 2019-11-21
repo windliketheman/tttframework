@@ -37,7 +37,7 @@
 #import "UICollectionView+CTAssetsPickerController.h"
 #import "NSIndexSet+CTAssetsPickerController.h"
 #import "NSBundle+CTAssetsPickerController.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 
@@ -173,7 +173,7 @@ NSString * const CTAssetsGridViewFooterIdentifier = @"CTAssetsGridViewFooterIden
 
 - (void)setupViews
 {
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = CTAssetsPickerSettings.defaultSettings.backgroundColor();
 }
 
 - (void)setupButtons

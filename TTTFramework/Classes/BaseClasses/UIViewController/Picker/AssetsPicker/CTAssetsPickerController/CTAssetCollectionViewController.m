@@ -34,7 +34,7 @@
 #import "PHAsset+CTAssetsPickerController.h"
 #import "NSBundle+CTAssetsPickerController.h"
 #import "CTAssetsPickerController+Customized.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 
@@ -147,6 +147,8 @@
     self.tableView.layoutMargins.bottom;
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.backgroundColor = CTAssetsPickerSettings.defaultSettings.backgroundColor();
 }
 
 - (void)setupButtons

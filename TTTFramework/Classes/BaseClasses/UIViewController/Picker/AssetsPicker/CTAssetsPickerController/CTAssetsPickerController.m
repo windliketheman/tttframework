@@ -38,7 +38,7 @@
 #import "UIImage+CTAssetsPickerController.h"
 #import "NSNumberFormatter+CTAssetsPickerController.h"
 #import "CTAssetsPickerController+Customized.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 NSString * const CTAssetsPickerSelectedAssetsDidChangeNotification = @"CTAssetsPickerSelectedAssetsDidChangeNotification";
@@ -222,7 +222,7 @@ NSString * const CTAssetsPickerDidDeselectAssetNotification = @"CTAssetsPickerDi
 
 - (void)setupViews
 {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = CTAssetsPickerSettings.defaultSettings.backgroundColor();
 }
 
 

@@ -14,7 +14,7 @@
 #define SCREEN_HEIGHT                  ([[UIScreen mainScreen] bounds].size.height)
 #define SCREEN_SCALE                   ([UIScreen mainScreen].scale)
 
-#define ONE_PIXEL                      (1/SCREEN_SCALE)
+#define ONE_PIXEL                      (1.0/SCREEN_SCALE)
 
 // 状态栏高度
 #define STATUS_BAR_HEIGHT              CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame])

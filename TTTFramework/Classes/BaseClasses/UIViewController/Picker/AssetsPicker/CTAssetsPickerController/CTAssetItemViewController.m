@@ -30,7 +30,7 @@
 #import "CTAssetScrollView.h"
 #import "NSBundle+CTAssetsPickerController.h"
 #import "PHAsset+CTAssetsPickerController.h"
-
+#import "CTAssetsPickerSettings.h"
 
 
 
@@ -113,9 +113,12 @@
 
 - (void)setupViews
 {
+    self.view.backgroundColor = CTAssetsPickerSettings.defaultSettings.backgroundColor();
+    
     CTAssetScrollView *scrollView = [CTAssetScrollView newAutoLayoutView];
     [scrollView.playButton addTarget:self action:@selector(playAsset:) forControlEvents:UIControlEventTouchUpInside];
     self.scrollView = scrollView;
+    self.scrollView.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:self.scrollView];
     
     [self.view layoutIfNeeded];
