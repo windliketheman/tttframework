@@ -35,8 +35,7 @@
         [self swizzleInstanceSelector:@selector(preferredStatusBarStyle) withSelector:@selector(uiviewController_preferredStatusBarStyle)];
         
         [self swizzleInstanceSelector:@selector(shouldAutorotate) withSelector:@selector(uiviewController_shouldAutorotate)];
-        [self swizzleInstanceSelector:@selector(uiviewController_supportedInterfaceOrientations) withSelector:@selector(supportedInterfaceOrientations)];
-        [self swizzleInstanceSelector:@selector(uiviewController_preferredInterfaceOrientationForPresentation) withSelector:@selector(preferredInterfaceOrientationForPresentation)];
+        [self swizzleInstanceSelector:@selector(supportedInterfaceOrientations) withSelector:@selector(uiviewController_supportedInterfaceOrientations)];
         
         [self swizzleInstanceSelector:NSSelectorFromString(@"dealloc") withSelector:@selector(uiviewController_dealloc)];
     });
@@ -174,18 +173,6 @@
         return [self shouldAutorotate] ? UIInterfaceOrientationMaskAllButUpsideDown : UIInterfaceOrientationMaskPortrait;
     }
     return [self uiviewController_supportedInterfaceOrientations];
-}
-
-- (UIInterfaceOrientation)uiviewController_preferredInterfaceOrientationForPresentation
-{
-    if (self.customizedEnabled)
-    {
-        return UIInterfaceOrientationPortrait;
-    }
-    else
-    {
-        return [self uiviewController_preferredInterfaceOrientationForPresentation];
-    }
 }
 
 #pragma mark - Framework
