@@ -194,13 +194,16 @@
                 NSData *txtData = [NSData dataWithContentsOfFile:self.fileURL];
                 NSString *encoding = self.fileURL.contentTextCharSet;
                 
-                [self.webView loadData:txtData MIMEType:mimeType characterEncodingName:encoding baseURL:[NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath]];
+                if (@available(iOS 13.0, *))
+                {
+                    [self.webView loadData:txtData MIMEType:mimeType characterEncodingName:encoding baseURL:[NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath]];
+                }
 #endif
             }
             else
             {
                 // 加载文件
-                if (SYSTEM_VERSION >= 9.0)
+                if (@available(iOS 9.0, *))
                 {
                     [self.webView loadFileURL:url allowingReadAccessToURL:url];
                 }
@@ -213,7 +216,7 @@
         else
         {
             // 加载文件
-            if (SYSTEM_VERSION >= 9.0)
+            if (@available(iOS 9.0, *))
             {
                 [self.webView loadFileURL:url allowingReadAccessToURL:url];
             }
