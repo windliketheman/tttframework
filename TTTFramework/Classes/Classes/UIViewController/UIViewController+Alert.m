@@ -203,72 +203,72 @@
                                               sureHandlers:(NSArray * __nullable)sureHandlers {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:style];
     
-    if (textFieldConfig) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (textFieldConfig) {
             [alertController addTextFieldWithConfigurationHandler:textFieldConfig];
-        });
-    }
-    
-    __weak __typeof(self) wself = self;
-    __weak __typeof(alertController) wselfController = alertController;
-    
-    if (cancelTitle) {
+        }
+        
+        __weak __typeof(self) wself = self;
+        __weak __typeof(alertController) wselfController = alertController;
+        
+        if (cancelTitle) {
 #if 1
-        UIAlertAction *oneAction = [cancelTitle isKindOfClass:[UIAlertAction class]] ? (UIAlertAction *)cancelTitle : nil;
-        NSString *actionTitle = oneAction ? oneAction.title : cancelTitle;
-        UIAlertActionStyle style = oneAction ? oneAction.style : UIAlertActionStyleCancel;
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:actionTitle style:style handler:^(UIAlertAction *cancelAction) {
-            if (cancelHandler) {
-                cancelHandler(cancelAction);
-            }
+            UIAlertAction *oneAction = [cancelTitle isKindOfClass:[UIAlertAction class]] ? (UIAlertAction *)cancelTitle : nil;
+            NSString *actionTitle = oneAction ? oneAction.title : cancelTitle;
+            UIAlertActionStyle style = oneAction ? oneAction.style : UIAlertActionStyleCancel;
             
-            // 可能没有handler，但alertController在数组里
-            [wself handleActionFinished:wselfController];
-        }];
-        
-        [alertController addAction:cancelAction];
-#else
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *cancelAction) {
-            [wself handleActionFinished:wselfController];
-        }];
-        
-        [alertController addAction:cancelAction];
-#endif
-    }
-    
-    if (sureTitles && sureTitles.count > 0) {
-#if 1
-        for (NSInteger i = 0; i < sureTitles.count; ++i) {
-            UIAlertAction *oneAction = [sureTitles[i] isKindOfClass:[UIAlertAction class]] ? sureTitles[i] : nil;
-            NSString *actionTitle = oneAction ? oneAction.title : sureTitles[i];
-            UIAlertActionStyle style = oneAction ? oneAction.style : UIAlertActionStyleDefault;
-            
-            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:actionTitle style:style handler:^(UIAlertAction *action) {
-                
-                if (sureHandlers && sureHandlers.count > i) {
-                    ActionHandler actionHandler = (void (^)(UIAlertAction *action))sureHandlers[i];
-                    actionHandler(action);
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:actionTitle style:style handler:^(UIAlertAction *cancelAction) {
+                if (cancelHandler) {
+                    cancelHandler(cancelAction);
                 }
                 
                 // 可能没有handler，但alertController在数组里
                 [wself handleActionFinished:wselfController];
             }];
-            sureAction.enabled = oneAction ? oneAction.isEnabled : YES;
+            
+            [alertController addAction:cancelAction];
+#else
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *cancelAction) {
+                [wself handleActionFinished:wselfController];
+            }];
+            
+            [alertController addAction:cancelAction];
+#endif
+        }
+        
+        if (sureTitles && sureTitles.count > 0) {
+#if 1
+            for (NSInteger i = 0; i < sureTitles.count; ++i) {
+                UIAlertAction *oneAction = [sureTitles[i] isKindOfClass:[UIAlertAction class]] ? sureTitles[i] : nil;
+                NSString *actionTitle = oneAction ? oneAction.title : sureTitles[i];
+                UIAlertActionStyle style = oneAction ? oneAction.style : UIAlertActionStyleDefault;
+                
+                UIAlertAction *sureAction = [UIAlertAction actionWithTitle:actionTitle style:style handler:^(UIAlertAction *action) {
+                    
+                    if (sureHandlers && sureHandlers.count > i) {
+                        ActionHandler actionHandler = (void (^)(UIAlertAction *action))sureHandlers[i];
+                        actionHandler(action);
+                    }
+                    
+                    // 可能没有handler，但alertController在数组里
+                    [wself handleActionFinished:wselfController];
+                }];
+                sureAction.enabled = oneAction ? oneAction.isEnabled : YES;
+                
+                [alertController addAction:sureAction];
+            }
+#else
+            
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [wself handleActionFinished:wselfController];
+            }];
+            sureAction.enabled = YES;
             
             [alertController addAction:sureAction];
-        }
-#else
-        
-        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [wself handleActionFinished:wselfController];
-        }];
-        sureAction.enabled = YES;
-        
-        [alertController addAction:sureAction];
 #endif
-    }
+        }
+    });
     
     return alertController;
 }
