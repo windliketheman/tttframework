@@ -162,7 +162,7 @@
 - (BOOL)isFirstTimeViewAppear
 {
     NSNumber *isFirstTimeViewAppear = objc_getAssociatedObject(self, @selector(isFirstTimeViewAppear));
-    if (isFirstTimeViewAppear) {
+    if (isFirstTimeViewAppear != nil) {
         return isFirstTimeViewAppear.boolValue;
     }
     return YES;
@@ -176,7 +176,7 @@
 - (BOOL)isViewActive
 {
     NSNumber *isViewActive = objc_getAssociatedObject(self, @selector(isViewActive));
-    if (isViewActive) {
+    if (isViewActive != nil) {
         return isViewActive.boolValue;
     }
     return NO;

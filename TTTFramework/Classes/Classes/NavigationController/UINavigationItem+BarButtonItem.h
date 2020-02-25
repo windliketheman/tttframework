@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, BarButtonItemType)
 - (UIBarButtonItem *)addLeftBarButtonItem:(id)item type:(BarButtonItemType)type target:(id)target action:(SEL)rightItemSelector;
 
 // when items has only one object, then return the object(type: UIBarButtonItem)
-- (NSArray *)addLeftBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings;
+- (NSArray<UIBarButtonItem *> *)addLeftBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings;
 
 - (void)removeLeftBarButtonItems;
 
@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger, BarButtonItemType)
 - (UIBarButtonItem *)addRightBarButtonItem:(id)item type:(BarButtonItemType)type target:(id)target action:(SEL)rightItemSelector;
 
 // when items has only one object, then return the object(type: UIBarButtonItem)
-- (NSArray *)addRightBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings;
+- (NSArray<UIBarButtonItem *> *)addRightBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings;
 
 - (void)removeRightBarButtonItems;
 

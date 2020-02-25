@@ -15,7 +15,7 @@
     CGFloat red, green, blue, alpha;
     [self getRed:&red green:&green blue:&blue alpha:&alpha];
     
-    return [UIColor colorWithRed:red green:green blue:blue alpha:0.25f];
+    return [UIColor colorWithRed:red green:green blue:blue alpha:0.5f];
 }
 
 - (UIColor *)disabledColor
@@ -23,7 +23,7 @@
     CGFloat red, green, blue, alpha;
     [self getRed:&red green:&green blue:&blue alpha:&alpha];
     
-    return [UIColor colorWithRed:red green:green blue:blue alpha:0.25f];
+    return [UIColor colorWithRed:red green:green blue:blue alpha:0.5f];
 }
 
 + (BOOL)isColor:(UIColor *)aColor sameToColor:(UIColor *)bColor

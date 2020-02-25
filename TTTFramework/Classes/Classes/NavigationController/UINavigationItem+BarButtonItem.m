@@ -179,7 +179,7 @@
     [self.closeButtonItem styleToFitColor:self.closeButtonItemColor font:self.barButtonItemFont];
 }
 
-- (NSArray *)barLeftButtonItems
+- (NSArray<UIBarButtonItem *> *)barLeftButtonItems
 {
     if (self.leftBarButtonItems)
     {
@@ -198,7 +198,7 @@
     }
 }
 
-- (NSArray *)barRightButtonItems
+- (NSArray<UIBarButtonItem *> *)barRightButtonItems
 {
     if (self.rightBarButtonItems)
     {
@@ -313,7 +313,7 @@
     return [self addBarButtonItems:@[item] types:@[@(type)] target:target actions:@[NSStringFromSelector(leftItemSelector)] atLeft:YES].firstObject;
 }
 
-- (NSArray *)addLeftBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings
+- (NSArray<UIBarButtonItem *> *)addLeftBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings
 {
     return [self addBarButtonItems:items types:types target:target actions:selectorStrings atLeft:YES];
 }
@@ -343,7 +343,7 @@
     return [self addBarButtonItems:@[item] types:@[@(type)] target:target actions:@[NSStringFromSelector(rightItemSelector)] atLeft:NO].firstObject;
 }
 
-- (NSArray *)addRightBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings
+- (NSArray<UIBarButtonItem *> *)addRightBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings
 {
     return [self addBarButtonItems:items types:types target:target actions:selectorStrings atLeft:NO];
 }
@@ -680,7 +680,7 @@
 }
 
 // when items has only one object, then return the object(type: UIBarButtonItem)
-- (NSArray *)addBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings atLeft:(BOOL)atLeft
+- (NSArray<UIBarButtonItem *> *)addBarButtonItems:(NSArray *)items types:(NSArray *)types target:(id)target actions:(NSArray *)selectorStrings atLeft:(BOOL)atLeft
 {
     if (items.count != types.count)
     {

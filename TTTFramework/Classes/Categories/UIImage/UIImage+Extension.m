@@ -261,11 +261,11 @@ void DataProviderReleaseDataCallback(void *info, const void *data, size_t size)
             }
         }
 
-        float our = self.size.height / self.size.width;
-        float screen = [[UIScreen mainScreen] bounds].size.height / [[UIScreen mainScreen] bounds].size.width;
-        if (our > screen) {
-            isLongImage = YES;
-        }
+//        float our = self.size.height / self.size.width;
+//        float screen = [[UIScreen mainScreen] bounds].size.height / [[UIScreen mainScreen] bounds].size.width;
+//        if (our > screen) {
+//            isLongImage = YES;
+//        }
     }
 
     // this will crop

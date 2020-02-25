@@ -66,7 +66,7 @@
 + (CGFloat)barButtonItemSideSpacing
 {
     NSNumber *barButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(barButtonItemSideSpacing));
-    if (barButtonItemSideSpacing)
+    if (barButtonItemSideSpacing != nil)
     {
         return barButtonItemSideSpacing.floatValue;
     }
@@ -81,7 +81,7 @@
 + (CGFloat)titleButtonItemSideSpacing
 {
     NSNumber *titleButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(titleButtonItemSideSpacing));
-    if (titleButtonItemSideSpacing)
+    if (titleButtonItemSideSpacing != nil)
     {
         return titleButtonItemSideSpacing.floatValue;
     }
@@ -96,7 +96,7 @@
 + (CGFloat)imageButtonItemSideSpacing
 {
     NSNumber *imageButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(imageButtonItemSideSpacing));
-    if (imageButtonItemSideSpacing)
+    if (imageButtonItemSideSpacing != nil)
     {
         return imageButtonItemSideSpacing.floatValue;
     }
@@ -111,7 +111,7 @@
 + (CGFloat)backButtonItemSideSpacing
 {
     NSNumber *backButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(backButtonItemSideSpacing));
-    if (backButtonItemSideSpacing)
+    if (backButtonItemSideSpacing != nil)
     {
         return backButtonItemSideSpacing.floatValue;
     }

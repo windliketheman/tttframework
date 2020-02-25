@@ -233,7 +233,7 @@
 - (BOOL)prefersNavigationBarLeftSideBackButtonWhenPushed
 {
     NSNumber *prefersNavigationBarLeftSideBackButtonWhenPushed = objc_getAssociatedObject(self, @selector(prefersNavigationBarLeftSideBackButtonWhenPushed));
-    if (prefersNavigationBarLeftSideBackButtonWhenPushed)
+    if (prefersNavigationBarLeftSideBackButtonWhenPushed != nil)
     {
         return prefersNavigationBarLeftSideBackButtonWhenPushed.boolValue;
     }
@@ -261,7 +261,7 @@
 - (BOOL)prefersNavigationBarLeftSideCloseButtonWhenPresented
 {
     NSNumber *prefersNavigationBarLeftSideCloseButtonWhenPresented = objc_getAssociatedObject(self, @selector(prefersNavigationBarLeftSideCloseButtonWhenPresented));
-    if (prefersNavigationBarLeftSideCloseButtonWhenPresented)
+    if (prefersNavigationBarLeftSideCloseButtonWhenPresented != nil)
     {
         return prefersNavigationBarLeftSideCloseButtonWhenPresented.boolValue;
     }

@@ -24,7 +24,7 @@
 - (BOOL)customizedEnabled
 {
     NSNumber *customizedEnabled = objc_getAssociatedObject(self, @selector(customizedEnabled));
-    if (customizedEnabled)
+    if (customizedEnabled != nil)
     {
         return customizedEnabled.boolValue;
     }
@@ -68,7 +68,7 @@
 - (BOOL)prefersNavigationBarHidden
 {
     NSNumber *prefersNavigationBarHidden = objc_getAssociatedObject(self, @selector(prefersNavigationBarHidden));
-    if (prefersNavigationBarHidden)
+    if (prefersNavigationBarHidden != nil)
     {
         return prefersNavigationBarHidden.boolValue;
     }
@@ -78,20 +78,6 @@
 - (void)setPreferredNavigationBarColor:(UIColor *)preferredNavigationBarColor
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarColor), preferredNavigationBarColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    if (preferredNavigationBarColor)
-    {
-        if (![preferredNavigationBarColor isKindOfClass:UIColor.class])
-        {
-            // 传非color使用系统默认
-            preferredNavigationBarColor = SYSTEM_NAVIGATION_BAR_COLOR;
-        }
-    }
-    else
-    {
-        // 传nil使用默认
-        preferredNavigationBarColor = [UINavigationBar.global color];
-    }
 }
 
 - (UIColor *)preferredNavigationBarColor
@@ -117,7 +103,7 @@
 - (NavigationBarShadowImageState)preferredNavigationBarShadowImageState
 {
     NSNumber *preferredNavigationBarShadowImageState = objc_getAssociatedObject(self, @selector(preferredNavigationBarShadowImageState));
-    if (preferredNavigationBarShadowImageState)
+    if (preferredNavigationBarShadowImageState != nil)
     {
         return preferredNavigationBarShadowImageState.integerValue;
     }
@@ -214,7 +200,7 @@
 - (BOOL)prefersStatusBarHidden
 {
     NSNumber *prefersStatusBarHidden = objc_getAssociatedObject(self, @selector(prefersStatusBarHidden));
-    if (prefersStatusBarHidden)
+    if (prefersStatusBarHidden != nil)
     {
         return prefersStatusBarHidden.boolValue;
     }
@@ -229,7 +215,7 @@
 - (BOOL)prefersStatusBarStyleLightContent
 {
     NSNumber *prefersStatusBarStyleLightContent = objc_getAssociatedObject(self, @selector(prefersStatusBarStyleLightContent));
-    if (prefersStatusBarStyleLightContent)
+    if (prefersStatusBarStyleLightContent != nil)
     {
         return prefersStatusBarStyleLightContent.boolValue;
     }
@@ -244,7 +230,7 @@
 - (BOOL)prefersStatusBarStyleDarkContent
 {
     NSNumber *prefersStatusBarStyleDarkContent = objc_getAssociatedObject(self, @selector(prefersStatusBarStyleDarkContent));
-    if (prefersStatusBarStyleDarkContent)
+    if (prefersStatusBarStyleDarkContent != nil)
     {
         return prefersStatusBarStyleDarkContent.boolValue;
     }
@@ -260,7 +246,7 @@
 - (BOOL)autorotateEnabled
 {
     NSNumber *autorotateEnabled = objc_getAssociatedObject(self, @selector(autorotateEnabled));
-    if (autorotateEnabled)
+    if (autorotateEnabled != nil)
     {
         return autorotateEnabled.boolValue;
     }

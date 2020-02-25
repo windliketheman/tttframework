@@ -491,18 +491,17 @@ NSString * const CTAssetsPickerDidDeselectAssetNotification = @"CTAssetsPickerDi
     
     NSString *format;
     
-    if (photoSelected && videoSelected)
+    if (photoSelected && videoSelected) {
         format = CTAssetsPickerLocalizedString(@"%@ Items Selected", nil);
-    
-    else if (photoSelected)
+    } else if (photoSelected) {
         format = (self.selectedAssets.count > 1) ?
         CTAssetsPickerLocalizedString(@"%@ Photos Selected", nil) :
         CTAssetsPickerLocalizedString(@"%@ Photo Selected", nil);
-    
-    else if (videoSelected)
+    } else {
         format = (self.selectedAssets.count > 1) ?
         CTAssetsPickerLocalizedString(@"%@ Videos Selected", nil) :
         CTAssetsPickerLocalizedString(@"%@ Video Selected", nil);
+    }
     
     NSNumberFormatter *nf = [NSNumberFormatter new];
     

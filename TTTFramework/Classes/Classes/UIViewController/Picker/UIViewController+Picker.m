@@ -78,9 +78,7 @@
         default: {
             [self dispatchAssetsPickerFinally:^(CTAssetsPickerController * _Nullable picker) {
                 if (pickerCallback) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        pickerCallback(picker);
-                    });
+                    pickerCallback(picker);
                 }
             }];
             break;
@@ -98,10 +96,21 @@
                 break;
             }
             default: {
-                [self showPhotoAccessDenied];
+                void (^action)(void) = ^{
+                    [self showPhotoAccessDenied];
+                    
+                    if (pickerCallback) {
+                        pickerCallback(nil);
+                    }
+                };
                 
-                if (pickerCallback) {
-                    pickerCallback(nil);
+                if ([NSThread isMainThread]) {
+                    action();
+                } else {
+                    NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        action();
+                    });
                 }
                 break;
             }
@@ -117,24 +126,26 @@
 
 - (void)dispatchAssetsPickerFinally:(void (^__nullable)(CTAssetsPickerController *__nullable picker))pickerCallback
 {
-    // init picker
-    CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
-    
-    // set delegate
-    picker.delegate = (id<CTAssetsPickerControllerDelegate>)self;
-    picker.showsEmptyAlbums = NO;
-    picker.preferredNavigationBarColor = self.preferredNavigationBarColor;
-    
-    // to present picker as a form sheet in iPad
-    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        picker.modalPresentationStyle = UIModalPresentationFormSheet;
-    } else {
-        picker.modalPresentationStyle = UIModalPresentationFullScreen;
-    }
-    
-    if (pickerCallback) {
-        pickerCallback(picker);
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // init picker
+        CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
+        
+        // set delegate
+        picker.delegate = (id<CTAssetsPickerControllerDelegate>)self;
+        picker.showsEmptyAlbums = NO;
+        picker.preferredNavigationBarColor = self.preferredNavigationBarColor;
+        
+        // to present picker as a form sheet in iPad
+        if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            picker.modalPresentationStyle = UIModalPresentationFormSheet;
+        } else {
+            picker.modalPresentationStyle = UIModalPresentationFullScreen;
+        }
+        
+        if (pickerCallback) {
+            pickerCallback(picker);
+        }
+    });
 }
 
 #endif
@@ -205,15 +216,37 @@
             break;
         case AVAuthorizationStatusRestricted:
         case AVAuthorizationStatusDenied: {
-            [self showCameraAccessDenied];
-            if (pickerCallback) {
-                pickerCallback(nil);
+            void (^action)(void) = ^{
+                [self showCameraAccessDenied];
+                if (pickerCallback) {
+                    pickerCallback(nil);
+                }
+            };
+            
+            if ([NSThread isMainThread]) {
+                action();
+            } else {
+                NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    action();
+                });
             }
             break;
         }
         case AVAuthorizationStatusAuthorized:
         default: {
-            [self dispatchMediaTypes:mediaTypes finallyCameraPicker:pickerCallback];
+            void (^action)(void) = ^{
+                [self dispatchMediaTypes:mediaTypes finallyCameraPicker:pickerCallback];
+            };
+            
+            if ([NSThread isMainThread]) {
+                action();
+            } else {
+                NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    action();
+                });
+            }
             break;
         }
     }
@@ -223,14 +256,25 @@
 {
     // 相机权限
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-        if (granted) {
-            [self dispatchMediaTypes:mediaTypes finallyCameraPicker:pickerCallback];
-        } else {
-            [self showCameraAccessDenied];
-            if (pickerCallback)
-            {
-                pickerCallback(nil);
+        void (^action)(void) = ^{
+            if (granted) {
+                [self dispatchMediaTypes:mediaTypes finallyCameraPicker:pickerCallback];
+            } else {
+                [self showCameraAccessDenied];
+                if (pickerCallback)
+                {
+                    pickerCallback(nil);
+                }
             }
+        };
+        
+        if ([NSThread isMainThread]) {
+            action();
+        } else {
+            NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+            dispatch_async(dispatch_get_main_queue(), ^{
+                action();
+            });
         }
     }];
 }

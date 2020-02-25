@@ -28,7 +28,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (LoadingPromptTheme)loadingPromptTheme
 {
     NSNumber *loadingPromptTheme = objc_getAssociatedObject(self.global, @selector(loadingPromptTheme));
-    if (loadingPromptTheme)
+    if (loadingPromptTheme != nil)
     {
         return loadingPromptTheme.integerValue;
     }
@@ -43,7 +43,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)loadingIndicatorTransformScale
 {
     NSNumber *loadingIndicatorTransformScale = objc_getAssociatedObject(self.global, @selector(loadingIndicatorTransformScale));
-    if (loadingIndicatorTransformScale)
+    if (loadingIndicatorTransformScale != nil)
     {
         return loadingIndicatorTransformScale.floatValue;
     }
@@ -79,7 +79,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)loadingPromptMargin
 {
     NSNumber *loadingPromptMargin = objc_getAssociatedObject(self.global, @selector(loadingPromptMargin));
-    if (loadingPromptMargin)
+    if (loadingPromptMargin != nil)
     {
         return loadingPromptMargin.floatValue;
     }
@@ -94,7 +94,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)loadingPromptCornerRadius
 {
     NSNumber *loadingPromptCornerRadius = objc_getAssociatedObject(self.global, @selector(loadingPromptCornerRadius));
-    if (loadingPromptCornerRadius)
+    if (loadingPromptCornerRadius != nil)
     {
         return loadingPromptCornerRadius.floatValue;
     }
@@ -104,7 +104,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)promptTimeInterval
 {
     NSNumber *promptTimeInterval = objc_getAssociatedObject(self.global, @selector(promptTimeInterval));
-    if (promptTimeInterval)
+    if (promptTimeInterval != nil)
     {
         return promptTimeInterval.floatValue;
     }
@@ -119,7 +119,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 - (LoadingPromptTheme)preferredLoadingPromptTheme
 {
     NSNumber *preferredLoadingPromptTheme = objc_getAssociatedObject(self, @selector(preferredLoadingPromptTheme));
-    if (preferredLoadingPromptTheme)
+    if (preferredLoadingPromptTheme != nil)
     {
         return preferredLoadingPromptTheme.integerValue;
     }
@@ -134,7 +134,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 - (CGFloat)preferredPromptTimeInterval
 {
     NSNumber *preferredPromptTimeInterval = objc_getAssociatedObject(self, @selector(preferredPromptTimeInterval));
-    if (preferredPromptTimeInterval)
+    if (preferredPromptTimeInterval != nil)
     {
         return preferredPromptTimeInterval.floatValue;
     }

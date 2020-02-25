@@ -235,7 +235,7 @@
 - (BOOL)shadowImageEnabled
 {
     NSNumber *shadowImageEnabled = objc_getAssociatedObject(self, @selector(shadowImageEnabled));
-    if (shadowImageEnabled)
+    if (shadowImageEnabled != nil)
     {
         return shadowImageEnabled.boolValue;
     }
