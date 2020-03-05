@@ -165,7 +165,7 @@ NSString * const CTAssetsGridViewFooterIdentifier = @"CTAssetsGridViewFooterIden
 
 - (PHAsset *)assetAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (self.fetchResult.count > 0) ? self.fetchResult[indexPath.item] : nil;
+    return (self.fetchResult.count > indexPath.item) ? self.fetchResult[indexPath.item] : nil;
 }
 
 
