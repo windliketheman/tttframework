@@ -32,7 +32,9 @@
 @property (nonatomic, strong) NSString *fileURL;
 @property (nonatomic, strong) NSString *htmlString;
 
-@property (nonatomic, readwrite) BOOL autoLayoutEnabled;
+@property (nonatomic, assign) BOOL autoLayoutEnabled;
+
+@property (nonatomic, assign) BOOL autoUpdateTitle;
 
 // this class always return YES, subclass must to override, not using:(.customizedEnabled = ?).
 - (BOOL)customizedEnabled;

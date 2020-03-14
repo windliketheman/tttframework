@@ -390,9 +390,16 @@
 // 5a 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-    if (!self.isLocalFile && !self.navigationBarTitle && webView.title)
+    if (self.autoUpdateTitle)
     {
         self.navigationBarTitle = webView.title;
+    }
+    else
+    {
+        if (!self.isLocalFile && !self.navigationBarTitle && webView.title)
+        {
+            self.navigationBarTitle = webView.title;
+        }
     }
     
     [NSThread delaySeconds:0.1f perform:^{
