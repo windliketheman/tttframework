@@ -230,10 +230,10 @@
         CGFloat red, green, blue, alpha;
         [self.preferredNavigationBarColor getRed:&red green:&green blue:&blue alpha:&alpha];
         BOOL shown = alpha >= 0.9999;
-        [self.navigationController.navigationBar setShadowImageEnabled:shown];
+        [self.navigationController setNavigationBarShadowImageEnabled:shown];
     } else {
         BOOL hidden = self.preferredNavigationBarShadowImageState;
-        [self.navigationController.navigationBar setShadowImageEnabled:!hidden];
+        [self.navigationController setNavigationBarShadowImageEnabled:!hidden];
     }
 }
 

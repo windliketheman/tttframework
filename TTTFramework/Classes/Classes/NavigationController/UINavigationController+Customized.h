@@ -19,6 +19,8 @@
 @property (nonatomic, readonly) UIFont       *navigationBarLargeTitleFont;
 @property (nonatomic, readonly) NSDictionary *navigationBarLargeTitleAttributes;
 
+@property (nonatomic, readwrite) BOOL navigationBarShadowImageEnabled;
+
 - (void)updateNavigationBarColor:(UIColor *)navigationBarColor;
 
 - (void)updateNavigationBarTitleColor:(UIColor *)navigationBarTitleColor;

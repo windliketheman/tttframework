@@ -117,6 +117,16 @@ static UIFont *_appearance_navigationBarTitleFont;
     self.navigationBar.largeTitleAttributes = navigationBarTitleAttributes;
 }
 
+- (void)setNavigationBarShadowImageEnabled:(BOOL)enabled
+{
+    [self.navigationBar setShadowImageEnabled:enabled];
+}
+
+- (BOOL)navigationBarShadowImageEnabled
+{
+    return self.navigationBar.shadowImageEnabled;
+}
+
 #pragma mark - Swizzle
 + (void)load {
     

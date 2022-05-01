@@ -39,28 +39,7 @@
     
     self.tabBarItemTitleOffset = UIOffsetZero;
     
-    [self setTabBarBGColor];
-    
     // [self setupNotificationObserver];
-}
-
-#pragma mark - Setup Methods
-- (void)setTabBarBGColor
-{
-    if ([[UIDevice currentDevice].systemVersion floatValue] < 7.0f)
-    {
-        UIImage *buttonImage = [UIImage imageWithColor:RGBCOLOR(248, 248, 248) size:CGSizeMake(1, CGRectGetHeight(self.tabBar.bounds))];
-        
-        UIImageView *imgv = [[UIImageView alloc] initWithImage:buttonImage];
-        imgv.frame = CGRectMake(0, 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
-        imgv.contentMode = UIViewContentModeScaleToFill;
-        [[self tabBar] insertSubview:imgv atIndex:1];
-        
-        // CGSize selectionSize = self.tabBar.selectionIndicatorImage.size;
-        
-        // 用与背景一样的颜色 把选中的矩形指示图形隐藏
-        [self.tabBar setSelectionIndicatorImage:buttonImage];
-    }
 }
 
 #pragma mark - Notification

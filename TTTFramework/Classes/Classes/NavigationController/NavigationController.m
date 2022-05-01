@@ -104,6 +104,80 @@
     }
     
     [self.navigationBar setBarTintColor:navigationBarColor];
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
+        if (!appearance) {
+            appearance = [[UINavigationBarAppearance alloc] init];
+            // [appearance configureWithOpaqueBackground];
+        }
+        appearance.backgroundColor = navigationBarColor;
+        self.navigationBar.standardAppearance = appearance;
+        
+        appearance = self.navigationBar.scrollEdgeAppearance;
+        if (!appearance) {
+            appearance = [[UINavigationBarAppearance alloc] init];
+            [appearance configureWithOpaqueBackground];
+        }
+        appearance.backgroundColor = navigationBarColor;
+        self.navigationBar.scrollEdgeAppearance = appearance;
+    }
+}
+
+- (void)updateNavigationBarTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
+{
+    [super updateNavigationBarTitleAttributes:navigationBarTitleAttributes];
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
+        if (!appearance) {
+            appearance = [[UINavigationBarAppearance alloc] init];
+        }
+        appearance.titleTextAttributes = navigationBarTitleAttributes;
+        self.navigationBar.standardAppearance = appearance;
+        
+        appearance = self.navigationBar.scrollEdgeAppearance;
+        if (!appearance) {
+            appearance = [[UINavigationBarAppearance alloc] init];
+        }
+        appearance.titleTextAttributes = navigationBarTitleAttributes;
+        self.navigationBar.scrollEdgeAppearance = appearance;
+    }
+}
+
+- (void)updateNavigationBarLargeTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
+{
+    [super updateNavigationBarLargeTitleAttributes:navigationBarTitleAttributes];
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
+        if (!appearance) {
+            appearance = [[UINavigationBarAppearance alloc] init];
+        }
+        appearance.largeTitleTextAttributes = navigationBarTitleAttributes;
+        self.navigationBar.standardAppearance = appearance;
+        
+        appearance = self.navigationBar.scrollEdgeAppearance;
+        if (!appearance) {
+            appearance = [[UINavigationBarAppearance alloc] init];
+        }
+        appearance.largeTitleTextAttributes = navigationBarTitleAttributes;
+        self.navigationBar.scrollEdgeAppearance = appearance;
+    }
+}
+
+- (void)setNavigationBarShadowImageEnabled:(BOOL)enabled
+{
+    [super setNavigationBarShadowImageEnabled:enabled];
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = self.navigationBar.scrollEdgeAppearance;
+        if (!appearance) {
+            appearance = [[UINavigationBarAppearance alloc] init];
+        }
+        appearance.shadowColor = [UIColor clearColor];
+        self.navigationBar.scrollEdgeAppearance = appearance;
+    }
 }
 
 /*
