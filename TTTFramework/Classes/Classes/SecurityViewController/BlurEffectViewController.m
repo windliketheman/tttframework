@@ -84,7 +84,7 @@
     {
         return UIStatusBarStyleLightContent;
     }
-    else
+    else if (self.prefersStatusBarStyleDarkContent)
     {
         if (@available(iOS 13.0, *)) {
             return UIStatusBarStyleDarkContent;
@@ -92,6 +92,11 @@
             // Automatically chooses light or dark content based on the user interface style
             return UIStatusBarStyleDefault;
         }
+    }
+    else
+    {
+        // Automatically chooses light or dark content based on the user interface style
+        return UIStatusBarStyleDefault;
     }
 }
 

@@ -119,7 +119,12 @@
         if (self.prefersStatusBarStyleLightContent) {
             return UIStatusBarStyleLightContent;
         } else if (self.prefersStatusBarStyleDarkContent) {
-            return UIStatusBarStyleDefault;
+            if (@available(iOS 13.0, *)) {
+                return UIStatusBarStyleDarkContent;
+            } else {
+                // Automatically chooses light or dark content based on the user interface style
+                return UIStatusBarStyleDefault;
+            }
         } else {
             if (self.navigationController) {
                 if (!self.preferredNavigationBarColor && UIBarStyleBlack == self.navigationController.navigationBar.barStyle) {
@@ -128,7 +133,7 @@
                     return [self statusBarStyleToColor:self.preferredNavigationBarColor];
                 }
             } else {
-                // 没有导航栏的vc，默默人当成白页面+黑状态栏
+                // Automatically chooses light or dark content based on the user interface style
                 return UIStatusBarStyleDefault;
             }
         }
@@ -370,11 +375,16 @@
 
     if (navigationBarColor) {
         if (navigationBarColor.isLightContent) {
-            // 导航栏透明，一版都是下面为深色内容，因此配合浅色的状态栏
             if (navigationBarColor.isClearColor) {
+                // 导航栏透明，一般都是下面为深色内容，因此配合浅色的状态栏
                 return UIStatusBarStyleLightContent;
             } else {
-                return UIStatusBarStyleDefault;
+                if (@available(iOS 13.0, *)) {
+                    return UIStatusBarStyleDarkContent;
+                } else {
+                    // Automatically chooses light or dark content based on the user interface style
+                    return UIStatusBarStyleDefault;
+                }
             }
         } else {
             return UIStatusBarStyleLightContent;
