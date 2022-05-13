@@ -8,7 +8,7 @@ static AppNetworkMonitoring* s_instance = nil;
 
 @property (nonatomic, strong) Reachability *curReachability;
 
-@property (nonatomic, strong) NSString *curIPAddress;
+@property (nonatomic, copy) NSString *curIPAddress;
 
 @end
 

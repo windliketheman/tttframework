@@ -25,8 +25,8 @@ typedef NS_ENUM(NSInteger, BarButtonItemType)
 @property (nonatomic, strong) UIBarButtonItem *rightButtonItem;
 
 // 如果是文字样式的item，可以获得title
-@property (nonatomic, strong) NSString *leftButtonItemTitle;
-@property (nonatomic, strong) NSString *rightButtonItemTitle;
+@property (nonatomic, copy) NSString *leftButtonItemTitle;
+@property (nonatomic, copy) NSString *rightButtonItemTitle;
 
 // 如果导航栏左右的ButtonItem是用UIButton初始化的，使用下面2个方法可以获得
 @property (nonatomic, strong, readonly) UIButton *leftButton;

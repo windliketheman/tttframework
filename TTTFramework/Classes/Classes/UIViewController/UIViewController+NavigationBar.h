@@ -19,14 +19,14 @@
 
 @interface UIViewController (NavigationBar) <UIViewControllerNavigationBarProtocol>
 
-@property (nonatomic, strong) NSString *navigationBarTitle;
+@property (nonatomic, copy) NSString *navigationBarTitle;
 @property (nonatomic, strong) UIView   *navigationBarTitleView;
 
 @property (nonatomic, strong) UIBarButtonItem *navigationBarLeftButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *navigationBarRightButtonItem;
 
-@property (nonatomic, strong) NSString *navigationBarLeftButtonItemTitle;
-@property (nonatomic, strong) NSString *navigationBarRightButtonItemTitle;
+@property (nonatomic, copy) NSString *navigationBarLeftButtonItemTitle;
+@property (nonatomic, copy) NSString *navigationBarRightButtonItemTitle;
 
 // 当导航栏左侧只有一个返回按钮时，navigationBarBackButtonItem同navigationBarLeftButtonItem
 @property (nonatomic, readonly) UIBarButtonItem *navigationBarBackButtonItem;

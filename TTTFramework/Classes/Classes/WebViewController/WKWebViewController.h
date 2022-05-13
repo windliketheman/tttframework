@@ -29,8 +29,8 @@
 
 @property (nonatomic, strong) WKWebView *webView;
 
-@property (nonatomic, strong) NSString *fileURL;
-@property (nonatomic, strong) NSString *htmlString;
+@property (nonatomic, copy) NSString *fileURL;
+@property (nonatomic, copy) NSString *htmlString;
 
 @property (nonatomic, assign) BOOL autoLayoutEnabled;
 
