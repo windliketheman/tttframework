@@ -24,22 +24,21 @@
 - (UIView *)visibleAreaView
 {
     UIView *visibleAreaView = objc_getAssociatedObject(self, @selector(visibleAreaView));
-    if (!visibleAreaView)
-    {
+    if (!visibleAreaView) {
         visibleAreaView = [UIView new];
-        
+
         [self.view addSubview:visibleAreaView];
-        
+
         [visibleAreaView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.view];
         [visibleAreaView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:self.view];
         [visibleAreaView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0.0f];
         self.visibleAreaViewVerticalOffsetConstraint = [visibleAreaView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:self.visibleAreaViewVerticalOffset];
-        
+
         [self.view addObserver:self forKeyPath:contentOffsetKeyPath options:NSKeyValueObservingOptionNew context:nil];
-        
+
         self.visibleAreaView = visibleAreaView;
     }
-    
+
     return visibleAreaView;
 }
 
@@ -65,51 +64,48 @@
 //    {
 //        offset -= CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]);
 //    }
-//    
+//
 //    if (self.navigationController && !self.navigationController.navigationBar.hidden)
 //    {
 //        offset -= CGRectGetHeight(self.navigationController.navigationBar.frame);
 //    }
-//    
+//
 //    if (self.tabBarController && !self.tabBarController.tabBar.hidden)
 //    {
 //        offset -= CGRectGetHeight(self.tabBarController.tabBar.frame);
 //    }
-    
+
     return self.visibleAreaFrame.origin.y;
 }
 
 - (CGRect)visibleAreaFrame
 {
     CGRect frame = self.view.bounds;
-    if ([self.view isKindOfClass:UITableView.class])
-    {
+    if ([self.view isKindOfClass:UITableView.class]) {
         UITableView *tableView = (UITableView *)self.view;
         frame.origin.y = tableView.contentOffset.y;
     }
-    
+
     return frame;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (![keyPath isEqualToString:contentOffsetKeyPath])
-    {
+    if (![keyPath isEqualToString:contentOffsetKeyPath]) {
         return;
     }
-    
-    if (![self.view isKindOfClass:UITableView.class])
-    {
+
+    if (![self.view isKindOfClass:UITableView.class]) {
         return;
     }
-    
+
 //    UITableView *tableView = (UITableView *)self.view;
-//    
+//
 //    CGRect frame = self.view.frame;
 //    CGRect loading = self.loadingSuperView.frame;
 //    CGPoint offset = tableView.contentOffset;
 //    NSLog(@"height: %f, loading: %f offset: %f", CGRectGetHeight(frame), CGRectGetHeight(loading), offset.y);
-    
+
     [self updateVisibleAreaViewConstraints];
 }
 
@@ -124,11 +120,10 @@
 
 - (void)uitableviewcontroller_dealloc
 {
-    if ([self.view isKindOfClass:UITableView.class] && objc_getAssociatedObject(self, @selector(visibleAreaView)))
-    {
+    if ([self.view isKindOfClass:UITableView.class] && objc_getAssociatedObject(self, @selector(visibleAreaView))) {
         [self.view removeObserver:self forKeyPath:contentOffsetKeyPath];
     }
-    
+
     [self uitableviewcontroller_dealloc];
 }
 
@@ -151,11 +146,10 @@
 - (void)setTableViewScrollEnabled:(BOOL)enabled
 {
     self.tableView.scrollEnabled = enabled;
-    
+
     self.visibleAreaView.hidden = enabled;
-    
-    if (!enabled)
-    {
+
+    if (!enabled) {
         [self.view bringSubviewToFront:self.visibleAreaView];
     }
 }

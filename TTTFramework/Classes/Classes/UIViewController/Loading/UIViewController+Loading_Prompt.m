@@ -12,10 +12,9 @@
 #import <objc/runtime.h>
 #import "MBProgressHUD+Extension.h"
 
-typedef NS_ENUM (NSInteger, MBProgressHUDLook)
-{
+typedef NS_ENUM (NSInteger, MBProgressHUDLook) {
     MBProgressHUDLookLoading = 0, // default
-    MBProgressHUDLookPrompt = 1,
+    MBProgressHUDLookPrompt  = 1,
 };
 
 @implementation UIViewController (Loading_Prompt)
@@ -28,8 +27,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (LoadingPromptTheme)loadingPromptTheme
 {
     NSNumber *loadingPromptTheme = objc_getAssociatedObject(self.global, @selector(loadingPromptTheme));
-    if (loadingPromptTheme != nil)
-    {
+    if (loadingPromptTheme != nil) {
         return loadingPromptTheme.integerValue;
     }
     return LoadingPromptThemeLight;
@@ -43,13 +41,11 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)loadingIndicatorTransformScale
 {
     NSNumber *loadingIndicatorTransformScale = objc_getAssociatedObject(self.global, @selector(loadingIndicatorTransformScale));
-    if (loadingIndicatorTransformScale != nil)
-    {
+    if (loadingIndicatorTransformScale != nil) {
         return loadingIndicatorTransformScale.floatValue;
     }
     return 1.0;
 }
-
 
 + (void)setPromptTimeInterval:(CGFloat)promptTimeInterval
 {
@@ -64,8 +60,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (UIFont *)loadingPromptTitleFont
 {
     UIFont *loadingPromptTitleFont = objc_getAssociatedObject(self.global, @selector(loadingPromptTitleFont));
-    if (loadingPromptTitleFont)
-    {
+    if (loadingPromptTitleFont) {
         return loadingPromptTitleFont;
     }
     return [UIFont boldSystemFontOfSize:14.0];
@@ -79,8 +74,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)loadingPromptMargin
 {
     NSNumber *loadingPromptMargin = objc_getAssociatedObject(self.global, @selector(loadingPromptMargin));
-    if (loadingPromptMargin != nil)
-    {
+    if (loadingPromptMargin != nil) {
         return loadingPromptMargin.floatValue;
     }
     return 20.0;
@@ -94,8 +88,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)loadingPromptCornerRadius
 {
     NSNumber *loadingPromptCornerRadius = objc_getAssociatedObject(self.global, @selector(loadingPromptCornerRadius));
-    if (loadingPromptCornerRadius != nil)
-    {
+    if (loadingPromptCornerRadius != nil) {
         return loadingPromptCornerRadius.floatValue;
     }
     return 6.0;
@@ -104,8 +97,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 + (CGFloat)promptTimeInterval
 {
     NSNumber *promptTimeInterval = objc_getAssociatedObject(self.global, @selector(promptTimeInterval));
-    if (promptTimeInterval != nil)
-    {
+    if (promptTimeInterval != nil) {
         return promptTimeInterval.floatValue;
     }
     return 1.5;
@@ -119,8 +111,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 - (LoadingPromptTheme)preferredLoadingPromptTheme
 {
     NSNumber *preferredLoadingPromptTheme = objc_getAssociatedObject(self, @selector(preferredLoadingPromptTheme));
-    if (preferredLoadingPromptTheme != nil)
-    {
+    if (preferredLoadingPromptTheme != nil) {
         return preferredLoadingPromptTheme.integerValue;
     }
     return UIViewController.global.loadingPromptTheme;
@@ -134,8 +125,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 - (CGFloat)preferredPromptTimeInterval
 {
     NSNumber *preferredPromptTimeInterval = objc_getAssociatedObject(self, @selector(preferredPromptTimeInterval));
-    if (preferredPromptTimeInterval != nil)
-    {
+    if (preferredPromptTimeInterval != nil) {
         return preferredPromptTimeInterval.floatValue;
     }
     return UIViewController.global.promptTimeInterval;
@@ -143,8 +133,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 
 - (void)setHideDelayTimer:(NSTimer *)hideDelayTimer
 {
-    if (self.hideDelayTimer)
-    {
+    if (self.hideDelayTimer) {
         [self.hideDelayTimer invalidate];
         objc_setAssociatedObject(self, @selector(hideDelayTimer), hideDelayTimer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -174,14 +163,10 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 
 - (void)showLoading:(NSString *)loadingText inView:(UIView *)view
 {
-    if (NSThread.currentThread.isMainThread)
-    {
+    if (NSThread.currentThread.isMainThread) {
         [self showLoadingWithText:loadingText inView:view];
-    }
-    else
-    {
+    } else {
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [self showLoadingWithText:loadingText inView:view];
         });
     }
@@ -189,12 +174,9 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 
 - (void)hideLoading
 {
-    if (NSThread.currentThread.isMainThread)
-    {
+    if (NSThread.currentThread.isMainThread) {
         [self hideLoadingView];
-    }
-    else
-    {
+    } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self hideLoadingView];
         });
@@ -208,22 +190,18 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 
 - (void)promptMessage:(NSString *)message
 {
-    if (!message || ![message isKindOfClass:NSString.class] || [message isEqualToString:@""])
-    {
+    if (!message || ![message isKindOfClass:NSString.class] || [message isEqualToString:@""]) {
         return;
     }
-    
+
     [self promptMessage:message inView:self.loadingSuperView];
 }
 
 - (void)promptMessage:(NSString *)message inView:(UIView *)view
 {
-    if (NSThread.currentThread.isMainThread)
-    {
+    if (NSThread.currentThread.isMainThread) {
         [self showPromptWithText:message inView:view];
-    }
-    else
-    {
+    } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self showPromptWithText:message inView:view];
         });
@@ -234,8 +212,7 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook)
 const char HUDKey;
 - (void)setHUD:(MBProgressHUD *)hud
 {
-    if (self.HUD)
-    {
+    if (self.HUD) {
         [self.HUD hideAnimated:YES];
         objc_setAssociatedObject(self, &HUDKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -250,7 +227,7 @@ const char HUDKey;
 - (void)showLoadingWithText:(NSString *)text inView:(UIView *)view
 {
     [self doExtraWhenShowLoading];
-    
+
     self.hideDelayTimer = nil;
     [self showLoadingViewWithText:text inView:view autoHidden:NO];
 }
@@ -258,9 +235,9 @@ const char HUDKey;
 - (void)showPromptWithText:(NSString *)message inView:(UIView *)view
 {
     [self doExtraWhenShowLoading];
-    
+
     [self showLoadingViewWithText:message inView:view autoHidden:YES];
-    
+
     NSTimer *timer = [NSTimer timerWithTimeInterval:self.preferredPromptTimeInterval target:self selector:@selector(handleHideTimer:) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     self.hideDelayTimer = timer;
@@ -269,20 +246,19 @@ const char HUDKey;
 - (void)showLoadingViewWithText:(NSString *)text inView:(UIView *)inView autoHidden:(BOOL)autoHidden
 {
     MBProgressHUD *HUD = self.HUD;
-    if (!HUD)
-    {
+    if (!HUD) {
         HUD = [MBProgressHUD showHUDAddedTo:inView animated:NO];
         HUD.detailsLabel.font = self.class.loadingPromptTitleFont;
         HUD.bezelView.layer.cornerRadius = self.class.loadingPromptCornerRadius;
         HUD.margin = self.class.loadingPromptMargin;
         self.HUD = HUD;
     }
-    
+
     HUD.mode = autoHidden ? MBProgressHUDModeText : MBProgressHUDModeIndeterminate;
     [HUD setMBProgressHUDLook:(MBProgressHUDTheme)self.preferredLoadingPromptTheme];
     [HUD setActivityIndicatorTransformScale:self.class.loadingIndicatorTransformScale];
     [HUD showAnimated:YES];
-    
+
     HUD.detailsLabel.text = (text && text.length > 0) ? text : nil;
     // HUD.label.font = [UIFont systemFontOfSize:14];
 }
@@ -290,26 +266,23 @@ const char HUDKey;
 - (void)handleHideTimer:(NSTimer *)timer
 {
     self.hideDelayTimer = nil;
-    
+
     [self hideLoadingView];
 }
 
 - (void)hideLoadingView
 {
     [self doExtraWhenHideLoading];
-    
-    if (self.hideDelayTimer.isValid)
-    {
+
+    if (self.hideDelayTimer.isValid) {
         [self.hideDelayTimer invalidate];
     }
-    
-    if (self.hideDelayTimer)
-    {
+
+    if (self.hideDelayTimer) {
         self.hideDelayTimer = nil;
     }
-    
-    if (self.HUD)
-    {
+
+    if (self.HUD) {
         [self.HUD hideAnimated:YES];
         self.HUD = nil;
     }

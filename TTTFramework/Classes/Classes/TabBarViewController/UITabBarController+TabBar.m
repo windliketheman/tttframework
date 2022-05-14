@@ -60,11 +60,13 @@
     return tabBarFrame.origin.y >= viewFrame.size.height;
 }
 
-//- (void)setTabBarHidden:(BOOL)hidden {
+//- (void)setTabBarHidden:(BOOL)hidden
+//{
 //    [self setTabBarHidden:hidden animated:NO];
 //}
 //
-//- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated {
+//- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated
+//{
 //    BOOL isHidden = self.tabBarHidden;
 //    if (hidden == isHidden) return;
 //

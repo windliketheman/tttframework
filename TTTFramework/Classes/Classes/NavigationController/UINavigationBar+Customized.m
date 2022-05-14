@@ -86,8 +86,7 @@
 - (void)setLargeTitleAttributes:(NSDictionary *)titleAttributes
 {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_10_3
-    if (@available(iOS 11.0, *))
-    {
+    if (@available(iOS 11.0, *)) {
         self.largeTitleTextAttributes = titleAttributes;
     }
 #endif
@@ -96,8 +95,7 @@
 - (NSDictionary *)largeTitleAttributes
 {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_10_3
-    if (@available(iOS 11.0, *))
-    {
+    if (@available(iOS 11.0, *)) {
         NSDictionary *largeTitleAttributes = self.largeTitleTextAttributes;
         return largeTitleAttributes;
     }
@@ -110,7 +108,7 @@
 {
     NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:self.titleAttributes];
     properties[key] = attribute;
-    
+
     self.titleAttributes = properties;
 }
 
@@ -123,10 +121,9 @@
 - (void)setLargeTitleAttribute:(id)attribute forKey:(id)key
 {
     NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:self.largeTitleAttributes];
-    if (properties)
-    {
+    if (properties) {
         properties[key] = attribute;
-        
+
         self.largeTitleAttributes = properties;
     }
 }
@@ -134,8 +131,7 @@
 - (id)largeTitleAttributeForKey:(id)key
 {
     NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:self.largeTitleAttributes];
-    if (properties)
-    {
+    if (properties) {
         return properties[key];
     }
     return nil;
@@ -143,10 +139,8 @@
 
 #pragma mark - Swizzle
 + (void)load {
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         [self swizzleInstanceSelector:@selector(init) withSelector:@selector(uinavigationbar_init)];
         [self swizzleInstanceSelector:@selector(initWithCoder:) withSelector:@selector(uinavigationbar_initWithCoder:)];
         [self swizzleInstanceSelector:@selector(initWithFrame:) withSelector:@selector(uinavigationbar_initWithFrame:)];
@@ -157,8 +151,7 @@
 - (instancetype)uinavigationbar_init
 {
     [self uinavigationbar_init];
-    if (self)
-    {
+    if (self) {
         [self initializeCustomUINavigationBarData];
     }
     return self;
@@ -167,8 +160,7 @@
 - (instancetype)uinavigationbar_initWithCoder:(NSCoder *)aDecoder
 {
     [self uinavigationbar_initWithCoder:aDecoder];
-    if (self)
-    {
+    if (self) {
         [self initializeCustomUINavigationBarData];
     }
     return self;
@@ -177,8 +169,7 @@
 - (instancetype)uinavigationbar_initWithFrame:(CGRect)frame
 {
     [self uinavigationbar_initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         [self initializeCustomUINavigationBarData];
     }
     return self;
@@ -187,10 +178,10 @@
 - (void)initializeCustomUINavigationBarData
 {
     self.color = [UINavigationBar.global color];
-    
+
     self.titleColor = [UINavigationBar.global titleColor];
-    self.titleFont  = [UINavigationBar.global titleFont];
-    
+    self.titleFont = [UINavigationBar.global titleFont];
+
     self.largeTitleColor = [UINavigationBar.global largeTitleColor];
     self.largeTitleFont = [UINavigationBar.global largeTitleFont];
 }
@@ -217,15 +208,13 @@
 {
     @synchronized(self)
     {
-        if (self.shadowImageEnabled == shadowImageEnabled)
-        {
+        if (self.shadowImageEnabled == shadowImageEnabled) {
             return;
         }
-        
+
         objc_setAssociatedObject(self, @selector(shadowImageEnabled), @(shadowImageEnabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
-        if (!shadowImageEnabled)
-        {
+
+        if (!shadowImageEnabled) {
             self.usedShadowImage = self.shadowImage;
         }
         self.shadowImage = shadowImageEnabled ? (self.usedShadowImage ?: nil) : [[UIImage alloc] init];
@@ -235,8 +224,7 @@
 - (BOOL)shadowImageEnabled
 {
     NSNumber *shadowImageEnabled = objc_getAssociatedObject(self, @selector(shadowImageEnabled));
-    if (shadowImageEnabled != nil)
-    {
+    if (shadowImageEnabled != nil) {
         return shadowImageEnabled.boolValue;
     }
     return YES;

@@ -24,7 +24,7 @@
                withLineSpacing:(CGFloat)lineSpacing
 {
     NSMutableAttributedString *attributedString = [self attributedStringFromStingWithFont:font withLineSpacing:lineSpacing];
-    
+
     CGRect rect = [attributedString boundingRectWithSize:size
                                                  options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                  context:nil];
@@ -38,7 +38,7 @@
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:lineSpacing];
-    
+
     [attributedStr addAttribute:NSParagraphStyleAttributeName
                           value:paragraphStyle
                           range:NSMakeRange(0, [self length])];
@@ -46,7 +46,6 @@
 }
 
 @end
-
 
 @implementation NSString (UTI)
 
@@ -70,7 +69,7 @@
 - (NSString *)preferredUTIForMIMEType:(NSString *)mime
 {
     // request the UTI via the file extention
-    NSString *theUTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType,(__bridge CFStringRef)mime, NULL);
+    NSString *theUTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)mime, NULL);
     return theUTI;
 }
 
@@ -83,7 +82,7 @@
 
 - (NSString *)mimeTypeForUTI:(NSString *)aUTI
 {
-    CFStringRef theUTI = (__bridge CFStringRef) aUTI;
+    CFStringRef theUTI = (__bridge CFStringRef)aUTI;
     CFStringRef results = UTTypeCopyPreferredTagWithClass(theUTI, kUTTagClassMIMEType);
     return (__bridge_transfer NSString *)results;
 }
@@ -92,7 +91,7 @@
 {
     NSString *extension = [[[filePath lastPathComponent] pathExtension] lowercaseString];
     CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
-    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass (uti, kUTTagClassMIMEType);
+    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType);
     CFRelease(uti);
     
     return (__bridge NSString *)mimeType ?: @"";
@@ -104,8 +103,7 @@
 
 - (NSString *)removeSubstring:(NSString *)substring
 {
-    if ([self rangeOfString:substring].location != NSNotFound)
-    {
+    if ([self rangeOfString:substring].location != NSNotFound) {
         NSRange range = [self rangeOfString:substring];
         NSString *leftString = [self substringWithRange:NSMakeRange(0, range.location)];
         NSString *rightString = [self substringWithRange:NSMakeRange(range.location + range.length, (self.length - (range.location + range.length)))];

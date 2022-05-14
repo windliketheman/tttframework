@@ -98,7 +98,7 @@
                 presentationStyle:(UIModalPresentationStyle)presentationStyle
                navigationBarColor:(UIColor *)barColor
            navigationBarTextColor:(UIColor *)barTextColor
-                      completion:(dispatch_block_t)completion
+                       completion:(dispatch_block_t)completion
 {
 #if 0
     CGFloat red, green, blue, alpha;
@@ -118,7 +118,6 @@
     navi.modalPresentationStyle = presentationStyle; // ios13，默认值由0变为-2
 
     [self presentViewController:navi animated:animated completion:^{
-        
         if (completion) {
             completion();
         }
@@ -137,13 +136,11 @@
 {
     if (self.navigationController) {
         [self.navigationController dismissViewControllerAnimated:animated completion:^{
-            if (completion)
-                completion();
+            if (completion) completion();
         }];
     } else {
         [self dismissViewControllerAnimated:animated completion:^{
-            if (completion)
-                completion();
+            if (completion) completion();
         }];
     }
 }
@@ -157,7 +154,7 @@
 - (void)pushViewController:(UIViewController *)vc animated:(BOOL)animated
 {
     vc.hidesBottomBarWhenPushed = YES;
-    
+
     [self.navigationController pushViewController:vc animated:animated];
 }
 

@@ -1,5 +1,5 @@
 //
-//  UIViewController+Picker.h
+//  UIViewController+ImagePicker.h
 //  Family
 //
 //  Created by jia on 15/9/17.
@@ -10,7 +10,7 @@
 #import "CTAssetsPickerController.h"
 #import "CTAssetCheckmark.h"
 
-@interface UIViewController (Picker)
+@interface UIViewController (ImagePicker)
 
 #pragma mark - Assets
 #if 0

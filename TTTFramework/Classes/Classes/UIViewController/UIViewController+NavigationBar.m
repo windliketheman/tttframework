@@ -18,8 +18,7 @@
 #pragma mark - NavigationBar
 - (void)setNavigationBarTitle:(NSString *)navigationBarTitle
 {
-    if (self.wantedNavigationItem)
-    {
+    if (self.wantedNavigationItem) {
         // self.navigationController.navigationBar.topItem.title = title;
         self.wantedNavigationItem.title = navigationBarTitle;
     }
@@ -29,8 +28,7 @@
 
 - (NSString *)navigationBarTitle
 {
-    if (self.wantedNavigationItem)
-    {
+    if (self.wantedNavigationItem) {
         return self.wantedNavigationItem.title;
     }
     return self.title;
@@ -118,22 +116,16 @@
 
 - (UINavigationItem *)wantedNavigationItem
 {
-    if (self.parentViewController)
-    {
-        if ([self.parentViewController isKindOfClass:[UINavigationController class]])
-        {
+    if (self.parentViewController) {
+        if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
             return self.navigationItem;
-        }
-        else if ([self.parentViewController isKindOfClass:[UITabBarController class]])
-        {
+        } else if ([self.parentViewController isKindOfClass:[UITabBarController class]]) {
             return self.tabBarController.navigationItem;
-        }
-        else
-        {
+        } else {
             // unknown, do nothing
         }
     }
-    
+
     return self.navigationItem;
 }
 
@@ -171,12 +163,9 @@
 
 - (void)restoreNavigationBarLeftButtonItem
 {
-    if (self.navigationBarBackButtonItem)
-    {
+    if (self.navigationBarBackButtonItem) {
         [self setupNavigationBarLeftSideFunctionalButton];
-    }
-    else
-    {
+    } else {
         [self removeNavigationBarLeftButtonItems];
     }
 }
@@ -233,8 +222,7 @@
 - (BOOL)prefersNavigationBarLeftSideBackButtonWhenPushed
 {
     NSNumber *prefersNavigationBarLeftSideBackButtonWhenPushed = objc_getAssociatedObject(self, @selector(prefersNavigationBarLeftSideBackButtonWhenPushed));
-    if (prefersNavigationBarLeftSideBackButtonWhenPushed != nil)
-    {
+    if (prefersNavigationBarLeftSideBackButtonWhenPushed != nil) {
         return prefersNavigationBarLeftSideBackButtonWhenPushed.boolValue;
     }
     return YES;
@@ -261,8 +249,7 @@
 - (BOOL)prefersNavigationBarLeftSideCloseButtonWhenPresented
 {
     NSNumber *prefersNavigationBarLeftSideCloseButtonWhenPresented = objc_getAssociatedObject(self, @selector(prefersNavigationBarLeftSideCloseButtonWhenPresented));
-    if (prefersNavigationBarLeftSideCloseButtonWhenPresented != nil)
-    {
+    if (prefersNavigationBarLeftSideCloseButtonWhenPresented != nil) {
         return prefersNavigationBarLeftSideCloseButtonWhenPresented.boolValue;
     }
     return YES;
@@ -272,8 +259,7 @@
 - (void)closeButtonClicked:(id)sender
 {
     // 如果当前vc是被present出来的，self.presentingViewController是把当前vc present出来的
-    if (self.presentingViewController)
-    {
+    if (self.presentingViewController) {
         [self dismiss];
     }
 }

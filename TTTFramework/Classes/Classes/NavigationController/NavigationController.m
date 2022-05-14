@@ -42,8 +42,7 @@
 #pragma mark - Member Methods
 - (instancetype)init
 {
-    if (self = [super initWithNavigationBarClass:[self navigationBarClass] toolbarClass:nil])
-    {
+    if (self = [super initWithNavigationBarClass:[self navigationBarClass] toolbarClass:nil]) {
         self.customizedEnabled = YES;
         self.navigationBarTranslucent = self.class.global.navigationBarTranslucent;
         self.customizedNavigationBarTranslucent = self.class.global.customizedNavigationBarTranslucent;
@@ -53,36 +52,32 @@
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
-    {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.customizedEnabled = YES;
     }
     return self;
 }
-    
+
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    if (self = [super initWithCoder:aDecoder])
-    {
+    if (self = [super initWithCoder:aDecoder]) {
         self.customizedEnabled = YES;
     }
     return self;
 }
-    
+
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
-    if (self = [self init])
-    {
+    if (self = [self init]) {
         self.customizedEnabled = YES;
         self.viewControllers = @[rootViewController];
     }
     return self;
 }
-    
+
 - (instancetype)initWithNavigationBarClass:(nullable Class)navigationBarClass toolbarClass:(nullable Class)toolbarClass
 {
-    if (self = [super initWithNavigationBarClass:navigationBarClass toolbarClass:toolbarClass])
-    {
+    if (self = [super initWithNavigationBarClass:navigationBarClass toolbarClass:toolbarClass]) {
         self.customizedEnabled = YES;
     }
     return self;
@@ -97,14 +92,13 @@
 - (void)updateNavigationBarColor:(UIColor *)navigationBarColor
 {
     self.navigationBar.color = navigationBarColor;
-    
-    if (navigationBarColor && ![navigationBarColor isKindOfClass:UIColor.class])
-    {
+
+    if (navigationBarColor && ![navigationBarColor isKindOfClass:UIColor.class]) {
         navigationBarColor = nil;
     }
-    
+
     [self.navigationBar setBarTintColor:navigationBarColor];
-    
+
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
         if (!appearance) {
@@ -113,7 +107,7 @@
         }
         appearance.backgroundColor = navigationBarColor;
         self.navigationBar.standardAppearance = appearance;
-        
+
         appearance = self.navigationBar.scrollEdgeAppearance;
         if (!appearance) {
             appearance = [[UINavigationBarAppearance alloc] init];
@@ -127,7 +121,7 @@
 - (void)updateNavigationBarTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
 {
     [super updateNavigationBarTitleAttributes:navigationBarTitleAttributes];
-    
+
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
         if (!appearance) {
@@ -135,7 +129,7 @@
         }
         appearance.titleTextAttributes = navigationBarTitleAttributes;
         self.navigationBar.standardAppearance = appearance;
-        
+
         appearance = self.navigationBar.scrollEdgeAppearance;
         if (!appearance) {
             appearance = [[UINavigationBarAppearance alloc] init];
@@ -148,7 +142,7 @@
 - (void)updateNavigationBarLargeTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
 {
     [super updateNavigationBarLargeTitleAttributes:navigationBarTitleAttributes];
-    
+
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
         if (!appearance) {
@@ -156,7 +150,7 @@
         }
         appearance.largeTitleTextAttributes = navigationBarTitleAttributes;
         self.navigationBar.standardAppearance = appearance;
-        
+
         appearance = self.navigationBar.scrollEdgeAppearance;
         if (!appearance) {
             appearance = [[UINavigationBarAppearance alloc] init];
@@ -169,7 +163,7 @@
 - (void)setNavigationBarShadowImageEnabled:(BOOL)enabled
 {
     [super setNavigationBarShadowImageEnabled:enabled];
-    
+
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *appearance = self.navigationBar.scrollEdgeAppearance;
         if (!appearance) {
@@ -194,7 +188,7 @@
 {
     UIViewController *popedViewController = [super popViewControllerAnimated:animated];
     [self controlTabBarShown];
-    
+
     return popedViewController;
 }
 
@@ -203,7 +197,7 @@
 {
     NSArray<__kindof UIViewController *> *popedViewControllers = [super popToViewController:viewController animated:animated];
     [self controlTabBarShown];
-    
+
     return popedViewControllers;
 }
 
@@ -212,7 +206,7 @@
 {
     NSArray<__kindof UIViewController *> *popedViewControllers = [super popToRootViewControllerAnimated:animated];
     [self controlTabBarShown];
-    
+
     return popedViewControllers;
 }
 

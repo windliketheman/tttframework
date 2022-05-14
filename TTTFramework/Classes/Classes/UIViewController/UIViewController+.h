@@ -16,7 +16,7 @@
 #import "UIViewController+Push_Present.h"
 #import "UIViewController+Loading_Prompt.h"
 #import "UIViewController+NetworkStatus.h"
-#import "UIViewController+Picker.h"
+#import "UIViewController+ImagePicker.h"
 #import "UIViewController+Alert.h"
 
 #endif

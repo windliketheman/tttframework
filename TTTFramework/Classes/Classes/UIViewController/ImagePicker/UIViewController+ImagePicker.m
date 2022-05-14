@@ -1,12 +1,12 @@
 //
-//  UIViewController+Picker.m
+//  UIViewController+ImagePicker.m
 //  Family
 //
 //  Created by jia on 15/9/17.
 //  Copyright (c) 2015年 jia. All rights reserved.
 //
 
-#import "UIViewController+Picker.h"
+#import "UIViewController+ImagePicker.h"
 // #import "RSKImageCropViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>

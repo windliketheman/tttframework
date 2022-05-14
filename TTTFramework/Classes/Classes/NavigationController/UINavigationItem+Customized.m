@@ -19,7 +19,7 @@
 - (void)setBarButtonItemColor:(UIColor *)barButtonItemColor
 {
     objc_setAssociatedObject(self, @selector(barButtonItemColor), barButtonItemColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     [self barButtonItemsStyleToFit];
 }
 
@@ -27,19 +27,13 @@
 - (UIColor *)barButtonItemColor
 {
     UIColor *barButtonItemColor = objc_getAssociatedObject(self, @selector(barButtonItemColor));
-    if (barButtonItemColor)
-    {
-        if ([barButtonItemColor isKindOfClass:UIColor.class])
-        {
+    if (barButtonItemColor) {
+        if ([barButtonItemColor isKindOfClass:UIColor.class]) {
             return barButtonItemColor;
-        }
-        else
-        {
+        } else {
             return SYSTEM_NAVIGATION_BAR_BUTTON_ITEM_COLOR;
         }
-    }
-    else
-    {
+    } else {
         return [UINavigationItem.global barButtonItemColor];
     }
 }
@@ -47,19 +41,16 @@
 - (void)setBarButtonItemFont:(UIFont *)barButtonItemFont
 {
     objc_setAssociatedObject(self, @selector(barButtonItemFont), barButtonItemFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     [self barButtonItemsStyleToFit];
 }
 
 - (UIFont *)barButtonItemFont
 {
     UIFont *barButtonItemFont = objc_getAssociatedObject(self, @selector(barButtonItemFont));
-    if (barButtonItemFont)
-    {
+    if (barButtonItemFont) {
         return barButtonItemFont;
-    }
-    else
-    {
+    } else {
         return [UINavigationItem.global barButtonItemFont];
     }
 }
@@ -67,21 +58,17 @@
 - (void)setBackButtonItemColor:(UIColor *)backButtonItemColor
 {
     objc_setAssociatedObject(self, @selector(backButtonItemColor), backButtonItemColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     [self backButtonItemStyleToFit];
 }
 
 - (UIColor *)backButtonItemColor
 {
     UIColor *backButtonItemColor = objc_getAssociatedObject(self, @selector(backButtonItemColor));
-    if (backButtonItemColor)
-    {
-        if ([backButtonItemColor isKindOfClass:UIColor.class])
-        {
+    if (backButtonItemColor) {
+        if ([backButtonItemColor isKindOfClass:UIColor.class]) {
             return backButtonItemColor;
-        }
-        else
-        {
+        } else {
             return SYSTEM_NAVIGATION_BAR_BUTTON_ITEM_COLOR;
         }
     }
@@ -91,21 +78,17 @@
 - (void)setCloseButtonItemColor:(UIColor *)closeButtonItemColor
 {
     objc_setAssociatedObject(self, @selector(closeButtonItemColor), closeButtonItemColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     [self closeButtonItemStyleToFit];
 }
 
 - (UIColor *)closeButtonItemColor
 {
     UIColor *closeButtonItemColor = objc_getAssociatedObject(self, @selector(closeButtonItemColor));
-    if (closeButtonItemColor)
-    {
-        if ([closeButtonItemColor isKindOfClass:UIColor.class])
-        {
+    if (closeButtonItemColor) {
+        if ([closeButtonItemColor isKindOfClass:UIColor.class]) {
             return closeButtonItemColor;
-        }
-        else
-        {
+        } else {
             return SYSTEM_NAVIGATION_BAR_BUTTON_ITEM_COLOR;
         }
     }
@@ -120,8 +103,7 @@
 - (CGFloat)barButtonItemSideSpacing
 {
     NSNumber *barButtonItemSideSpacing = objc_getAssociatedObject(self, @selector(barButtonItemSideSpacing));
-    if (barButtonItemSideSpacing != nil)
-    {
+    if (barButtonItemSideSpacing != nil) {
         return barButtonItemSideSpacing.floatValue;
     }
     return [UINavigationItem.global barButtonItemSideSpacing];
@@ -135,8 +117,7 @@
 - (CGFloat)titleButtonItemSideSpacing
 {
     NSNumber *titleButtonItemSideSpacing = objc_getAssociatedObject(self, @selector(titleButtonItemSideSpacing));
-    if (titleButtonItemSideSpacing != nil)
-    {
+    if (titleButtonItemSideSpacing != nil) {
         return titleButtonItemSideSpacing.floatValue;
     }
     return [UINavigationItem.global titleButtonItemSideSpacing];
@@ -150,8 +131,7 @@
 - (CGFloat)imageButtonItemSideSpacing
 {
     NSNumber *imageButtonItemSideSpacing = objc_getAssociatedObject(self, @selector(imageButtonItemSideSpacing));
-    if (imageButtonItemSideSpacing != nil)
-    {
+    if (imageButtonItemSideSpacing != nil) {
         return imageButtonItemSideSpacing.floatValue;
     }
     return [UINavigationItem.global imageButtonItemSideSpacing];
@@ -165,8 +145,7 @@
 - (CGFloat)backButtonItemSideSpacing
 {
     NSNumber *backButtonItemSideSpacing = objc_getAssociatedObject(self, @selector(backButtonItemSideSpacing));
-    if (backButtonItemSideSpacing != nil)
-    {
+    if (backButtonItemSideSpacing != nil) {
         return backButtonItemSideSpacing.floatValue;
     }
     return [UINavigationItem.global backButtonItemSideSpacing];
@@ -180,8 +159,7 @@
 - (CGSize)barButtonItemSize
 {
     NSString *barButtonItemSize = objc_getAssociatedObject(self, @selector(barButtonItemSize));
-    if (barButtonItemSize)
-    {
+    if (barButtonItemSize) {
         return CGSizeFromString(barButtonItemSize);
     }
     return [UINavigationItem.global barButtonItemSize];
@@ -195,8 +173,7 @@
 - (CGSize)backButtonItemSize
 {
     NSString *backButtonItemSize = objc_getAssociatedObject(self, @selector(backButtonItemSize));
-    if (backButtonItemSize)
-    {
+    if (backButtonItemSize) {
         return CGSizeFromString(backButtonItemSize);
     }
     return [UINavigationItem.global backButtonItemSize];
@@ -210,8 +187,7 @@
 - (CGSize)closeButtonItemSize
 {
     NSString *closeButtonItemSize = objc_getAssociatedObject(self, @selector(closeButtonItemSize));
-    if (closeButtonItemSize)
-    {
+    if (closeButtonItemSize) {
         return CGSizeFromString(closeButtonItemSize);
     }
     return [UINavigationItem.global closeButtonItemSize];
@@ -232,9 +208,8 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         [self swizzleInstanceSelector:@selector(backBarButtonItem) withSelector:@selector(myCustomBackButton_backBarbuttonItem)];
-        
+
         [self swizzleInstanceSelector:NSSelectorFromString(@"dealloc") withSelector:@selector(uinavigationItem_dealloc)];
     });
 }
@@ -242,7 +217,7 @@
 - (void)uinavigationItem_dealloc
 {
     objc_removeAssociatedObjects(self);
-    
+
     [self uinavigationItem_dealloc];
 }
 
@@ -251,14 +226,12 @@ static char _customBackBarButtonItemKey;
 - (UIBarButtonItem *)myCustomBackButton_backBarbuttonItem
 {
     UIBarButtonItem *item = [self myCustomBackButton_backBarbuttonItem];
-    if (item)
-    {
+    if (item) {
         return item;
     }
-    
+
     item = objc_getAssociatedObject(self, &_customBackBarButtonItemKey);
-    if (!item)
-    {
+    if (!item) {
         item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:NULL];
         objc_setAssociatedObject(self, &_customBackBarButtonItemKey, item, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }

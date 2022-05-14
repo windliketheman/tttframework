@@ -26,8 +26,7 @@
 + (BOOL)navigationBarTranslucent
 {
     NSNumber *navigationBarTranslucent = objc_getAssociatedObject(self.global, @selector(navigationBarTranslucent));
-    if (navigationBarTranslucent != nil)
-    {
+    if (navigationBarTranslucent != nil) {
         return navigationBarTranslucent.boolValue;
     }
     return YES;
@@ -42,8 +41,7 @@
 + (BOOL)customizedNavigationBarTranslucent
 {
     NSNumber *customizedNavigationBarTranslucent = objc_getAssociatedObject(self.global, @selector(customizedNavigationBarTranslucent));
-    if (customizedNavigationBarTranslucent != nil)
-    {
+    if (customizedNavigationBarTranslucent != nil) {
         return customizedNavigationBarTranslucent.boolValue;
     }
     return NO;

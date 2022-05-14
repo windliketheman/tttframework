@@ -12,16 +12,11 @@
 
 + (NSString *)currentNetType
 {
-    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWWAN)
-    {
+    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWWAN) {
         return @"3g";
-    }
-    else if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWiFi)
-    {
+    } else if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWiFi) {
         return @"wifi";
-    }
-    else
-    {
+    } else {
         return @"none";
     }
 }

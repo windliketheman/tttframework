@@ -15,17 +15,12 @@
 
 - (void)setupNavigationBarLeftSideFunctionalButton
 {
-    if ([self shouldAddCloceButton])
-    {
+    if ([self shouldAddCloceButton]) {
         [self addCloseButton];
-    }
-    else if ([self shouldAddBackButton])
-    {
+    } else if ([self shouldAddBackButton]) {
         [self addBackButton];
         self.navigationBarLeftButton.hidden = ![self prefersNavigationBarLeftSideBackButtonWhenPushed];
-    }
-    else
-    {
+    } else {
         // do nothing
     }
 }
@@ -33,25 +28,18 @@
 #pragma mark - Button
 - (BOOL)shouldAddCloceButton
 {
-    if (self.presentingViewController)
-    {
+    if (self.presentingViewController) {
         // present
-        if (self.navigationController)
-        {
-            if (self.navigationController.viewControllers.count <= 1)
-            {
-                if ([self prefersNavigationBarLeftSideCloseButtonWhenPresented])
-                {
+        if (self.navigationController) {
+            if (self.navigationController.viewControllers.count <= 1) {
+                if ([self prefersNavigationBarLeftSideCloseButtonWhenPresented]) {
                     return YES;
                 }
             }
-            
+
             // there is a self.splitViewController in vc, it's self.navigationController's count is 0, but should using back button.
-        }
-        else
-        {
-            if ([self prefersNavigationBarLeftSideCloseButtonWhenPresented])
-            {
+        } else {
+            if ([self prefersNavigationBarLeftSideCloseButtonWhenPresented]) {
                 return YES;
             }
         }
@@ -61,8 +49,7 @@
 
 - (BOOL)shouldAddBackButton
 {
-    if (self.navigationController && self.navigationController.viewControllers.count > 1 && [self.navigationController.topViewController isEqual:self])
-    {
+    if (self.navigationController && self.navigationController.viewControllers.count > 1 && [self.navigationController.topViewController isEqual:self]) {
         return YES;
     }
     return NO;

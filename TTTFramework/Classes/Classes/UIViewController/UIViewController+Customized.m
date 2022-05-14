@@ -24,18 +24,12 @@
 - (BOOL)customizedEnabled
 {
     NSNumber *customizedEnabled = objc_getAssociatedObject(self, @selector(customizedEnabled));
-    if (customizedEnabled != nil)
-    {
+    if (customizedEnabled != nil) {
         return customizedEnabled.boolValue;
-    }
-    else
-    {
-        if ([self.class.customizedWhiteList containsObject:self.class])
-        {
+    } else {
+        if ([self.class.customizedWhiteList containsObject:self.class]) {
             return YES;
-        }
-        else
-        {
+        } else {
             return NO;
         }
     }
@@ -51,8 +45,7 @@
 {
     // 因为类名不同，self也就是不用的类名，数据会绑定到不同的类上，这里只想唯一绑定一次，不能用self，全用UIViewController
     NSMutableSet *customizedWhiteList = objc_getAssociatedObject(self.global, @selector(customizedWhiteList));
-    if (!customizedWhiteList)
-    {
+    if (!customizedWhiteList) {
         customizedWhiteList = [[NSMutableSet alloc] initWithObjects:UIViewController.class, UINavigationController.class, UITableViewController.class, UICollectionViewController.class, nil];
         self.class.customizedWhiteList = customizedWhiteList;
     }
@@ -68,8 +61,7 @@
 - (BOOL)prefersNavigationBarHidden
 {
     NSNumber *prefersNavigationBarHidden = objc_getAssociatedObject(self, @selector(prefersNavigationBarHidden));
-    if (prefersNavigationBarHidden != nil)
-    {
+    if (prefersNavigationBarHidden != nil) {
         return prefersNavigationBarHidden.boolValue;
     }
     return NO;
@@ -83,12 +75,9 @@
 - (UIColor *)preferredNavigationBarColor
 {
     id preferredNavigationBarColor = objc_getAssociatedObject(self, @selector(preferredNavigationBarColor));
-    if (preferredNavigationBarColor)
-    {
+    if (preferredNavigationBarColor) {
         return [preferredNavigationBarColor isKindOfClass:UIColor.class] ? preferredNavigationBarColor : SYSTEM_NAVIGATION_BAR_COLOR;
-    }
-    else
-    {
+    } else {
         return self.navigationController ? [UINavigationBar.global color] : nil;
     }
 }
@@ -96,15 +85,14 @@
 - (void)setPreferredNavigationBarShadowImageState:(NavigationBarShadowImageState)preferredNavigationBarShadowImageState
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarShadowImageState), @(preferredNavigationBarShadowImageState), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     [self navigationBarShadowImageToFit];
 }
 
 - (NavigationBarShadowImageState)preferredNavigationBarShadowImageState
 {
     NSNumber *preferredNavigationBarShadowImageState = objc_getAssociatedObject(self, @selector(preferredNavigationBarShadowImageState));
-    if (preferredNavigationBarShadowImageState != nil)
-    {
+    if (preferredNavigationBarShadowImageState != nil) {
         return preferredNavigationBarShadowImageState.integerValue;
     }
     return NavigationBarShadowImageStateEnabled;
@@ -113,21 +101,17 @@
 - (void)setPreferredNavigationBarTitleColor:(UIColor *)preferredNavigationBarTitleColor
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarTitleColor), preferredNavigationBarTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    if (preferredNavigationBarTitleColor)
-    {
-        if (![preferredNavigationBarTitleColor isKindOfClass:UIColor.class])
-        {
+
+    if (preferredNavigationBarTitleColor) {
+        if (![preferredNavigationBarTitleColor isKindOfClass:UIColor.class]) {
             // 传非color使用系统默认
             preferredNavigationBarTitleColor = SYSTEM_NAVIGATION_BAR_TITLE_COLOR;
         }
-    }
-    else
-    {
+    } else {
         // 传nil使用默认
         preferredNavigationBarTitleColor = [UINavigationBar.global titleColor];
     }
-    
+
     [self.navigationController updateNavigationBarTitleColor:preferredNavigationBarTitleColor];
 }
 
@@ -140,7 +124,7 @@
 - (void)setPreferredNavigationBarTitleFont:(UIFont *)preferredNavigationBarTitleFont
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarTitleFont), preferredNavigationBarTitleFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     // 传nil表示重置，即使用默认（区别于系统默认）
     [self.navigationController updateNavigationBarTitleFont:(preferredNavigationBarTitleFont ?: [UINavigationBar.global titleFont])];
 }
@@ -154,20 +138,16 @@
 - (void)setPreferredNavigationBarLargeTitleColor:(UIColor *)preferredNavigationBarLargeTitleColor
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarLargeTitleColor), preferredNavigationBarLargeTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    if (preferredNavigationBarLargeTitleColor)
-    {
-        if (![preferredNavigationBarLargeTitleColor  isKindOfClass:UIColor.class])
-        {
+
+    if (preferredNavigationBarLargeTitleColor) {
+        if (![preferredNavigationBarLargeTitleColor isKindOfClass:UIColor.class]) {
             preferredNavigationBarLargeTitleColor = SYSTEM_NAVIGATION_BAR_TITLE_COLOR;
         }
-    }
-    else
-    {
+    } else {
         // 传nil使用默认
         preferredNavigationBarLargeTitleColor = [UINavigationBar.global largeTitleColor];
     }
-    
+
     [self.navigationController updateNavigationBarLargeTitleColor:preferredNavigationBarLargeTitleColor];
 }
 
@@ -180,7 +160,7 @@
 - (void)setPreferredNavigationBarLargeTitleFont:(UIFont *)preferredNavigationBarLargeTitleFont
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarLargeTitleFont), preferredNavigationBarLargeTitleFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     // 传nil表示重置，即使用默认（区别于系统默认）
     [self.navigationController updateNavigationBarLargeTitleFont:(preferredNavigationBarLargeTitleFont ?: [UINavigationBar.global largeTitleFont])];
 }
@@ -200,8 +180,7 @@
 - (BOOL)prefersStatusBarHidden
 {
     NSNumber *prefersStatusBarHidden = objc_getAssociatedObject(self, @selector(prefersStatusBarHidden));
-    if (prefersStatusBarHidden != nil)
-    {
+    if (prefersStatusBarHidden != nil) {
         return prefersStatusBarHidden.boolValue;
     }
     return NO; // System defaults to NO
@@ -215,8 +194,7 @@
 - (BOOL)prefersStatusBarStyleLightContent
 {
     NSNumber *prefersStatusBarStyleLightContent = objc_getAssociatedObject(self, @selector(prefersStatusBarStyleLightContent));
-    if (prefersStatusBarStyleLightContent != nil)
-    {
+    if (prefersStatusBarStyleLightContent != nil) {
         return prefersStatusBarStyleLightContent.boolValue;
     }
     return NO; // defaults to NO
@@ -230,8 +208,7 @@
 - (BOOL)prefersStatusBarStyleDarkContent
 {
     NSNumber *prefersStatusBarStyleDarkContent = objc_getAssociatedObject(self, @selector(prefersStatusBarStyleDarkContent));
-    if (prefersStatusBarStyleDarkContent != nil)
-    {
+    if (prefersStatusBarStyleDarkContent != nil) {
         return prefersStatusBarStyleDarkContent.boolValue;
     }
     return NO; // defaults to NO
@@ -246,8 +223,7 @@
 - (BOOL)autorotateEnabled
 {
     NSNumber *autorotateEnabled = objc_getAssociatedObject(self, @selector(autorotateEnabled));
-    if (autorotateEnabled != nil)
-    {
+    if (autorotateEnabled != nil) {
         return autorotateEnabled.boolValue;
     }
     return YES;

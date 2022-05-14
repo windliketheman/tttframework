@@ -17,7 +17,6 @@ static id _appearance_navigationBarColor;
 static UIColor *_appearance_navigationBarTitleColor;
 static UIFont *_appearance_navigationBarTitleFont;
 
-
 @implementation UINavigationController (Customized)
 
 #pragma mark - Properties
@@ -59,29 +58,22 @@ static UIFont *_appearance_navigationBarTitleFont;
 - (void)updateNavigationBarColor:(UIColor *)navigationBarColor
 {
     self.navigationBar.color = navigationBarColor;
-    
-    if (navigationBarColor && ![navigationBarColor isKindOfClass:UIColor.class])
-    {
+
+    if (navigationBarColor && ![navigationBarColor isKindOfClass:UIColor.class]) {
         navigationBarColor = nil;
     }
-    
-    if (!navigationBarColor)
-    {
+
+    if (!navigationBarColor) {
         [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setBarTintColor:nil];
-    }
-    else
-    {
+    } else {
         CGFloat red, green, blue, alpha;
         [navigationBarColor getRed:&red green:&green blue:&blue alpha:&alpha];
-        
-        if (alpha >= 1.0)
-        {
+
+        if (alpha >= 1.0) {
             [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
             [self.navigationBar setBarTintColor:navigationBarColor];
-        }
-        else
-        {
+        } else {
             [self.navigationBar setBackgroundImage:[UIImage imageWithColor:navigationBarColor] forBarMetrics:UIBarMetricsDefault];
         }
     }
@@ -129,13 +121,11 @@ static UIFont *_appearance_navigationBarTitleFont;
 
 #pragma mark - Swizzle
 + (void)load {
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         [self swizzleInstanceSelector:@selector(preferredStatusBarStyle) withSelector:@selector(uinavigationController_preferredStatusBarStyle)];
         [self swizzleInstanceSelector:@selector(prefersStatusBarHidden) withSelector:@selector(uinavigationController_prefersStatusBarHidden)];
-        
+
         [self swizzleInstanceSelector:@selector(shouldAutorotate) withSelector:@selector(uinavigationController_shouldAutorotate)];
         [self swizzleInstanceSelector:@selector(supportedInterfaceOrientations) withSelector:@selector(uinavigationController_supportedInterfaceOrientations)];
         [self swizzleInstanceSelector:@selector(preferredInterfaceOrientationForPresentation) withSelector:@selector(uinavigationController_preferredInterfaceOrientationForPresentation)];
@@ -144,12 +134,9 @@ static UIFont *_appearance_navigationBarTitleFont;
 
 - (UIStatusBarStyle)uinavigationController_preferredStatusBarStyle
 {
-    if (self.topViewController)
-    {
+    if (self.topViewController) {
         return [self.topViewController preferredStatusBarStyle];
-    }
-    else
-    {
+    } else {
         return self.statusBarStyle;
     }
 }
@@ -162,16 +149,12 @@ static UIFont *_appearance_navigationBarTitleFont;
 }
  */
 
-
 // 这个方法写了也不调用
 - (BOOL)uinavigationController_prefersStatusBarHidden
 {
-    if (self.topViewController)
-    {
+    if (self.topViewController) {
         return [self.topViewController prefersStatusBarHidden];
-    }
-    else
-    {
+    } else {
         return [self uinavigationController_prefersStatusBarHidden];
     }
 }
@@ -185,8 +168,7 @@ static UIFont *_appearance_navigationBarTitleFont;
 
 - (BOOL)uinavigationController_shouldAutorotate
 {
-    if (self.topViewController)
-    {
+    if (self.topViewController) {
         return [self.topViewController shouldAutorotate];
     }
     return [self uinavigationController_shouldAutorotate];
@@ -194,8 +176,7 @@ static UIFont *_appearance_navigationBarTitleFont;
 
 - (UIInterfaceOrientationMask)uinavigationController_supportedInterfaceOrientations
 {
-    if (self.topViewController)
-    {
+    if (self.topViewController) {
         return [self.topViewController supportedInterfaceOrientations];
     }
     return [self uinavigationController_supportedInterfaceOrientations];
@@ -204,8 +185,7 @@ static UIFont *_appearance_navigationBarTitleFont;
 // 初始方向（Presentation方式专用）
 - (UIInterfaceOrientation)uinavigationController_preferredInterfaceOrientationForPresentation
 {
-    if (self.topViewController)
-    {
+    if (self.topViewController) {
         return [self.topViewController preferredInterfaceOrientationForPresentation];
     }
     return [self uinavigationController_preferredInterfaceOrientationForPresentation];

@@ -23,13 +23,12 @@ static CGFloat const kOpacityFactorB = (1 - kOpacityFactorA);
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame])
-    {
+    if (self = [super initWithFrame:frame]) {
         CALayer *colorLayer = [CALayer layer];
         colorLayer.opacity = kDefaultColorLayerOpacity;
         colorLayer.hidden = YES;
         [self.layer addSublayer:colorLayer];
-        
+
         self.colorLayer = colorLayer;
     }
     return self;
@@ -44,7 +43,7 @@ static CGFloat const kOpacityFactorB = (1 - kOpacityFactorA);
  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
  self.navigationController.navigationBar.translucent = NO;
  self.navigationController.navigationBar.tintColor = [UIColor whiteColor];`
- 
+
  黑色透明
  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
  self.navigationController.navigationBar.translucent = YES;
@@ -52,72 +51,59 @@ static CGFloat const kOpacityFactorB = (1 - kOpacityFactorA);
  */
 - (void)setBarTintColor:(UIColor *)barTintColor
 {
-    if (self.translucent)
-    {
-        if (barTintColor)
-        {
+    if (self.translucent) {
+        if (barTintColor) {
             CGFloat r, g, b, a;
             [barTintColor getRed:&r green:&g blue:&b alpha:&a];
-            
+
             // 有透明度
-            if (a >= 0.999999)
-            {
+            if (a >= 0.999999) {
                 // 自定义效果
-                if (self.prefersCustomizedTranslucent)
-                {
+                if (self.prefersCustomizedTranslucent) {
                     UIColor *calibratedColor = [UIColor colorWithRed:r green:g blue:b alpha:0.66];
                     CGFloat opacity = kDefaultColorLayerOpacity;
                     CGFloat minVal = MIN(MIN(r, g), b);
-                    
-                    if ([self convertValue:minVal withOpacity:opacity] < 0)
-                    {
+
+                    if ([self convertValue:minVal withOpacity:opacity] < 0) {
                         opacity = [self minOpacityForValue:minVal];
                     }
-                    
+
                     CGFloat red = [self convertValue:r withOpacity:opacity];
                     CGFloat green = [self convertValue:g withOpacity:opacity];
                     CGFloat blue = [self convertValue:b withOpacity:opacity];
                     CGFloat alpha = a;
-                    
+
                     red = MAX(MIN(1.0, red), 0);
                     green = MAX(MIN(1.0, green), 0);
                     blue = MAX(MIN(1.0, blue), 0);
-                    
+
                     self.colorLayer.opacity = opacity;
                     self.colorLayer.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha].CGColor;
-                    
+
                     [super setBarTintColor:calibratedColor];
-                }
-                else
-                {
+                } else {
                     self.colorLayer.opacity = 0.0f;
-                    
+
                     [super setBarTintColor:barTintColor];
                 }
-                
+
                 [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-            }
-            else
-            {
+            } else {
                 self.colorLayer.opacity = 0.0f;
-                
+
                 [self setBackgroundImage:[UIImage imageWithColor:barTintColor] forBarMetrics:UIBarMetricsDefault];
             }
-        }
-        else
-        {
+        } else {
             // blur + 不设颜色，用系统默认效果
             self.colorLayer.opacity = 0.0f;
-            
+
             [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
             [super setBarTintColor:nil]; // ⚠️重点：nil
         }
-    }
-    else
-    {
+    } else {
         // 没有blur，则用绝对颜色
         self.colorLayer.opacity = 0.0f;
-        
+
         [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
         [super setBarTintColor:barTintColor];
     }
@@ -136,11 +122,10 @@ static CGFloat const kOpacityFactorB = (1 - kOpacityFactorA);
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    if (self.colorLayer)
-    {
+
+    if (self.colorLayer) {
         self.colorLayer.frame = CGRectMake(0, 0 - kSpaceToCoverStatusBars, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + kSpaceToCoverStatusBars);
-        
+
         [self.layer insertSublayer:self.colorLayer atIndex:1];
     }
 }

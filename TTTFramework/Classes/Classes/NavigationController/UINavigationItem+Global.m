@@ -25,7 +25,7 @@
 
 + (UIColor *)barButtonItemColor
 {
-    return objc_getAssociatedObject(self.global, @selector(barButtonItemColor)) ?: [UIColor colorWithRed:0/255.0 green:64/255.0 blue:221/255.0 alpha:1.0];
+    return objc_getAssociatedObject(self.global, @selector(barButtonItemColor)) ?: [UIColor colorWithRed:0 / 255.0 green:64 / 255.0 blue:221 / 255.0 alpha:1.0];
 }
 
 + (void)setBarButtonItemFont:(UIFont *)barButtonItemFont
@@ -66,8 +66,7 @@
 + (CGFloat)barButtonItemSideSpacing
 {
     NSNumber *barButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(barButtonItemSideSpacing));
-    if (barButtonItemSideSpacing != nil)
-    {
+    if (barButtonItemSideSpacing != nil) {
         return barButtonItemSideSpacing.floatValue;
     }
     return PREFERRED_SCREEN_SIDE_SPACING;
@@ -81,8 +80,7 @@
 + (CGFloat)titleButtonItemSideSpacing
 {
     NSNumber *titleButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(titleButtonItemSideSpacing));
-    if (titleButtonItemSideSpacing != nil)
-    {
+    if (titleButtonItemSideSpacing != nil) {
         return titleButtonItemSideSpacing.floatValue;
     }
     return PREFERRED_SCREEN_SIDE_SPACING;
@@ -96,8 +94,7 @@
 + (CGFloat)imageButtonItemSideSpacing
 {
     NSNumber *imageButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(imageButtonItemSideSpacing));
-    if (imageButtonItemSideSpacing != nil)
-    {
+    if (imageButtonItemSideSpacing != nil) {
         return imageButtonItemSideSpacing.floatValue;
     }
     return PREFERRED_SCREEN_SIDE_SPACING;
@@ -111,8 +108,7 @@
 + (CGFloat)backButtonItemSideSpacing
 {
     NSNumber *backButtonItemSideSpacing = objc_getAssociatedObject(self.global, @selector(backButtonItemSideSpacing));
-    if (backButtonItemSideSpacing != nil)
-    {
+    if (backButtonItemSideSpacing != nil) {
         return backButtonItemSideSpacing.floatValue;
     }
     return PREFERRED_SCREEN_SIDE_SPACING;
@@ -127,8 +123,7 @@
 + (CGPoint)backButtonImageOffset
 {
     NSString *backButtonImageOffset = objc_getAssociatedObject(self.global, @selector(backButtonImageOffset));
-    if (backButtonImageOffset)
-    {
+    if (backButtonImageOffset) {
         return CGPointFromString(backButtonImageOffset);
     }
     return CGPointZero;
@@ -142,8 +137,7 @@
 + (CGSize)barButtonItemSize
 {
     NSString *barButtonItemSize = objc_getAssociatedObject(self.global, @selector(barButtonItemSize));
-    if (barButtonItemSize)
-    {
+    if (barButtonItemSize) {
         return CGSizeFromString(barButtonItemSize);
     }
     return CGSizeMake(30, NAVIGATION_BAR_HEIGHT);
@@ -157,8 +151,7 @@
 + (CGSize)backButtonItemSize
 {
     NSString *backButtonItemSize = objc_getAssociatedObject(self.global, @selector(backButtonItemSize));
-    if (backButtonItemSize)
-    {
+    if (backButtonItemSize) {
         return CGSizeFromString(backButtonItemSize);
     }
     return CGSizeMake(44, 22);
@@ -172,8 +165,7 @@
 + (CGSize)closeButtonItemSize
 {
     NSString *closeButtonItemSize = objc_getAssociatedObject(self.global, @selector(closeButtonItemSize));
-    if (closeButtonItemSize)
-    {
+    if (closeButtonItemSize) {
         return CGSizeFromString(closeButtonItemSize);
     }
     return CGSizeMake(44, 22);
