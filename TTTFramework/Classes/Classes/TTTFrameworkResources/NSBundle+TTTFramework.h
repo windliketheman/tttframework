@@ -28,27 +28,27 @@
 
 #define CTAssetsPickerInFramework
 
-#ifdef CTAssetsPickerInFramework
-#define CTAssetsPickerLocalizedString(key, comments) \
-        [NSBundle ctassetsPickerLocalizedStringWithKey:(key) comment:(comments)]
-
-@protocol NSBundleCTAssetsPickerProtocol <NSObject>
-
-@property (nonatomic, readonly, class) NSString *currentLanguage;
-
-@end
-
-#else
-#define CTAssetsPickerLocalizedString(key, comment) \
-        NSLocalizedStringFromTableInBundle((key), @"CTAssetsPicker", [NSBundle ctassetsPickerBundle], (comment))
-#endif
-
-@interface NSBundle (CTAssetsPickerController)
+@interface NSBundle (TTTFramework)
 
 #ifdef CTAssetsPickerInFramework
+// if
 + (NSString *)ctassetsPickerLocalizedStringWithKey:(NSString *)key comment:(NSString *)comment;
++ (NSString *)tttFrameworkLocalizedStringWithKey:(NSString *)key comment:(NSString *)comment;
 #else
+// else
 + (NSBundle *)ctassetsPickerBundle;
 #endif
 
 @end
+
+#ifdef CTAssetsPickerInFramework
+// if
+#define CTAssetsPickerLocalizedString(key, comments) \
+        [NSBundle ctassetsPickerLocalizedStringWithKey:(key) comment:(comments)]
+#define TTTFrameworkLocalizedString(key, comments) \
+        [NSBundle tttFrameworkLocalizedStringWithKey:(key) comment:(comments)]
+#else
+// else
+#define CTAssetsPickerLocalizedString(key, comment) \
+        NSLocalizedStringFromTableInBundle((key), @"CTAssetsPicker", [NSBundle ctassetsPickerBundle], (comment))
+#endif

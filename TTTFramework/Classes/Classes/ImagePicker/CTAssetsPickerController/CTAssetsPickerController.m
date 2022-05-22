@@ -34,7 +34,7 @@
 #import "CTAssetScrollView.h"
 #import "CTAssetsPageViewController.h"
 #import "CTAssetsViewControllerTransition.h"
-#import "NSBundle+CTAssetsPickerController.h"
+#import "NSBundle+TTTFramework.h"
 #import "UIImage+CTAssetsPickerController.h"
 #import "NSNumberFormatter+CTAssetsPickerController.h"
 #import "CTAssetsPickerController+Customized.h"

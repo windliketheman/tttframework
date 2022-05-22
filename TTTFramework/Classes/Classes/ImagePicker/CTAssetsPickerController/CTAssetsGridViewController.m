@@ -36,7 +36,7 @@
 #import "CTAssetsViewControllerTransition.h"
 #import "UICollectionView+CTAssetsPickerController.h"
 #import "NSIndexSet+CTAssetsPickerController.h"
-#import "NSBundle+CTAssetsPickerController.h"
+#import "NSBundle+TTTFramework.h"
 #import "CTAssetsPickerSettings.h"
 
 

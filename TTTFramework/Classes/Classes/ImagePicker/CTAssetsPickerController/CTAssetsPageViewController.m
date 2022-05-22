@@ -28,7 +28,7 @@
 #import "CTAssetItemViewController.h"
 #import "CTAssetScrollView.h"
 #import "NSNumberFormatter+CTAssetsPickerController.h"
-#import "NSBundle+CTAssetsPickerController.h"
+#import "NSBundle+TTTFramework.h"
 #import "UIImage+CTAssetsPickerController.h"
 #import "PHAsset+CTAssetsPickerController.h"
 #import "CTAssetsPickerSettings.h"

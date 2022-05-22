@@ -27,7 +27,7 @@
 #import "PureLayout.h"
 #import "CTAssetsGridViewFooter.h"
 #import "NSNumberFormatter+CTAssetsPickerController.h"
-#import "NSBundle+CTAssetsPickerController.h"
+#import "NSBundle+TTTFramework.h"
 
 
 

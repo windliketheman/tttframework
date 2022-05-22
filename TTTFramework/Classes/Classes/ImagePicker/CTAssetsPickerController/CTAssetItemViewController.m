@@ -28,7 +28,7 @@
 #import "PureLayout.h"
 #import "CTAssetItemViewController.h"
 #import "CTAssetScrollView.h"
-#import "NSBundle+CTAssetsPickerController.h"
+#import "NSBundle+TTTFramework.h"
 #import "PHAsset+CTAssetsPickerController.h"
 #import "CTAssetsPickerSettings.h"
 

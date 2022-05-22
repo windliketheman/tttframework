@@ -27,7 +27,7 @@
 #import "PureLayout.h"
 #import "CTAssetsPickerDefines.h"
 #import "CTAssetsPickerAccessDeniedView.h"
-#import "NSBundle+CTAssetsPickerController.h"
+#import "NSBundle+TTTFramework.h"
 #import "UIImage+CTAssetsPickerController.h"
 
 

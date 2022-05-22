@@ -32,7 +32,7 @@
 #import "CTAssetsGridViewController.h"
 #import "PHAssetCollection+CTAssetsPickerController.h"
 #import "PHAsset+CTAssetsPickerController.h"
-#import "NSBundle+CTAssetsPickerController.h"
+#import "NSBundle+TTTFramework.h"
 #import "CTAssetsPickerController+Customized.h"
 #import "CTAssetsPickerSettings.h"
 
