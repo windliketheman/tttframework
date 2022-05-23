@@ -8,7 +8,7 @@
 
 #import "WKWebViewController.h"
 #import "UIViewController+.h"
-#import "NSString+Encoding.h"
+// #import "NSString+Encoding.h"
 #import "TTTFrameworkCommonDefines.h"
 #import <MobileCoreServices/UTType.h>
 #import <Masonry/Masonry.h>
@@ -135,42 +135,11 @@
     if (mimeType) {
         if ([mimeType hasPrefix:@"text/"]) { // txt file
             if ([mimeType hasPrefix:@"text/plain"]) {
-#if 0
-                NSData *data = [NSData dataWithContentsOfURL:url];
-
-                // NSStringEncoding encodeing = NSUTF8StringEncoding;
-                NSStringEncoding encodeing = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-                NSString *body = [[NSString alloc] initWithData:data encoding:encodeing];
-
-                // 带编码头的如utf-8等，这里会识别出来
-                // NSString *body = [NSString stringWithContentsOfFile:self.fileURL usedEncoding:&useEncodeing error:nil];
-                // 识别不到，按GBK编码再解码一次.这里不能先按GB18030解码，否则会出现整个文档无换行bug。
-                if (!body) {
-                    body = [NSString stringWithContentsOfFile:self.fileURL encoding:0x80000632 error:nil];
-                }
-                // 还是识别不到，按GB18030编码再解码一次.
-                if (!body) {
-                    body = [NSString stringWithContentsOfFile:self.fileURL encoding:0x80000631 error:nil];
-                }
-
-                // 展现
-                if (body) {
-                    [self.webView loadHTMLString:body baseURL:nil];
-                } else {
-                    NSString *urlString = [[NSBundle mainBundle] pathForAuxiliaryExecutable:self.fileURL];
-                    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-                    NSURL *requestUrl = [NSURL URLWithString:urlString];
-                    NSURLRequest *request = [NSURLRequest requestWithURL:requestUrl];
-                    [self.webView loadRequest:request];
-                }
-#else
-                NSData *txtData = [NSData dataWithContentsOfFile:self.fileURL];
-                NSString *encoding = self.fileURL.contentTextCharSet;
-
-                if (@available(iOS 13.0, *)) {
-                    [self.webView loadData:txtData MIMEType:mimeType characterEncodingName:encoding baseURL:[NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath]];
-                }
-#endif
+                NSData *data = [NSData dataWithContentsOfFile:self.fileURL];
+                // NSString *encoding = self.fileURL.contentTextCharSet;
+                NSString *encoding = @"GBK";
+                
+                [self.webView loadData:data MIMEType:mimeType characterEncodingName:encoding baseURL:[NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath]];
             } else {
                 // 加载文件
                 if (@available(iOS 9.0, *)) {

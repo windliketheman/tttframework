@@ -7,7 +7,7 @@
 //
 
 #import "NSString+Encoding.h"
-#include "uchardet.h"
+#include "uchardet.h" // C++文件
 
 #define NUMBER_OF_SAMPLES (2048)
 
