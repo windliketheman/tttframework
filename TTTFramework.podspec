@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
 
     s.resources    = "#{s.name}/Assets/#{s.name}.bundle"
 
-    s.frameworks   =  'SystemConfiguration', 'MobileCoreServices', 'WebKit', 'AVFoundation', 'Photos'
+    s.frameworks   =  'SystemConfiguration', 'MobileCoreServices', 'WebKit', 'AVFoundation', 'Photos', 'MessageUI'
 
     s.dependency 'MBProgressHUD'
     s.dependency 'Masonry'
