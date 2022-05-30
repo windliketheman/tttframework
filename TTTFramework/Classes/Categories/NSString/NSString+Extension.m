@@ -51,7 +51,7 @@
 
 - (NSString *)fileUTI
 {
-    return [self preferredUTIForExtention:self.pathExtension];
+    return [[self class] utiTypeForFileAtPath:self];
 }
 
 - (NSString *)fileMimeType
@@ -59,12 +59,40 @@
     return [[self class] mimeTypeForFileAtPath:self];
 }
 
-- (NSString *)preferredUTIForExtention:(NSString *)ext
+/*
+ 在OC对象转化为CF对象时
+ void *p = (__bridge void *)(obj);
+ 
+ 在CF对象转化成OC对象时
+ id obj = (__bridge_transfer id)p;
+ */
++ (NSString *)utiTypeForFileAtPath:(NSString *)filePath
 {
-    // Request the UTI via the file extension
-    NSString *theUTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(ext), NULL);
-    return theUTI ?: @"";
+    NSString *extension = [[[filePath lastPathComponent] pathExtension] lowercaseString];
+    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
+    return (__bridge_transfer NSString *)uti ?: @"";
 }
+
++ (NSString *)mimeTypeForFileAtPath:(NSString *)filePath
+{
+    NSString *extension = [[[filePath lastPathComponent] pathExtension] lowercaseString];
+    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
+    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType);
+    CFRelease(uti);
+    
+    return (__bridge_transfer NSString *)mimeType ?: @"";
+}
+
+//// API is expired.
+//- (NSString *)getMimeType:(NSString *)fileAbsolutePath error:(NSError *)error
+//{
+//    NSString *fullPath = [fileAbsolutePath stringByExpandingTildeInPath];
+//    NSURL *fileUrl = [NSURL fileURLWithPath:fullPath];
+//    NSURLRequest *fileUrlRequest = [NSURLRequest requestWithURL:fileUrl];
+//    NSURLResponse *response = nil;
+//    [NSURLConnection sendSynchronousRequest:fileUrlRequest returningResponse:&response error:&error];
+//    return [response MIMEType];
+//}
 
 - (NSString *)preferredUTIForMIMEType:(NSString *)mime
 {
@@ -73,6 +101,13 @@
     return theUTI;
 }
 
+/*
+ 在OC对象转化为CF对象时
+ void *p = (__bridge void *)(obj);
+ 
+ 在CF对象转化成OC对象时
+ id obj = (__bridge_transfer id)p;
+ */
 - (NSString *)extensionForUTI:(NSString *)aUTI
 {
     CFStringRef theUTI = (__bridge CFStringRef)aUTI;
@@ -85,16 +120,6 @@
     CFStringRef theUTI = (__bridge CFStringRef)aUTI;
     CFStringRef results = UTTypeCopyPreferredTagWithClass(theUTI, kUTTagClassMIMEType);
     return (__bridge_transfer NSString *)results;
-}
-
-+ (NSString *)mimeTypeForFileAtPath:(NSString *)filePath
-{
-    NSString *extension = [[[filePath lastPathComponent] pathExtension] lowercaseString];
-    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
-    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType);
-    CFRelease(uti);
-    
-    return (__bridge NSString *)mimeType ?: @"";
 }
 
 @end

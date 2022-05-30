@@ -9,6 +9,7 @@
 #import "WKWebViewController.h"
 #import "UIViewController+.h"
 // #import "NSString+Encoding.h"
+#import "NSString+Extension.h"
 #import "TTTFrameworkCommonDefines.h"
 #import <MobileCoreServices/UTType.h>
 #import <Masonry/Masonry.h>
@@ -131,30 +132,25 @@
         return NO;
     }
 
-    NSString *mimeType = [self fileMimeType:self.fileURL];
+    NSString *mimeType = self.fileURL.fileMimeType;
     if (mimeType) {
-        if ([mimeType hasPrefix:@"text/"]) { // txt file
-            if ([mimeType hasPrefix:@"text/plain"]) {
-                NSData *data = [NSData dataWithContentsOfFile:self.fileURL];
-                // NSString *encoding = self.fileURL.contentTextCharSet;
-                NSString *encoding = @"GBK";
-                
-                [self.webView loadData:data MIMEType:mimeType characterEncodingName:encoding baseURL:[NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath]];
-            } else {
-                // 加载文件
-                if (@available(iOS 9.0, *)) {
-                    [self.webView loadFileURL:url allowingReadAccessToURL:url];
+        if (@available(iOS 9.0, *)) {
+            if ([mimeType hasPrefix:@"text/"]) { // txt file
+                if ([mimeType hasPrefix:@"text/plain"]) {
+                    NSData *data = [NSData dataWithContentsOfFile:self.fileURL];
+                    // NSString *encoding = self.fileURL.contentTextCharSet;
+                    NSString *encoding = @"GBK";
+                    
+                    [self.webView loadData:data MIMEType:mimeType characterEncodingName:encoding baseURL:[NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath]];
                 } else {
-                    [self loadFileURLBeforeIOS9:url];
+                    [self.webView loadFileURL:url allowingReadAccessToURL:url];
                 }
+            } else {
+                [self.webView loadFileURL:url allowingReadAccessToURL:url];
             }
         } else {
-            // 加载文件
-            if (@available(iOS 9.0, *)) {
-                [self.webView loadFileURL:url allowingReadAccessToURL:url];
-            } else {
-                [self loadFileURLBeforeIOS9:url];
-            }
+            // Fallback on earlier versions
+            [self loadFileURLBeforeIOS9:url];
         }
     } else {
         // format txt to html, then load html string.
@@ -196,25 +192,6 @@
 
     return YES;
 }
-
-- (NSString *)fileMimeType:(NSString *)fileNameOrPath
-{
-    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)[fileNameOrPath pathExtension], NULL);
-    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType);
-
-    return (__bridge NSString *)(mimeType);
-}
-
-//// API is expired.
-//- (NSString *)getMimeType:(NSString *)fileAbsolutePath error:(NSError *)error
-//{
-//    NSString *fullPath = [fileAbsolutePath stringByExpandingTildeInPath];
-//    NSURL *fileUrl = [NSURL fileURLWithPath:fullPath];
-//    NSURLRequest *fileUrlRequest = [NSURLRequest requestWithURL:fileUrl];
-//    NSURLResponse *response = nil;
-//    [NSURLConnection sendSynchronousRequest:fileUrlRequest returningResponse:&response error:&error];
-//    return [response MIMEType];
-//}
 
 - (BOOL)isLocalFile
 {
