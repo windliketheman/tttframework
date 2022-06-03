@@ -133,9 +133,9 @@
     }
 
     NSString *mimeType = self.fileURL.fileMimeType;
-    if (mimeType) {
+    if (mimeType.length > 0) {
         if (@available(iOS 9.0, *)) {
-            if ([mimeType hasPrefix:@"text/"]) { // txt file
+            if ([mimeType hasPrefix:@"text/"]) {
                 if ([mimeType hasPrefix:@"text/plain"]) {
                     NSData *data = [NSData dataWithContentsOfFile:self.fileURL];
                     // NSString *encoding = self.fileURL.contentTextCharSet;
@@ -143,6 +143,7 @@
                     
                     [self.webView loadData:data MIMEType:mimeType characterEncodingName:encoding baseURL:[NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath]];
                 } else {
+                    // text/html
                     [self.webView loadFileURL:url allowingReadAccessToURL:url];
                 }
             } else {
@@ -155,19 +156,21 @@
     } else {
         // format txt to html, then load html string.
         NSData *txtData = [NSData dataWithContentsOfURL:url];
-        NSString *txtString = [[NSString alloc] initWithData:txtData encoding:NSUTF8StringEncoding];
-        NSString *htmlString = [NSString stringWithFormat:
-                                @"<HTML>"
-                                "<head>"
-                                "<title>Text View</title>"
-                                "</head>"
-                                "<BODY>"
-                                "<pre>"
-                                "%@"
-                                "</pre>"
-                                "</BODY>"
-                                "</HTML>",
-                                txtString];
+        NSString *htmlString = [[NSString alloc] initWithData:txtData encoding:NSUTF8StringEncoding];
+        if (!([htmlString containsString:@"</HTML>"] || [htmlString containsString:@"</html>"])) {
+            htmlString = [NSString stringWithFormat:
+                          @"<HTML>"
+                          "<head>"
+                          "<title>Text View</title>"
+                          "</head>"
+                          "<BODY>"
+                          "<pre>"
+                          "%@"
+                          "</pre>"
+                          "</BODY>"
+                          "</HTML>",
+                          htmlString];
+        }
         [self.webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
     }
 
