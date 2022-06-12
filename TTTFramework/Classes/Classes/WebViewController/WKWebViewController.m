@@ -64,7 +64,9 @@
         self.webView.frame = self.view.bounds;
     }
 
+#if NAVIGATION_APPROVED
     self.webView.navigationDelegate = self; // 需要实现 <span style="font-family: monospace; white-space: pre; background-color: rgb(240, 240, 240);">WKNavigationDelegate </span>
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -241,7 +243,6 @@
     return [[NSURL fileURLWithPath:NSTemporaryDirectory()] URLByAppendingPathComponent:@"www"];
 }
 
-#pragma mark - WKNavigationDelegate
 - (BOOL)validateRequestURL:(NSURL *)requestURL
 {
     return YES;

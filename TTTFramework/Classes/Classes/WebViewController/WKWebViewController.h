@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
+#define NAVIGATION_APPROVED  1
+
 @protocol WKWebViewLayoutDelegate <NSObject>
 @optional
 - (void)customizeWebViewConstraints;
@@ -25,7 +27,12 @@
 - (void)webViewDidExitFullScreen;
 @end
 
-@interface WKWebViewController : UIViewController <WKNavigationDelegate, WKWebViewLayoutDelegate, WKWebViewLoadDataDelegate, WKWebViewFullScreenDelegate>
+@interface WKWebViewController : UIViewController
+<
+#if NAVIGATION_APPROVED
+WKNavigationDelegate,
+#endif
+WKWebViewLayoutDelegate, WKWebViewLoadDataDelegate, WKWebViewFullScreenDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
 
