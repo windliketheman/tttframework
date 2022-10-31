@@ -35,13 +35,18 @@
         return nil;
     }
     uchardet_data_end(ud);
-    printf("文本的编码方式是%s。\n", uchardet_get_charset(ud));
+    printf("文本的编码方式是: %s。\n", uchardet_get_charset(ud));
 
+    /*
+     ⚠️用“const char *”方式保持临时变量，在ios16.1之后，会在uchardet_delete(ud)之后，变成空字符串
     const char *encode = uchardet_get_charset(ud);
-
     uchardet_delete(ud);
-
     return [[NSString alloc] initWithCString:encode encoding:NSUTF8StringEncoding];
+     */
+    
+    NSString *encode = [NSString stringWithUTF8String:uchardet_get_charset(ud)];
+    uchardet_delete(ud);
+    return encode;
 }
 
 - (NSStringEncoding)contentTextEncoding
@@ -66,7 +71,8 @@
         } else if ([encode isEqualToString:@"EUC-JP"]) {
             cfEncode = kCFStringEncodingEUC_JP;
         } else {
-            // do nothing
+            // 读取编码失败，默认中文编码
+            cfEncode = kCFStringEncodingGB_18030_2000;
         }
     }
 
