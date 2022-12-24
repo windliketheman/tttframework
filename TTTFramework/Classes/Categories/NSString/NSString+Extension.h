@@ -27,6 +27,13 @@
                                                  withLineSpacing:(CGFloat)lineSpacing;
 @end
 
+@interface NSString (FileExtension)
+
+// 文件扩展名(区分大小写)，并没区分文件类型或是文件夹
+- (NSString *)filePathExtension;
+
+@end
+
 @interface NSString (UTI)
 
 - (NSString *)fileUTI;

@@ -8,8 +8,6 @@
 
 #import "UITabBarController+TabBar.h"
 
-#define kAnimationDuration 0.3
-
 @implementation UITabBarController (TabBar)
 
 - (void)showTabBar
@@ -18,13 +16,9 @@
         CGRect tabBarRect = self.tabBar.frame;
         tabBarRect.origin.y -= CGRectGetHeight(self.tabBar.bounds);
 
-        [UIView animateWithDuration:kAnimationDuration
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.tabBar setFrame:tabBarRect];
-        }
-                         completion:^(BOOL finished) {
+        } completion:^(BOOL finished) {
         }];
     }
 }
@@ -35,13 +29,9 @@
         CGRect tabBarRect = self.tabBar.frame;
         tabBarRect.origin.y += CGRectGetHeight(self.tabBar.bounds);
 
-        [UIView animateWithDuration:kAnimationDuration
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.tabBar setFrame:tabBarRect];
-        }
-                         completion:^(BOOL finished) {
+        } completion:^(BOOL finished) {
         }];
     }
 }

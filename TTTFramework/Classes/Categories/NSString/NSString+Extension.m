@@ -47,6 +47,23 @@
 
 @end
 
+@implementation NSString (FileExtension)
+
+// 文件扩展名(区分大小写)，并没区分文件类型或是文件夹
+- (NSString *)filePathExtension
+{
+    const NSString *fileName = [self lastPathComponent];
+    NSString *extension = [fileName pathExtension]; // 这里从filePath中取和fileName中取，效果是一样的
+    
+    // 有些文件（一般是配置文件）只有扩展名，没有文件名，如“.gitignore”，通过pathExtension获得的是空字符串，而它本身就是扩展名
+    if (!extension.length && fileName.length && [fileName hasPrefix:@"."]) {
+        extension = [fileName substringFromIndex:1];
+    }
+    return extension;
+}
+
+@end
+
 @implementation NSString (UTI)
 
 - (NSString *)fileUTI
@@ -68,14 +85,14 @@
  */
 + (NSString *)utiTypeForFileAtPath:(NSString *)filePath
 {
-    NSString *extension = [[[filePath lastPathComponent] pathExtension] lowercaseString];
+    NSString *extension = filePath.filePathExtension.lowercaseString;
     CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
     return (__bridge_transfer NSString *)uti ?: @"";
 }
 
 + (NSString *)mimeTypeForFileAtPath:(NSString *)filePath
 {
-    NSString *extension = [[[filePath lastPathComponent] pathExtension] lowercaseString];
+    NSString *extension = filePath.filePathExtension.lowercaseString;
     CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
     CFStringRef mimeType = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType);
     CFRelease(uti);
