@@ -22,6 +22,7 @@
 @property (nonatomic, readwrite) BOOL navigationBarShadowImageEnabled;
 
 - (void)updateNavigationBarColor:(UIColor *)navigationBarColor;
+- (void)updateNavigationBarColor:(UIColor *)navigationBarColor scrollViewSwitchable:(BOOL)scrollViewSwitchable;
 
 - (void)updateNavigationBarTitleColor:(UIColor *)navigationBarTitleColor;
 - (void)updateNavigationBarTitleFont:(UIFont *)navigationBarTitleFont;

@@ -25,7 +25,7 @@
 
 + (UIColor *)barButtonItemColor
 {
-    return objc_getAssociatedObject(self.global, @selector(barButtonItemColor)) ?: [UIColor colorWithRed:0 / 255.0 green:64 / 255.0 blue:221 / 255.0 alpha:1.0];
+    return objc_getAssociatedObject(self.global, @selector(barButtonItemColor)) ?: [UIColor colorWithRed:0/255.0 green:64/255.0 blue:221/255.0 alpha:1.0];
 }
 
 + (void)setBarButtonItemFont:(UIFont *)barButtonItemFont

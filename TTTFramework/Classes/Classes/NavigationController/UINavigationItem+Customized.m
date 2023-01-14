@@ -27,15 +27,7 @@
 - (UIColor *)barButtonItemColor
 {
     UIColor *barButtonItemColor = objc_getAssociatedObject(self, @selector(barButtonItemColor));
-    if (barButtonItemColor) {
-        if ([barButtonItemColor isKindOfClass:UIColor.class]) {
-            return barButtonItemColor;
-        } else {
-            return SYSTEM_NAVIGATION_BAR_BUTTON_ITEM_COLOR;
-        }
-    } else {
-        return [UINavigationItem.global barButtonItemColor];
-    }
+    return barButtonItemColor ?: [UINavigationItem.global barButtonItemColor];
 }
 
 - (void)setBarButtonItemFont:(UIFont *)barButtonItemFont
@@ -48,11 +40,7 @@
 - (UIFont *)barButtonItemFont
 {
     UIFont *barButtonItemFont = objc_getAssociatedObject(self, @selector(barButtonItemFont));
-    if (barButtonItemFont) {
-        return barButtonItemFont;
-    } else {
-        return [UINavigationItem.global barButtonItemFont];
-    }
+    return barButtonItemFont ?: [UINavigationItem.global barButtonItemFont];
 }
 
 - (void)setBackButtonItemColor:(UIColor *)backButtonItemColor
@@ -65,14 +53,7 @@
 - (UIColor *)backButtonItemColor
 {
     UIColor *backButtonItemColor = objc_getAssociatedObject(self, @selector(backButtonItemColor));
-    if (backButtonItemColor) {
-        if ([backButtonItemColor isKindOfClass:UIColor.class]) {
-            return backButtonItemColor;
-        } else {
-            return SYSTEM_NAVIGATION_BAR_BUTTON_ITEM_COLOR;
-        }
-    }
-    return [UINavigationItem.global backButtonItemColor];
+    return backButtonItemColor ?: [UINavigationItem.global backButtonItemColor];
 }
 
 - (void)setCloseButtonItemColor:(UIColor *)closeButtonItemColor
@@ -85,14 +66,7 @@
 - (UIColor *)closeButtonItemColor
 {
     UIColor *closeButtonItemColor = objc_getAssociatedObject(self, @selector(closeButtonItemColor));
-    if (closeButtonItemColor) {
-        if ([closeButtonItemColor isKindOfClass:UIColor.class]) {
-            return closeButtonItemColor;
-        } else {
-            return SYSTEM_NAVIGATION_BAR_BUTTON_ITEM_COLOR;
-        }
-    }
-    return [UINavigationItem.global closeButtonItemColor];
+    return closeButtonItemColor ?: [UINavigationItem.global closeButtonItemColor];
 }
 
 - (void)setBarButtonItemSideSpacing:(CGFloat)barButtonItemSideSpacing

@@ -17,6 +17,9 @@
 // defaults to YES;
 @property (nonatomic, readonly, getter=isViewActive) BOOL viewActive;
 
+// 如果有多个UIScrollView，则scrollViewSwitchable to YES
+@property (nonatomic, readwrite) BOOL scrollViewSwitchable;
+
 #pragma mark - Navigation Bar
 // 整体刷新导航栏样式
 - (void)navigationBarStylesToFit;

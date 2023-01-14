@@ -76,7 +76,8 @@
 {
     id preferredNavigationBarColor = objc_getAssociatedObject(self, @selector(preferredNavigationBarColor));
     if (preferredNavigationBarColor) {
-        return [preferredNavigationBarColor isKindOfClass:UIColor.class] ? preferredNavigationBarColor : SYSTEM_NAVIGATION_BAR_COLOR;
+        UIColor *systemDefault = nil;
+        return [preferredNavigationBarColor isKindOfClass:UIColor.class] ? preferredNavigationBarColor : systemDefault;
     } else {
         return self.navigationController ? [UINavigationBar.global color] : nil;
     }
@@ -101,13 +102,7 @@
 - (void)setPreferredNavigationBarTitleColor:(UIColor *)preferredNavigationBarTitleColor
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarTitleColor), preferredNavigationBarTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
-    if (preferredNavigationBarTitleColor) {
-        if (![preferredNavigationBarTitleColor isKindOfClass:UIColor.class]) {
-            // 传非color使用系统默认
-            preferredNavigationBarTitleColor = SYSTEM_NAVIGATION_BAR_TITLE_COLOR;
-        }
-    } else {
+    if (!preferredNavigationBarTitleColor) {
         // 传nil使用默认
         preferredNavigationBarTitleColor = [UINavigationBar.global titleColor];
     }
@@ -118,7 +113,7 @@
 - (UIColor *)preferredNavigationBarTitleColor
 {
     UIColor *preferredNavigationBarTitleColor = objc_getAssociatedObject(self, @selector(preferredNavigationBarTitleColor));
-    return preferredNavigationBarTitleColor ? ([preferredNavigationBarTitleColor isKindOfClass:UIColor.class] ? preferredNavigationBarTitleColor : SYSTEM_NAVIGATION_BAR_TITLE_COLOR) : [UINavigationBar.global titleColor];
+    return preferredNavigationBarTitleColor ?: [UINavigationBar.global titleColor];
 }
 
 - (void)setPreferredNavigationBarTitleFont:(UIFont *)preferredNavigationBarTitleFont
@@ -138,12 +133,7 @@
 - (void)setPreferredNavigationBarLargeTitleColor:(UIColor *)preferredNavigationBarLargeTitleColor
 {
     objc_setAssociatedObject(self, @selector(preferredNavigationBarLargeTitleColor), preferredNavigationBarLargeTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
-    if (preferredNavigationBarLargeTitleColor) {
-        if (![preferredNavigationBarLargeTitleColor isKindOfClass:UIColor.class]) {
-            preferredNavigationBarLargeTitleColor = SYSTEM_NAVIGATION_BAR_TITLE_COLOR;
-        }
-    } else {
+    if (!preferredNavigationBarLargeTitleColor) {
         // 传nil使用默认
         preferredNavigationBarLargeTitleColor = [UINavigationBar.global largeTitleColor];
     }
@@ -154,7 +144,7 @@
 - (UIColor *)preferredNavigationBarLargeTitleColor
 {
     UIColor *preferredNavigationBarLargeTitleColor = objc_getAssociatedObject(self, @selector(preferredNavigationBarLargeTitleColor));
-    return preferredNavigationBarLargeTitleColor ? ([preferredNavigationBarLargeTitleColor isKindOfClass:UIColor.class] ? preferredNavigationBarLargeTitleColor : SYSTEM_NAVIGATION_BAR_TITLE_COLOR) : [UINavigationBar.global largeTitleColor];
+    return preferredNavigationBarLargeTitleColor ?: [UINavigationBar.global largeTitleColor];
 }
 
 - (void)setPreferredNavigationBarLargeTitleFont:(UIFont *)preferredNavigationBarLargeTitleFont

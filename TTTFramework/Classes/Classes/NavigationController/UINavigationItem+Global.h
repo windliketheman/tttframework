@@ -13,16 +13,10 @@
 // 全局控制样式
 @property (nonatomic, readonly, class, nonnull) Class global;
 
-// 传非color使用系统默认 传nil使用默认
 @property (nonatomic, strong, class, nullable) UIColor *barButtonItemColor;
-
-// 传非color使用系统默认 传nil使用默认
 @property (nonatomic, strong, class, nullable) UIFont  *barButtonItemFont;
 
-// 传非color使用系统默认 传nil使用默认 除非用户单独设置，否则和barButtonItemColor一致
 @property (nonatomic, strong, class, nullable) UIColor *backButtonItemColor;
-
-// 传非color使用系统默认 传nil使用默认 除非用户单独设置，否则和barButtonItemColor一致
 @property (nonatomic, strong, class, nullable) UIColor *closeButtonItemColor;
 
 @property (nonatomic, readonly, class) CGFloat barButtonItemSideSpacing;

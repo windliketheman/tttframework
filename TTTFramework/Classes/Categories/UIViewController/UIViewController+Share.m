@@ -110,10 +110,6 @@
 
     UIViewController *vc = emailer.topViewController;
     vc.preferredNavigationBarColor = (UIColor *)[NSNull null]; // 表示使用系统默认
-    vc.preferredNavigationBarTitleColor = (UIColor *)[NSNull null]; // 表示使用系统默认
-    vc.wantedNavigationItem.barButtonItemColor = (UIColor *)[NSNull null]; // 表示使用系统默认
-    vc.wantedNavigationItem.backButtonItemColor = (UIColor *)[NSNull null]; // 表示使用系统默认
-    vc.wantedNavigationItem.closeButtonItemColor = (UIColor *)[NSNull null]; // 表示使用系统默认
     vc.prefersNavigationBarLeftSideCloseButtonWhenPresented = NO;
     vc.customizedEnabled = YES;
 

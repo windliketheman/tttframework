@@ -37,17 +37,17 @@ static CGFloat const kOpacityFactorB = (1 - kOpacityFactorA);
 /*
  默认 self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
  self.navigationController.navigationBar.translucent = YES;
- self.navigationController.navigationBar.tintColor = nil;`
+ self.navigationController.navigationBar.tintColor = nil;
 
  黑色不透明
  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
  self.navigationController.navigationBar.translucent = NO;
- self.navigationController.navigationBar.tintColor = [UIColor whiteColor];`
+ self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
  黑色透明
  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
  self.navigationController.navigationBar.translucent = YES;
- self.navigationController.navigationBar.tintColor = [UIColor whiteColor];`
+ self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
  */
 - (void)setBarTintColor:(UIColor *)barTintColor
 {

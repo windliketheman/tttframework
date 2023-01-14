@@ -10,17 +10,11 @@
 
 @protocol UINavigationItemCustomizedProtocol <NSObject>
 
-// 传非color使用系统默认 传nil使用默认
 @property (nonatomic, strong) UIColor *barButtonItemColor;
-
-// 传非color使用系统默认 传nil使用默认
-@property (nonatomic, strong) UIFont  *barButtonItemFont;
-
-// 传非color使用系统默认 传nil使用默认 除非用户单独设置，否则和barButtonItemColor一致
 @property (nonatomic, strong) UIColor *backButtonItemColor;
-
-// 传非color使用系统默认 传nil使用默认 除非用户单独设置，否则和barButtonItemColor一致
 @property (nonatomic, strong) UIColor *closeButtonItemColor;
+
+@property (nonatomic, strong) UIFont  *barButtonItemFont;
 
 @property (nonatomic, readonly) CGFloat barButtonItemSideSpacing;
 @property (nonatomic, readonly) CGFloat titleButtonItemSideSpacing;

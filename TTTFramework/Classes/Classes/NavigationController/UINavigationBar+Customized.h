@@ -28,12 +28,6 @@
 @property (nonatomic, strong, nonnull) UIFont       *largeTitleFont;
 @property (nonatomic, strong, nonnull) NSDictionary *largeTitleAttributes;
 
-/*
- ios11之后shadowImage可以自由设置
- ios11之前：
- navigationBar setBackgroundImage:image 之后 隐藏阴影才有效
- navigationBar setBackgroundImage:nil   之后 显示阴影才有效
- */
 @property (nonatomic) BOOL shadowImageEnabled;
 
 @end

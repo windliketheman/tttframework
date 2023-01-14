@@ -89,89 +89,67 @@
 }
 
 #pragma mark - Super
+#if 0
 - (void)updateNavigationBarColor:(UIColor *)navigationBarColor
 {
+    if (navigationBarColor && ![navigationBarColor isKindOfClass:UIColor.class]) {
+        // 错误，传入的不是一个color
+        return;
+    }
     self.navigationBar.color = navigationBarColor;
 
-    if (navigationBarColor && ![navigationBarColor isKindOfClass:UIColor.class]) {
-        navigationBarColor = nil;
-    }
-
-    [self.navigationBar setBarTintColor:navigationBarColor];
-
     if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
-        if (!appearance) {
-            appearance = [[UINavigationBarAppearance alloc] init];
-            // [appearance configureWithOpaqueBackground];
-        }
-        appearance.backgroundColor = navigationBarColor;
-        self.navigationBar.standardAppearance = appearance;
-
-        appearance = self.navigationBar.scrollEdgeAppearance;
-        if (!appearance) {
-            appearance = [[UINavigationBarAppearance alloc] init];
+        if (navigationBarColor) {
+            // scroll达到边缘时，导航栏的外观熟悉
+            UINavigationBarAppearance *edgeAppearance = self.navigationBar.scrollEdgeAppearance;
+            if (!edgeAppearance) {
+                edgeAppearance = [[UINavigationBarAppearance alloc] init];
+            }
+            [edgeAppearance configureWithOpaqueBackground];
+            edgeAppearance.backgroundColor = navigationBarColor;
+            self.navigationBar.scrollEdgeAppearance = edgeAppearance;
+            
+            // 标准外观样式
+            UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
+            if (!appearance) {
+                appearance = [[UINavigationBarAppearance alloc] init];
+            }
             [appearance configureWithOpaqueBackground];
+            appearance.backgroundColor = navigationBarColor;
+            self.navigationBar.standardAppearance = appearance;
+        } else {
+            // scroll达到边缘时，导航栏的外观熟悉
+            UINavigationBarAppearance *edgeAppearance = self.navigationBar.scrollEdgeAppearance;
+            if (!edgeAppearance) {
+                edgeAppearance = [[UINavigationBarAppearance alloc] init];
+            }
+            [edgeAppearance configureWithDefaultBackground];
+            edgeAppearance.backgroundColor = navigationBarColor;
+            self.navigationBar.scrollEdgeAppearance = edgeAppearance;
+            
+            // 标准外观样式
+            UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
+            if (!appearance) {
+                appearance = [[UINavigationBarAppearance alloc] init];
+            }
+            [appearance configureWithDefaultBackground];
+            appearance.backgroundColor = navigationBarColor;
+            self.navigationBar.standardAppearance = appearance;
         }
-        appearance.backgroundColor = navigationBarColor;
-        self.navigationBar.scrollEdgeAppearance = appearance;
+    } else {
+        [self.navigationBar setBarTintColor:navigationBarColor];
     }
 }
+#endif
 
 - (void)updateNavigationBarTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
 {
     [super updateNavigationBarTitleAttributes:navigationBarTitleAttributes];
-
-    if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
-        if (!appearance) {
-            appearance = [[UINavigationBarAppearance alloc] init];
-        }
-        appearance.titleTextAttributes = navigationBarTitleAttributes;
-        self.navigationBar.standardAppearance = appearance;
-
-        appearance = self.navigationBar.scrollEdgeAppearance;
-        if (!appearance) {
-            appearance = [[UINavigationBarAppearance alloc] init];
-        }
-        appearance.titleTextAttributes = navigationBarTitleAttributes;
-        self.navigationBar.scrollEdgeAppearance = appearance;
-    }
 }
 
 - (void)updateNavigationBarLargeTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
 {
     [super updateNavigationBarLargeTitleAttributes:navigationBarTitleAttributes];
-
-    if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
-        if (!appearance) {
-            appearance = [[UINavigationBarAppearance alloc] init];
-        }
-        appearance.largeTitleTextAttributes = navigationBarTitleAttributes;
-        self.navigationBar.standardAppearance = appearance;
-
-        appearance = self.navigationBar.scrollEdgeAppearance;
-        if (!appearance) {
-            appearance = [[UINavigationBarAppearance alloc] init];
-        }
-        appearance.largeTitleTextAttributes = navigationBarTitleAttributes;
-        self.navigationBar.scrollEdgeAppearance = appearance;
-    }
-}
-
-- (void)setNavigationBarShadowImageEnabled:(BOOL)enabled
-{
-    [super setNavigationBarShadowImageEnabled:enabled];
-
-    if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *appearance = self.navigationBar.scrollEdgeAppearance;
-        if (!appearance) {
-            appearance = [[UINavigationBarAppearance alloc] init];
-        }
-        appearance.shadowColor = [UIColor clearColor];
-        self.navigationBar.scrollEdgeAppearance = appearance;
-    }
 }
 
 /*

@@ -187,6 +187,17 @@
     return NO;
 }
 
+- (void)setScrollViewSwitchable:(BOOL)scrollViewSwitchable
+{
+    objc_setAssociatedObject(self, @selector(scrollViewSwitchable), @(scrollViewSwitchable), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)scrollViewSwitchable
+{
+    NSNumber *scrollViewSwitchable = objc_getAssociatedObject(self, @selector(scrollViewSwitchable));
+    return scrollViewSwitchable ? scrollViewSwitchable.boolValue : NO;
+}
+
 #pragma mark - Navigation Bar
 - (void)setupNavigationBarAutomatically
 {
@@ -224,7 +235,9 @@
 {
     // 每次viewWillAppear都会执行
     // 有可能当前页面导航栏和全局一致，但下级颜色不一致，从下级回来的话，还要执行导航栏颜色设置，以保证当前页面导航栏颜色正常显示
-    [self.navigationController updateNavigationBarColor:self.preferredNavigationBarColor];
+    UIColor *navigationBarColor = self.preferredNavigationBarColor;
+    BOOL scrollViewSwitchable = self.scrollViewSwitchable;
+    [self.navigationController updateNavigationBarColor:navigationBarColor scrollViewSwitchable:scrollViewSwitchable];
 
     [self navigationBarShadowImageToFit];
 }

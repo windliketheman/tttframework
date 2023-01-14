@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TTTFrameworkCommonDefines.h"
 
-#define SYSTEM_NAVIGATION_BAR_COLOR             nil
-#define SYSTEM_NAVIGATION_BAR_TITLE_COLOR       RGBCOLOR(0, 0, 0)
-#define SYSTEM_NAVIGATION_BAR_BUTTON_ITEM_COLOR RGBCOLOR(0, 64, 221)
-
 #define SHADOW_IMAGE_GRAY_VALUE         176.0/255.0
 
 @interface UIColor (Extension)
