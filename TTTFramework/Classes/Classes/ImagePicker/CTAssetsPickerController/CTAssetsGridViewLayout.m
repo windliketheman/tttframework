@@ -77,6 +77,7 @@
     
     // remaining spaces (in pixel) after rounding the length to integer
     CGFloat insets  = (length - floor(length)) * numberOfColumns;
+    insets = 0;
     
     // round the length to integer (in pixel)
     length = floor(length);
@@ -148,7 +149,11 @@
     switch (traits.userInterfaceIdiom) {
         case UIUserInterfaceIdiomPad:
         {
-            return 6;
+            if (@available(iOS 16.0, *)) {
+                return 4;
+            } else {
+                return 6;
+            }
             break;
         }
         case UIUserInterfaceIdiomPhone:

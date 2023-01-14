@@ -248,6 +248,13 @@ NSString * const CTAssetsPickerDidDeselectAssetNotification = @"CTAssetsPickerDi
     svc.viewControllers = @[master, detail];
     svc.presentsWithGesture = NO;
     svc.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if (@available(iOS 16.0, *)) {
+            // svc.preferredDisplayMode = UISplitViewControllerDisplayModePrimaryOverlay;
+            svc.preferredDisplayMode = UISplitViewControllerDisplayModeOneBesideSecondary;
+            svc.preferredPrimaryColumnWidth = 240.0;
+        }
+    }
     
     [svc willMoveToParentViewController:self];
     [svc setViewControllers:@[master, detail]];
