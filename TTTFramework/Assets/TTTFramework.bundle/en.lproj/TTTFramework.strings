@@ -16,3 +16,7 @@
 "已指定给联系人" = "Assigned to the Contact";
 "AirDrop 分享成功" = "AirDrop Sharing successful";
 "分享成功" = "Share succeed";
+
+"请前往“设置 > 隐私 > 照片”授权应用访问相册权限" = "Please go to \"Settings > Privacy > Photos\" authorize the application to access the photo permissions";
+"请前往“设置 > 隐私 > 相机”授权应用拍照权限" = "Please go to \"Settings > Privacy > Camera\" to authorize the app to take photos";
+"您没有相机" = "You have no camera";

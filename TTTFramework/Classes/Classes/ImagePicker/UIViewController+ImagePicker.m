@@ -12,6 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIViewController+Alert.h"
 #import "UIViewController+.h"
+#import <TTTFramework/NSBundle+TTTFramework.h>
 
 @implementation UIViewController (Picker)
 
@@ -120,8 +121,8 @@
 
 - (void)showPhotoAccessDenied
 {
-    // Alert will be in main thread
-    [self showAlertWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"请前往设置->隐私->相册 授权应用访问相册权限", nil) sureTitle:NSLocalizedString(@"确定", nil) sureHandler:nil];
+    // Alert will be in main thread “设置 > 隐私 > 照片”
+    [self showAlertWithTitle:TTTFrameworkLocalizedString(@"提示", nil) message:TTTFrameworkLocalizedString(@"请前往“设置 > 隐私 > 照片”授权应用访问相册权限", nil) sureTitle:TTTFrameworkLocalizedString(@"确定", nil) sureHandler:nil];
 }
 
 - (void)dispatchAssetsPickerFinally:(void (^__nullable)(CTAssetsPickerController *__nullable picker))pickerCallback
@@ -282,7 +283,7 @@
 - (void)showCameraAccessDenied
 {
     // Alert will be in main thread
-    [self showAlertWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"请前往设置->隐私->相机 授权应用拍照权限", nil) sureTitle:NSLocalizedString(@"确定", nil) sureHandler:nil];
+    [self showAlertWithTitle:TTTFrameworkLocalizedString(@"提示", nil) message:TTTFrameworkLocalizedString(@"请前往“设置 > 隐私 > 相机”授权应用拍照权限", nil) sureTitle:TTTFrameworkLocalizedString(@"确定", nil) sureHandler:nil];
 }
 
 - (void)dispatchMediaTypes:(NSArray *)mediaTypes finallyCameraPicker:(void (^__nullable)(UIImagePickerController *__nullable picker))pickerCallback
@@ -290,7 +291,7 @@
     // 判断是否可以打开相机
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         // Alert will be in main thread
-        [self showAlertWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"您没有相机", nil) sureTitle:NSLocalizedString(@"确定", nil) sureHandler:nil];
+        [self showAlertWithTitle:TTTFrameworkLocalizedString(@"提示", nil) message:TTTFrameworkLocalizedString(@"您没有相机", nil) sureTitle:TTTFrameworkLocalizedString(@"确定", nil) sureHandler:nil];
         
         if (pickerCallback) {
             pickerCallback(nil);
