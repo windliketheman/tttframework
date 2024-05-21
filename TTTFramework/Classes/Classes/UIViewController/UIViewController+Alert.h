@@ -30,6 +30,8 @@
 
 @end
 
+typedef void (^ConfigHandler)(UITextField * __nonnull textField);
+
 typedef void (^ActionHandler)(UIAlertAction * __nullable action);
 
 @interface UIViewController (Alert) <UIViewControllerAlertProtocol>
@@ -40,44 +42,44 @@ typedef void (^ActionHandler)(UIAlertAction * __nullable action);
 - (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
                                              message:(NSString * __nullable)message
                                            sureTitle:(id __nullable)sureTitle
-                                         sureHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
+                                         sureHandler:(ActionHandler __nullable)sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
 
 - (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
                                              message:(NSString * __nullable)message
                                          cancelTitle:(id __nullable)cancelTitle
                                            sureTitle:(id __nullable)sureTitle
-                                       cancelHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))cancelHandler
-                                         sureHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
+                                       cancelHandler:(ActionHandler __nullable)cancelHandler
+                                         sureHandler:(ActionHandler __nullable)sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
 
 - (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
                                              message:(NSString * __nullable)message
                                      textFieldConfig:(void (^ __nullable)(UITextField * __nonnull textField))textFieldConfig
                                          cancelTitle:(id __nullable)cancelTitle
                                            sureTitle:(id __nullable)sureTitle
-                                       cancelHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))cancelHandler
-                                         sureHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
+                                       cancelHandler:(ActionHandler __nullable)cancelHandler
+                                         sureHandler:(ActionHandler __nullable)sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
 
 - (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
                                              message:(NSString * __nullable)message
-                                     textFieldConfig:(void (^ __nullable)(UITextField * __nonnull textField))textFieldConfig
+                                          textFields:(NSArray<ConfigHandler> * __nullable)textFieldConfigs
                                          cancelTitle:(id __nullable)cancelTitle
-                                          sureTitles:(NSArray * __nullable)sureTitles
-                                       cancelHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))cancelHandler
-                                        sureHandlers:(NSArray * __nullable)sureHandlers NS_ENUM_AVAILABLE_IOS(8_0);
+                                          sureTitles:(NSArray<NSString *> * __nullable)sureTitles
+                                       cancelHandler:(ActionHandler __nullable)cancelHandler
+                                        sureHandlers:(NSArray<ActionHandler> * __nullable)sureHandlers NS_ENUM_AVAILABLE_IOS(8_0);
 #pragma mark - Action Sheet
 - (UIAlertController * __nullable)showActionSheetWithTitle:(NSString * __nullable)title
                                                    message:(NSString * __nullable)message
                                                cancelTitle:(id __nullable)cancelTitle
                                                  sureTitle:(id __nullable)sureTitle
-                                             cancelHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))cancelHandler
-                                               sureHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
+                                             cancelHandler:(ActionHandler __nullable)cancelHandler
+                                               sureHandler:(ActionHandler __nullable)sureHandler NS_ENUM_AVAILABLE_IOS(8_0);
 
 - (UIAlertController * __nullable)showActionSheetWithTitle:(NSString * __nullable)title
                                                    message:(NSString * __nullable)message
                                                cancelTitle:(id __nullable)cancelTitle
-                                                sureTitles:(NSArray * __nullable)sureTitles
-                                             cancelHandler:(void (^ __nullable)(UIAlertAction * __nonnull action))cancelHandler
-                                              sureHandlers:(NSArray * __nullable)sureHandlers NS_ENUM_AVAILABLE_IOS(8_0);
+                                                sureTitles:(NSArray<NSString *> * __nullable)sureTitles
+                                             cancelHandler:(ActionHandler __nullable)cancelHandler
+                                              sureHandlers:(NSArray<ActionHandler> * __nullable)sureHandlers NS_ENUM_AVAILABLE_IOS(8_0);
 
 #endif
 

@@ -107,34 +107,34 @@
 }
 
 #pragma mark - Alert
-- (UIAlertController *__nullable)showAlertWithTitle:(NSString *__nullable)title
-                                            message:(NSString *__nullable)message
+- (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
+                                            message:(NSString * __nullable)message
                                           sureTitle:(id __nullable)sureTitle
-                                        sureHandler:(void (^__nullable)(UIAlertAction *__nonnull action))sureHandler
+                                        sureHandler:(ActionHandler __nullable)sureHandler
 {
     UIAlertController *vc = [self showAlertWithTitle:title message:message textFieldConfig:nil cancelTitle:sureTitle sureTitle:nil cancelHandler:sureHandler sureHandler:nil];
     return vc;
 }
 
-- (UIAlertController *__nullable)showAlertWithTitle:(NSString *__nullable)title
-                                            message:(NSString *__nullable)message
+- (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
+                                            message:(NSString * __nullable)message
                                         cancelTitle:(id __nullable)cancelTitle
                                           sureTitle:(id __nullable)sureTitle
-                                      cancelHandler:(void (^__nullable)(UIAlertAction *__nonnull action))cancelHandler
-                                        sureHandler:(void (^__nullable)(UIAlertAction *__nonnull action))sureHandler
+                                      cancelHandler:(ActionHandler __nullable)cancelHandler
+                                        sureHandler:(ActionHandler __nullable)sureHandler
 {
     UIAlertController *vc = [self showAlertWithTitle:title message:message textFieldConfig:nil cancelTitle:cancelTitle sureTitle:sureTitle cancelHandler:cancelHandler sureHandler:sureHandler];
     return vc;
 }
 
 // use text fileld or not
-- (UIAlertController *__nullable)showAlertWithTitle:(NSString *__nullable)title
-                                            message:(NSString *__nullable)message
-                                    textFieldConfig:(void (^__nullable)(UITextField *__nonnull textField))textFieldConfig
+- (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
+                                            message:(NSString * __nullable)message
+                                    textFieldConfig:(void (^__nullable)(UITextField * __nonnull textField))textFieldConfig
                                         cancelTitle:(id __nullable)cancelTitle
                                           sureTitle:(id __nullable)sureTitle
-                                      cancelHandler:(void (^__nullable)(UIAlertAction *__nonnull action))cancelHandler
-                                        sureHandler:(void (^__nullable)(UIAlertAction *__nonnull action))sureHandler
+                                      cancelHandler:(ActionHandler __nullable)cancelHandler
+                                        sureHandler:(ActionHandler __nullable)sureHandler
 {
     // alert 必须有一个按钮
     if (!sureTitle && !cancelTitle) {
@@ -142,24 +142,26 @@
 
         if (!cancelHandler) cancelHandler = sureHandler;
     }
+    
+    NSArray<ConfigHandler> *textFieldConfigs = textFieldConfig ? @[textFieldConfig] : nil;
 
-    NSArray *sureTitles = sureTitle ? @[sureTitle] : nil;
-    NSArray *sureHandlers = sureHandler ? @[sureHandler] : nil;
+    NSArray<NSString *> *sureTitles = sureTitle ? @[sureTitle] : nil;
+    NSArray<ActionHandler> *sureHandlers = sureHandler ? @[sureHandler] : nil;
 
-    UIAlertController *vc = [self showAlertWithTitle:title message:message textFieldConfig:textFieldConfig cancelTitle:cancelTitle sureTitles:sureTitles cancelHandler:cancelHandler sureHandlers:sureHandlers];
+    UIAlertController *vc = [self showAlertWithTitle:title message:message textFields:textFieldConfigs cancelTitle:cancelTitle sureTitles:sureTitles cancelHandler:cancelHandler sureHandlers:sureHandlers];
     return vc;
 }
 
 // use text fileld or not
-- (UIAlertController *__nullable)showAlertWithTitle:(NSString *__nullable)title
-                                            message:(NSString *__nullable)message
-                                    textFieldConfig:(void (^__nullable)(UITextField *__nonnull textField))textFieldConfig
-                                        cancelTitle:(id __nullable)cancelTitle
-                                         sureTitles:(NSArray *__nullable)sureTitles
-                                      cancelHandler:(void (^__nullable)(UIAlertAction *__nonnull action))cancelHandler
-                                       sureHandlers:(NSArray * __nullable) sureHandlers NS_ENUM_AVAILABLE_IOS(8_0)
+- (UIAlertController * __nullable)showAlertWithTitle:(NSString * __nullable)title
+                                             message:(NSString * __nullable)message
+                                          textFields:(NSArray<ConfigHandler> * __nullable)textFieldConfigs
+                                         cancelTitle:(id __nullable)cancelTitle
+                                          sureTitles:(NSArray<NSString *> * __nullable)sureTitles
+                                       cancelHandler:(ActionHandler __nullable)cancelHandler
+                                        sureHandlers:(NSArray<ActionHandler> * __nullable)sureHandlers NS_ENUM_AVAILABLE_IOS(8_0)
 {
-    UIAlertController *alertController = [self alertControllerWithTitle:title message:message style:UIAlertControllerStyleAlert textFieldConfig:textFieldConfig cancelTitle:cancelTitle sureTitles:sureTitles cancelHandler:cancelHandler sureHandlers:sureHandlers];
+    UIAlertController *alertController = [self alertControllerWithTitle:title message:message style:UIAlertControllerStyleAlert textFields:textFieldConfigs cancelTitle:cancelTitle sureTitles:sureTitles cancelHandler:cancelHandler sureHandlers:sureHandlers];
 
     [self presentAlertController:alertController animated:YES completion:^{
         // todo
@@ -169,12 +171,12 @@
 }
 
 #pragma mark - Action Sheet
-- (UIAlertController *__nullable)showActionSheetWithTitle:(NSString *__nullable)title
-                                                  message:(NSString *__nullable)message
+- (UIAlertController * __nullable)showActionSheetWithTitle:(NSString * __nullable)title
+                                                  message:(NSString * __nullable)message
                                               cancelTitle:(id __nullable)cancelTitle
                                                 sureTitle:(id __nullable)sureTitle
-                                            cancelHandler:(void (^__nullable)(UIAlertAction *__nonnull action))cancelHandler
-                                              sureHandler:(void (^__nullable)(UIAlertAction *__nonnull action))sureHandler
+                                            cancelHandler:(ActionHandler __nullable)cancelHandler
+                                              sureHandler:(ActionHandler __nullable)sureHandler
 {
     // action sheet 要干事，不能有确定没取消
     if (!cancelTitle) cancelTitle = NSLocalizedString(@"取消", nil);
@@ -187,14 +189,14 @@
     return vc;
 }
 
-- (UIAlertController *__nullable)showActionSheetWithTitle:(NSString *__nullable)title
-                                                  message:(NSString *__nullable)message
+- (UIAlertController * __nullable)showActionSheetWithTitle:(NSString * __nullable)title
+                                                  message:(NSString * __nullable)message
                                               cancelTitle:(id __nullable)cancelTitle
-                                               sureTitles:(NSArray *__nullable)sureTitles
-                                            cancelHandler:(void (^__nullable)(UIAlertAction *__nonnull action))cancelHandler
-                                             sureHandlers:(NSArray *__nullable)sureHandlers
+                                               sureTitles:(NSArray<NSString *> * __nullable)sureTitles
+                                            cancelHandler:(ActionHandler __nullable)cancelHandler
+                                             sureHandlers:(NSArray<ActionHandler> * __nullable)sureHandlers
 {
-    UIAlertController *alertController = [self alertControllerWithTitle:title message:message style:UIAlertControllerStyleActionSheet textFieldConfig:nil cancelTitle:cancelTitle sureTitles:sureTitles cancelHandler:cancelHandler sureHandlers:sureHandlers];
+    UIAlertController *alertController = [self alertControllerWithTitle:title message:message style:UIAlertControllerStyleActionSheet textFields:nil cancelTitle:cancelTitle sureTitles:sureTitles cancelHandler:cancelHandler sureHandlers:sureHandlers];
 
     [self presentAlertController:alertController animated:YES completion:^{
         // todo
@@ -205,20 +207,22 @@
 
 #pragma mark - Functions
 // use text fileld or not
-- (UIAlertController *__nullable)alertControllerWithTitle:(NSString *__nullable)title
-                                                  message:(NSString *__nullable)message
+- (UIAlertController * __nullable)alertControllerWithTitle:(NSString * __nullable)title
+                                                  message:(NSString * __nullable)message
                                                     style:(UIAlertControllerStyle)style
-                                          textFieldConfig:(void (^__nullable)(UITextField *__nonnull textField))textFieldConfig
+                                               textFields:(NSArray<ConfigHandler> * __nullable)textFieldConfigs
                                               cancelTitle:(id __nullable)cancelTitle
-                                               sureTitles:(NSArray *__nullable)sureTitles
-                                            cancelHandler:(void (^__nullable)(UIAlertAction *__nonnull action))cancelHandler
-                                             sureHandlers:(NSArray *__nullable)sureHandlers
+                                               sureTitles:(NSArray * __nullable)sureTitles
+                                            cancelHandler:(ActionHandler __nullable)cancelHandler
+                                             sureHandlers:(NSArray * __nullable)sureHandlers
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:style];
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (textFieldConfig) {
-            [alertController addTextFieldWithConfigurationHandler:textFieldConfig];
+        if (textFieldConfigs.count) {
+            for (ConfigHandler textFieldConfig in textFieldConfigs) {
+                [alertController addTextFieldWithConfigurationHandler:textFieldConfig];
+            }
         }
 
         __weak __typeof(self) wself = self;
