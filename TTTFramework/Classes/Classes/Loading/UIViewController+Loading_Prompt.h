@@ -38,6 +38,8 @@ typedef NS_ENUM (NSInteger, LoadingPromptTheme)
 
 @property (nonatomic, readonly) NSTimer * _Nullable hideDelayTimer;
 
+@property (nonatomic, readonly) NSDate * _Nullable loadingDate;
+
 @end
 
 @interface UIViewController (Loading_Prompt) <UIViewControllerLoadingPromptProtocol>

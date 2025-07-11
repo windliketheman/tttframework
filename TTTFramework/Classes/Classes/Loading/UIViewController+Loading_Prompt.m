@@ -145,6 +145,16 @@ typedef NS_ENUM (NSInteger, MBProgressHUDLook) {
     return objc_getAssociatedObject(self, @selector(hideDelayTimer));
 }
 
+- (void)setLoadingDate:(NSDate *)loadingDate
+{
+    objc_setAssociatedObject(self, @selector(loadingDate), loadingDate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSDate *)loadingDate
+{
+    return objc_getAssociatedObject(self, @selector(loadingDate));
+}
+
 #pragma mark - Outter Methods
 - (void)showLoading
 {
@@ -247,6 +257,9 @@ const char HUDKey;
 {
     MBProgressHUD *HUD = self.HUD;
     if (!HUD) {
+        self.loadingDate = [NSDate date];
+        NSLog(@"[%@] %p show loading", NSStringFromClass(self.class), self);
+        
         HUD = [MBProgressHUD showHUDAddedTo:inView animated:NO];
         HUD.detailsLabel.font = self.class.loadingPromptTitleFont;
         HUD.bezelView.layer.cornerRadius = self.class.loadingPromptCornerRadius;
@@ -285,6 +298,9 @@ const char HUDKey;
     if (self.HUD) {
         [self.HUD hideAnimated:YES];
         self.HUD = nil;
+        
+        NSLog(@"[%@] %p hide loading, loading time: %f", NSStringFromClass(self.class), self, [[NSDate date] timeIntervalSinceDate:self.loadingDate]);
+        self.loadingDate = nil;
     }
 }
 

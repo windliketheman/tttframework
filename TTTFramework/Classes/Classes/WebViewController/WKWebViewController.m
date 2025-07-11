@@ -215,7 +215,7 @@
     [self.webView loadRequest:request];
 }
 
-// 将文件copy到tmp目录
+// copy文件到tmp目录
 - (NSURL *)fileURLForBuggyWKWebView8:(NSURL *)fileURL
 {
     NSError *error = nil;

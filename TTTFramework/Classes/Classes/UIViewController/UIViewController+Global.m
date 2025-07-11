@@ -40,4 +40,15 @@
     return separatorColor ?: RGBCOLOR(229, 229, 229);
 }
 
++ (void)setSpacingColor:(UIColor *)spacingColor
+{
+    objc_setAssociatedObject(self.global, @selector(spacingColor), spacingColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
++ (UIColor *)spacingColor
+{
+    UIColor *spacingColor = objc_getAssociatedObject(self.global, @selector(spacingColor));
+    return spacingColor ?: RGBCOLOR(247, 247, 247);
+}
+
 @end

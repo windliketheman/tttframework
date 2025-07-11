@@ -108,7 +108,7 @@
                 if ([NSThread isMainThread]) {
                     action();
                 } else {
-                    NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+                    NSLog(@"[%@] goto MainThread", NSStringFromClass(self.class));
                     dispatch_async(dispatch_get_main_queue(), ^{
                         action();
                     });
@@ -227,7 +227,7 @@
             if ([NSThread isMainThread]) {
                 action();
             } else {
-                NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+                NSLog(@"[%@] goto MainThread", NSStringFromClass(self.class));
                 dispatch_async(dispatch_get_main_queue(), ^{
                     action();
                 });
@@ -243,7 +243,7 @@
             if ([NSThread isMainThread]) {
                 action();
             } else {
-                NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+                NSLog(@"[%@] goto MainThread", NSStringFromClass(self.class));
                 dispatch_async(dispatch_get_main_queue(), ^{
                     action();
                 });
@@ -272,7 +272,7 @@
         if ([NSThread isMainThread]) {
             action();
         } else {
-            NSLog(@"%@: goto MainThread", NSStringFromClass(self.class));
+            NSLog(@"[%@] goto MainThread", NSStringFromClass(self.class));
             dispatch_async(dispatch_get_main_queue(), ^{
                 action();
             });
