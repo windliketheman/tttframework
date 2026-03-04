@@ -223,7 +223,8 @@
 {
     if (__IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_10_3 && SYSTEM_VERSION >= 11.0) {
         // 图片内容左对齐
-        UIImage *backImage = [self functionalButtonImageWithImage:image size:(forBack ? self.backButtonItemSize : self.closeButtonItemSize)];
+        CGPoint imageOffset = forBack ? UINavigationItem.global.backButtonImageOffset : UINavigationItem.global.closeButtonImageOffset;
+        UIImage *backImage = [self functionalButtonImageWithImage:image size:(forBack ? self.backButtonItemSize : self.closeButtonItemSize) offset:imageOffset];
 
         UIButton *button = nil;
         NSString *selectorString = leftItemSelector ? NSStringFromSelector(leftItemSelector) : nil;
@@ -547,10 +548,10 @@
 }
 
 // 图片内容左对齐
-- (UIImage *)functionalButtonImageWithImage:(UIImage *)image size:(CGSize)size
+- (UIImage *)functionalButtonImageWithImage:(UIImage *)image size:(CGSize)size offset:(CGPoint)offset
 {
-    float x = MAX(UINavigationItem.global.backButtonImageOffset.x, 0);
-    float y = (size.height - image.size.height) * 0.5 + UINavigationItem.global.backButtonImageOffset.y;
+    float x = MAX(offset.x, 0);
+    float y = (size.height - image.size.height) * 0.5 + offset.y;
     CGRect imageToRect = CGRectMake(x, y, image.size.width, image.size.height);
 
     UIGraphicsBeginImageContextWithOptions(size, NO, image.scale);

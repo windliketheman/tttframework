@@ -26,6 +26,8 @@
 
 // 调整返回按钮的图片位置
 @property (nonatomic, readwrite, class) CGPoint backButtonImageOffset;
+// 调整关闭按钮的图片位置
+@property (nonatomic, readwrite, class) CGPoint closeButtonImageOffset;
 
 @property (nonatomic, readwrite, class) CGSize barButtonItemSize;
 

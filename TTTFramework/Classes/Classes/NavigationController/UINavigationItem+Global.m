@@ -129,6 +129,20 @@
     return CGPointZero;
 }
 
++ (void)setCloseButtonImageOffset:(CGPoint)closeButtonImageOffset
+{
+    objc_setAssociatedObject(self.global, @selector(closeButtonImageOffset), NSStringFromCGPoint(closeButtonImageOffset), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
++ (CGPoint)closeButtonImageOffset
+{
+    NSString *closeButtonImageOffset = objc_getAssociatedObject(self.global, @selector(closeButtonImageOffset));
+    if (closeButtonImageOffset) {
+        return CGPointFromString(closeButtonImageOffset);
+    }
+    return CGPointZero;
+}
+
 + (void)setBarButtonItemSize:(CGSize)barButtonItemSize
 {
     objc_setAssociatedObject(self.global, @selector(barButtonItemSize), NSStringFromCGSize(barButtonItemSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
