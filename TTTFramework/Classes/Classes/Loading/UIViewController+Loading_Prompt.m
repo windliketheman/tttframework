@@ -256,6 +256,7 @@ const char HUDKey;
 - (void)showLoadingViewWithText:(NSString *)text inView:(UIView *)inView autoHidden:(BOOL)autoHidden
 {
     MBProgressHUD *HUD = self.HUD;
+    BOOL wasVisible = (HUD && HUD.superview && !HUD.isHidden);
     if (!HUD) {
         self.loadingDate = [NSDate date];
         NSLog(@"[%@] %p show loading", NSStringFromClass(self.class), self);
@@ -264,6 +265,8 @@ const char HUDKey;
         HUD.detailsLabel.font = self.class.loadingPromptTitleFont;
         HUD.bezelView.layer.cornerRadius = self.class.loadingPromptCornerRadius;
         HUD.margin = self.class.loadingPromptMargin;
+        HUD.animationType = MBProgressHUDAnimationZoom;
+        HUD.removeFromSuperViewOnHide = YES;
         self.HUD = HUD;
     }
 
@@ -274,6 +277,21 @@ const char HUDKey;
 
     HUD.detailsLabel.text = (text && text.length > 0) ? text : nil;
     // HUD.label.font = [UIFont systemFontOfSize:14];
+
+    if (wasVisible)
+    {
+        HUD.bezelView.transform = CGAffineTransformMakeScale(0.96, 0.96);
+        HUD.bezelView.alpha = 0.9;
+        [UIView animateWithDuration:0.28
+                              delay:0.0
+             usingSpringWithDamping:0.78
+              initialSpringVelocity:0.6
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+            HUD.bezelView.transform = CGAffineTransformIdentity;
+            HUD.bezelView.alpha = 1.0;
+        } completion:nil];
+    }
 }
 
 - (void)handleHideTimer:(NSTimer *)timer
