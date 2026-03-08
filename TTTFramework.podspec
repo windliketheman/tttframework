@@ -21,9 +21,7 @@ Pod::Spec.new do |s|
     s.author       = { "wind" => "wind.like.the.man@icloud.com" }
     s.source       = { :git => "https://github.com/windliketheman/tttframework.git", :tag => s.version }
 
-    s.platform     = :ios
-    s.platform     = :ios, "8.0"
-    s.ios.deployment_target = "8.0"
+    s.platform     = :ios, '13.0'
 	
     s.requires_arc = true
     

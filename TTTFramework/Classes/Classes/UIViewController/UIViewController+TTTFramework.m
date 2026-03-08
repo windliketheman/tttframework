@@ -526,7 +526,20 @@
     CGFloat topBarsHeight = 0.0;
 
     if (!self.prefersStatusBarHidden) {
-        topBarsHeight += CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]);
+        CGFloat statusBarHeight = 0.0;
+        if (@available(iOS 13.0, *)) {
+            UIWindow *window = self.view.window ?: UIApplication.sharedApplication.keyWindow;
+            if (window) {
+                statusBarHeight = window.safeAreaInsets.top;
+                if (statusBarHeight <= 0.0) {
+                    UIStatusBarManager *statusBarManager = window.windowScene.statusBarManager;
+                    statusBarHeight = CGRectGetHeight(statusBarManager.statusBarFrame);
+                }
+            }
+        } else {
+            statusBarHeight = CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]);
+        }
+        topBarsHeight += statusBarHeight;
     }
 
     if (self.navigationController && !self.navigationController.navigationBar.hidden) {
