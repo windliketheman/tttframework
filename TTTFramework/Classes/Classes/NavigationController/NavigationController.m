@@ -8,7 +8,6 @@
 
 #import "NavigationController.h"
 #import "UINavigationBar+Customized.h"
-#import "NavigationController+Global.h"
 #import "UITabBarController+TabBar.h"
 #import "UIViewController+.h"
 
@@ -18,34 +17,11 @@
 
 @implementation NavigationController
 
-#pragma mark - Setter & Getter
-- (void)setNavigationBarTranslucent:(BOOL)navigationBarTranslucent
-{
-    [self.navigationBar setTranslucent:navigationBarTranslucent];
-}
-
-- (BOOL)navigationBarTranslucent
-{
-    return self.navigationBar.translucent;
-}
-
-- (void)setCustomizedNavigationBarTranslucent:(BOOL)customizedNavigationBarTranslucent
-{
-    ((NavigationBar *)self.navigationBar).prefersCustomizedTranslucent = customizedNavigationBarTranslucent;
-}
-
-- (BOOL)customizedNavigationBarTranslucent
-{
-    return [((NavigationBar *)self.navigationBar) prefersCustomizedTranslucent];
-}
-
 #pragma mark - Member Methods
 - (instancetype)init
 {
     if (self = [super initWithNavigationBarClass:[self navigationBarClass] toolbarClass:nil]) {
         self.customizedEnabled = YES;
-        self.navigationBarTranslucent = self.class.global.navigationBarTranslucent;
-        self.customizedNavigationBarTranslucent = self.class.global.customizedNavigationBarTranslucent;
     }
     return self;
 }
@@ -87,60 +63,6 @@
 {
     return [NavigationBar class];
 }
-
-#pragma mark - Super
-#if 0
-- (void)updateNavigationBarColor:(UIColor *)navigationBarColor
-{
-    if (navigationBarColor && ![navigationBarColor isKindOfClass:UIColor.class]) {
-        // 错误，传入的不是一个color
-        return;
-    }
-    self.navigationBar.color = navigationBarColor;
-
-    if (@available(iOS 13.0, *)) {
-        if (navigationBarColor) {
-            // scroll达到边缘时，导航栏的外观熟悉
-            UINavigationBarAppearance *edgeAppearance = self.navigationBar.scrollEdgeAppearance;
-            if (!edgeAppearance) {
-                edgeAppearance = [[UINavigationBarAppearance alloc] init];
-            }
-            [edgeAppearance configureWithOpaqueBackground];
-            edgeAppearance.backgroundColor = navigationBarColor;
-            self.navigationBar.scrollEdgeAppearance = edgeAppearance;
-            
-            // 标准外观样式
-            UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
-            if (!appearance) {
-                appearance = [[UINavigationBarAppearance alloc] init];
-            }
-            [appearance configureWithOpaqueBackground];
-            appearance.backgroundColor = navigationBarColor;
-            self.navigationBar.standardAppearance = appearance;
-        } else {
-            // scroll达到边缘时，导航栏的外观熟悉
-            UINavigationBarAppearance *edgeAppearance = self.navigationBar.scrollEdgeAppearance;
-            if (!edgeAppearance) {
-                edgeAppearance = [[UINavigationBarAppearance alloc] init];
-            }
-            [edgeAppearance configureWithDefaultBackground];
-            edgeAppearance.backgroundColor = navigationBarColor;
-            self.navigationBar.scrollEdgeAppearance = edgeAppearance;
-            
-            // 标准外观样式
-            UINavigationBarAppearance *appearance = self.navigationBar.standardAppearance;
-            if (!appearance) {
-                appearance = [[UINavigationBarAppearance alloc] init];
-            }
-            [appearance configureWithDefaultBackground];
-            appearance.backgroundColor = navigationBarColor;
-            self.navigationBar.standardAppearance = appearance;
-        }
-    } else {
-        [self.navigationBar setBarTintColor:navigationBarColor];
-    }
-}
-#endif
 
 - (void)updateNavigationBarTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
 {

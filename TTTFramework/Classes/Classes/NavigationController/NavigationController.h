@@ -12,10 +12,4 @@
 
 @interface NavigationController : UINavigationController
 
-// defaults to YES
-@property (nonatomic, readwrite) BOOL navigationBarTranslucent;
-
-// default to NO
-@property (nonatomic, readwrite) BOOL customizedNavigationBarTranslucent;
-
 @end

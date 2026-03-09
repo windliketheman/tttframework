@@ -34,7 +34,6 @@ FOUNDATION_EXPORT const unsigned char TTTFrameworkVersionString[];
 #import "UINavigationItem+BarButtonItem.h"
 
 #import "NavigationController.h"
-#import "NavigationController+Global.h"
 #import "TabBarController.h"
 #import "WKWebViewController.h"
 
