@@ -24,10 +24,12 @@
 - (void)updateNavigationBarColor:(UIColor *)navigationBarColor;
 - (void)updateNavigationBarColor:(UIColor *)navigationBarColor scrollViewSwitchable:(BOOL)scrollViewSwitchable;
 
+// Title attributes are comprehensive; color/font are single-property helpers.
 - (void)updateNavigationBarTitleColor:(UIColor *)navigationBarTitleColor;
 - (void)updateNavigationBarTitleFont:(UIFont *)navigationBarTitleFont;
 - (void)updateNavigationBarTitleAttributes:(NSDictionary *)navigationBarTitleAttributes;
 
+// Large title attributes are comprehensive; color/font are single-property helpers.
 - (void)updateNavigationBarLargeTitleColor:(UIColor *)navigationBarTitleColor;
 - (void)updateNavigationBarLargeTitleFont:(UIFont *)navigationBarTitleFont;
 - (void)updateNavigationBarLargeTitleAttributes:(NSDictionary *)navigationBarTitleAttributes;

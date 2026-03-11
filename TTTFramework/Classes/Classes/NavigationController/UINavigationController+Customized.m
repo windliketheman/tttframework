@@ -195,16 +195,43 @@ static UIFont *_appearance_navigationBarTitleFont;
 - (void)updateNavigationBarTitleColor:(UIColor *)navigationBarTitleColor
 {
     self.navigationBar.titleColor = navigationBarTitleColor;
+    
+    // Normalize to title attributes so current instance + appearances stay in sync.
+    NSMutableDictionary *attributes = self.navigationBar.titleAttributes.mutableCopy ?: [NSMutableDictionary dictionary];
+    if (navigationBarTitleColor) {
+        attributes[NSForegroundColorAttributeName] = navigationBarTitleColor;
+    } else {
+        [attributes removeObjectForKey:NSForegroundColorAttributeName];
+    }
+    [self updateNavigationBarTitleAttributes:attributes];
 }
 
 - (void)updateNavigationBarTitleFont:(UIFont *)navigationBarTitleFont
 {
     self.navigationBar.titleFont = navigationBarTitleFont;
+
+    // Keep title font in attributes so appearance updates are consistent.
+    NSMutableDictionary *attributes = self.navigationBar.titleAttributes.mutableCopy ?: [NSMutableDictionary dictionary];
+    if (navigationBarTitleFont) {
+        attributes[NSFontAttributeName] = navigationBarTitleFont;
+    } else {
+        [attributes removeObjectForKey:NSFontAttributeName];
+    }
+    [self updateNavigationBarTitleAttributes:attributes];
 }
 
 - (void)updateNavigationBarTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
 {
+    if (![NSThread isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateNavigationBarTitleAttributes:navigationBarTitleAttributes];
+        });
+        return;
+    }
+
+    // Apply to the live instance, then sync appearances for iOS 13+.
     self.navigationBar.titleAttributes = navigationBarTitleAttributes;
+    self.navigationBar.titleTextAttributes = navigationBarTitleAttributes;
     
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *edgeAppearance = self.navigationBar.scrollEdgeAppearance;
@@ -220,21 +247,54 @@ static UIFont *_appearance_navigationBarTitleFont;
         }
         appearance.titleTextAttributes = navigationBarTitleAttributes;
         self.navigationBar.standardAppearance = appearance;
+
+        UINavigationBarAppearance *compactAppearance = self.navigationBar.compactAppearance;
+        if (!compactAppearance) {
+            compactAppearance = [[UINavigationBarAppearance alloc] init];
+        }
+        compactAppearance.titleTextAttributes = navigationBarTitleAttributes;
+        self.navigationBar.compactAppearance = compactAppearance;
     }
 }
 
 - (void)updateNavigationBarLargeTitleColor:(UIColor *)navigationBarTitleColor
 {
     self.navigationBar.largeTitleColor = navigationBarTitleColor;
+    
+    // Normalize to large title attributes so appearance stays in sync.
+    NSMutableDictionary *attributes = self.navigationBar.largeTitleAttributes.mutableCopy ?: [NSMutableDictionary dictionary];
+    if (navigationBarTitleColor) {
+        attributes[NSForegroundColorAttributeName] = navigationBarTitleColor;
+    } else {
+        [attributes removeObjectForKey:NSForegroundColorAttributeName];
+    }
+    [self updateNavigationBarLargeTitleAttributes:attributes];
 }
 
 - (void)updateNavigationBarLargeTitleFont:(UIFont *)navigationBarTitleFont
 {
     self.navigationBar.largeTitleFont = navigationBarTitleFont;
+
+    // Keep large title font in attributes so appearance updates are consistent.
+    NSMutableDictionary *attributes = self.navigationBar.largeTitleAttributes.mutableCopy ?: [NSMutableDictionary dictionary];
+    if (navigationBarTitleFont) {
+        attributes[NSFontAttributeName] = navigationBarTitleFont;
+    } else {
+        [attributes removeObjectForKey:NSFontAttributeName];
+    }
+    [self updateNavigationBarLargeTitleAttributes:attributes];
 }
 
 - (void)updateNavigationBarLargeTitleAttributes:(NSDictionary *)navigationBarTitleAttributes
 {
+    if (![NSThread isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateNavigationBarLargeTitleAttributes:navigationBarTitleAttributes];
+        });
+        return;
+    }
+
+    // Apply to the live instance, then sync appearances for iOS 13+.
     self.navigationBar.largeTitleAttributes = navigationBarTitleAttributes;
     
     if (@available(iOS 13.0, *)) {
