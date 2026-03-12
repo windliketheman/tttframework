@@ -34,25 +34,50 @@
 - (void)setMBProgressHUDLook:(MBProgressHUDTheme)look
 {
     if (MBProgressHUDThemePure == look) {
-        self.bezelView.style = MBProgressHUDBackgroundStyleBlur;
-        self.bezelView.backgroundColor = nil;                   // 提示框颜色
-        self.contentColor = RGBCOLOR(255, 255, 255); // 文字颜色
-        self.activityIndicator.color = RGBCOLOR(255, 255, 255); // loading颜色
+        // 浅色内容, 文字 & loading
+        UIColor *lightContentColor = RGBACOLOR(255, 255, 255, 1.0);
+
+        // 深色内容, 文字 & loading
+        UIColor *darkContentColor = RGBACOLOR(0, 0, 0, 1.0);
+        
+        if (@available(iOS 13.0, *)) {
+            // Blur 效果
+            self.bezelView.style = MBProgressHUDBackgroundStyleBlur;
+            // 提示框颜色
+            self.bezelView.backgroundColor = nil;
+            // 文字颜色
+            self.contentColor = [UIColor colorWithDynamicProvider:^UIColor *_Nonnull (UITraitCollection *_Nonnull traitCollection) {
+                if (UIUserInterfaceStyleDark == traitCollection.userInterfaceStyle) {
+                    return lightContentColor;
+                }
+                return darkContentColor;
+            }];
+            // loading颜色
+            self.activityIndicator.color = [UIColor colorWithDynamicProvider:^UIColor *_Nonnull (UITraitCollection *_Nonnull traitCollection) {
+                if (UIUserInterfaceStyleDark == traitCollection.userInterfaceStyle) {
+                    return lightContentColor;
+                }
+                return darkContentColor;
+            }];
+        }
     } else if (MBProgressHUDThemeLight == look) {
         self.bezelView.style = MBProgressHUDBackgroundStyleBlur;
-        self.bezelView.backgroundColor = RGBACOLOR(255, 255, 255, 0.8);
-        self.contentColor = RGBCOLOR(45, 45, 45);
-        self.activityIndicator.color = RGBCOLOR(45, 45, 45);
+        // 提示框颜色
+        self.bezelView.backgroundColor = RGBACOLOR(255, 255, 255, 0.75);
+        // 文字颜色
+        self.contentColor = RGBACOLOR(5, 5, 5, 1.0);
+        // loading颜色
+        self.activityIndicator.color = RGBACOLOR(5, 5, 5, 1.0);
     } else {
         // 浅色模式
-        UIColor *lightModeBubbleColor = RGBACOLOR(30, 30, 30, 1.0);  // 提示框颜色
-        UIColor *lightModeTextColor = RGBCOLOR(255, 255, 255);    // 文字颜色
-        UIColor *lightModeLoadingColor = RGBCOLOR(255, 255, 255); // loading颜色
+        UIColor *lightModeBubbleColor = RGBACOLOR(30, 30, 30, 1.0); // 提示框颜色
+        UIColor *lightModeTextColor = RGBCOLOR(255, 255, 255);      // 文字颜色
+        UIColor *lightModeLoadingColor = RGBCOLOR(255, 255, 255);   // loading颜色
 
         // 深色模式
-        UIColor *darkModeBubbleColor = RGBACOLOR(60, 60, 60, 1.0);  // 提示框颜色
-        UIColor *darkModeTextColor = RGBCOLOR(255, 255, 255);    // 文字颜色
-        UIColor *darkModeLoadingColor = RGBCOLOR(255, 255, 255); // loading颜色
+        UIColor *darkModeBubbleColor = RGBACOLOR(60, 60, 60, 1.0); // 提示框颜色
+        UIColor *darkModeTextColor = RGBCOLOR(255, 255, 255);      // 文字颜色
+        UIColor *darkModeLoadingColor = RGBCOLOR(255, 255, 255);   // loading颜色
         if (@available(iOS 13.0, *)) {
             self.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
             self.bezelView.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor *_Nonnull (UITraitCollection *_Nonnull traitCollection) {
