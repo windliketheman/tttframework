@@ -30,24 +30,33 @@ NSString *const TTTFrameworkResourcesBundleName = @"TTTFramework";
 + (NSString *)currentLanguage
 {
     NSString *currentLanguage = objc_getAssociatedObject(self.class, @selector(currentLanguage));
-    if (!currentLanguage) {
-        currentLanguage = [[NSBundle mainBundle] preferredLocalizations].firstObject;
-        if ([currentLanguage hasPrefix:@"en"]) {
-            currentLanguage = @"en";
-        } else if ([currentLanguage hasPrefix:@"zh"]) {
-            if ([currentLanguage rangeOfString:@"Hans"].location != NSNotFound) {
-                // 简体中文
-                // language = [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0 ? @"zh-Hans-CN" : @"zh-Hans"; // 这是读取的系统语言
-                currentLanguage = @"zh-Hans"; // 这是本工程的语言包
-            } else {
-                // zh-Hant\zh-HK\zh-TW\zh-MO\zh-SG
-                currentLanguage = @"zh-Hant"; // 繁體中文
-            }
-        } else {
-            currentLanguage = @"en";
-        }
-        self.currentLanguage = currentLanguage;
+    if (currentLanguage.length > 0) {
+        return currentLanguage;
     }
+
+    NSBundle *mainBundle = NSBundle.mainBundle;
+    NSString *preferredLocalization = mainBundle.preferredLocalizations.firstObject;
+    if (preferredLocalization.length == 0) {
+        preferredLocalization = [NSBundle preferredLocalizationsFromArray:mainBundle.localizations forPreferences:NSLocale.preferredLanguages].firstObject;
+    }
+
+    if ([preferredLocalization hasPrefix:@"zh"]) {
+        if ([preferredLocalization rangeOfString:@"Hans" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            currentLanguage = @"zh-Hans";
+        } else {
+            currentLanguage = @"zh-Hant";
+        }
+    } else if ([preferredLocalization hasPrefix:@"en"]) {
+        currentLanguage = @"en";
+    } else {
+        currentLanguage = preferredLocalization;
+    }
+
+    if (currentLanguage.length == 0) {
+        currentLanguage = @"en";
+    }
+
+    self.currentLanguage = currentLanguage;
     return currentLanguage;
 }
 

@@ -156,7 +156,12 @@ NSString * const CTAssetsPickerDidDeselectAssetNotification = @"CTAssetsPickerDi
 
 - (void)checkAuthorizationStatus
 {
-    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    PHAuthorizationStatus status;
+    if (@available(iOS 14, *)) {
+        status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+    } else {
+        status = [PHPhotoLibrary authorizationStatus];
+    }
     
     switch (status)
     {
@@ -170,6 +175,7 @@ NSString * const CTAssetsPickerDidDeselectAssetNotification = @"CTAssetsPickerDi
             break;
         }
         case PHAuthorizationStatusAuthorized:
+        case PHAuthorizationStatusLimited:
         default:
         {
             [self checkAssetsCount];
@@ -183,6 +189,29 @@ NSString * const CTAssetsPickerDidDeselectAssetNotification = @"CTAssetsPickerDi
 
 - (void)requestAuthorizationStatus
 {
+    if (@available(iOS 14, *)) {
+        [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
+            switch (status) {
+                case PHAuthorizationStatusAuthorized:
+                case PHAuthorizationStatusLimited:
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self checkAssetsCount];
+                    });
+                    break;
+                }
+                default:
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self showAccessDenied];
+                    });
+                    break;
+                }
+            }
+        }];
+        return;
+    }
+
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
         switch (status) {
             case PHAuthorizationStatusAuthorized:

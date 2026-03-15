@@ -51,8 +51,13 @@
 #if (TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0)
 - (void)dispatchAssetsPicker:(void (^__nullable)(CTAssetsPickerController *__nullable picker))pickerCallback
 {
-    // 判断是否已授权
-    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    // 判断是否已授权（iOS 14+ 兼容 Limited）
+    PHAuthorizationStatus status;
+    if (@available(iOS 14, *)) {
+        status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+    } else {
+        status = [PHPhotoLibrary authorizationStatus];
+    }
     switch (status) {
         case PHAuthorizationStatusNotDetermined: {
             [self requestAuthorizationBeforeDispatchAssetsPicker:^(CTAssetsPickerController * _Nullable picker) {
@@ -76,6 +81,7 @@
             break;
         }
         case PHAuthorizationStatusAuthorized:
+        case PHAuthorizationStatusLimited:
         default: {
             [self dispatchAssetsPickerFinally:^(CTAssetsPickerController * _Nullable picker) {
                 if (pickerCallback) {
@@ -90,6 +96,38 @@
 #pragma mark - Tools
 - (void)requestAuthorizationBeforeDispatchAssetsPicker:(void (^__nullable)(CTAssetsPickerController *__nullable picker))pickerCallback
 {
+    if (@available(iOS 14, *)) {
+        [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
+            switch (status) {
+                case PHAuthorizationStatusAuthorized:
+                case PHAuthorizationStatusLimited: {
+                    [self dispatchAssetsPickerFinally:pickerCallback];
+                    break;
+                }
+                default: {
+                    void (^action)(void) = ^{
+                        [self showPhotoAccessDenied];
+                        
+                        if (pickerCallback) {
+                            pickerCallback(nil);
+                        }
+                    };
+                    
+                    if ([NSThread isMainThread]) {
+                        action();
+                    } else {
+                        NSLog(@"[%@] goto MainThread", NSStringFromClass(self.class));
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            action();
+                        });
+                    }
+                    break;
+                }
+            }
+        }];
+        return;
+    }
+
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         switch (status) {
             case PHAuthorizationStatusAuthorized: {
@@ -133,7 +171,12 @@
         
         // set delegate
         picker.delegate = (id<CTAssetsPickerControllerDelegate>)self;
-        picker.showsEmptyAlbums = NO;
+        if (@available(iOS 14, *)) {
+            PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+            picker.showsEmptyAlbums = (status == PHAuthorizationStatusLimited);
+        } else {
+            picker.showsEmptyAlbums = NO;
+        }
         picker.preferredNavigationBarColor = self.preferredNavigationBarColor;
         
         // to present picker as a form sheet in iPad
