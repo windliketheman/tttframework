@@ -528,16 +528,22 @@
     if (!self.prefersStatusBarHidden) {
         CGFloat statusBarHeight = 0.0;
         if (@available(iOS 13.0, *)) {
-            UIWindow *window = self.view.window ?: UIApplication.sharedApplication.keyWindow;
+            UIWindow *window = self.view.window ?: self.navigationController.view.window ?: UIApplication.sharedApplication.delegate.window;
             if (window) {
-                statusBarHeight = window.safeAreaInsets.top;
+                UIStatusBarManager *statusBarManager = window.windowScene.statusBarManager;
+                statusBarHeight = CGRectGetHeight(statusBarManager.statusBarFrame);
                 if (statusBarHeight <= 0.0) {
-                    UIStatusBarManager *statusBarManager = window.windowScene.statusBarManager;
-                    statusBarHeight = CGRectGetHeight(statusBarManager.statusBarFrame);
+                    statusBarHeight = window.safeAreaInsets.top;
                 }
             }
+            if (statusBarHeight <= 0.0 && self.isViewLoaded) {
+                statusBarHeight = self.view.safeAreaInsets.top;
+            }
         } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             statusBarHeight = CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]);
+#pragma clang diagnostic pop
         }
         topBarsHeight += statusBarHeight;
     }
