@@ -59,6 +59,11 @@
                 }
                 return darkContentColor;
             }];
+        } else {
+            self.bezelView.style = MBProgressHUDBackgroundStyleBlur;
+            self.bezelView.backgroundColor = nil;
+            self.contentColor = darkContentColor;
+            self.activityIndicator.color = darkContentColor;
         }
     } else if (MBProgressHUDThemeLight == look) {
         self.bezelView.style = MBProgressHUDBackgroundStyleBlur;
