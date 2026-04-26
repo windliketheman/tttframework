@@ -329,9 +329,9 @@
     if (self.isLocalFile) return;
 
     if ([self isNoNetwork]) {
-        [self promptMessage:kNetworkUnavailable];
+        [self promptFailureMessage:kNetworkUnavailable];
     } else {
-        [self promptMessage:kLoadDataFailed];
+        [self promptFailureMessage:kLoadDataFailed];
     }
 }
 

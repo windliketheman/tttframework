@@ -15,11 +15,9 @@ typedef NS_ENUM (NSInteger, LoadingPromptTheme)
     LoadingPromptThemeDark,
 };
 
-@class MBProgressHUD;
-
 @protocol UIViewControllerLoadingPromptProtocol <NSObject>
 
-@property (nonatomic, readonly) MBProgressHUD * _Nullable HUD;
+@property (nonatomic, readonly) UIView * _Nullable HUD;
 
 @property (nonatomic, assign, class) LoadingPromptTheme loadingPromptTheme;
 
@@ -55,7 +53,17 @@ typedef NS_ENUM (NSInteger, LoadingPromptTheme)
 - (BOOL)isShowingLoading;
 
 #pragma mark - Prompt
-- (void)promptMessage:(NSString * _Nullable)message;
-- (void)promptMessage:(NSString * _Nullable)message inView:(UIView * __nonnull)view;
+- (void)promptSuccessMessage:(NSString * _Nullable)message;
+- (void)promptSuccessMessage:(NSString * _Nullable)message inView:(UIView * __nonnull)view;
+
+- (void)promptFailureMessage:(NSString * _Nullable)message;
+- (void)promptFailureMessage:(NSString * _Nullable)message inView:(UIView * __nonnull)view;
+
+- (void)promptInfoMessage:(NSString * _Nullable)message;
+- (void)promptInfoMessage:(NSString * _Nullable)message inView:(UIView * __nonnull)view;
+
+// 内部会根据文本动态判断状态icon，暂时不对外开放
+// - (void)promptMessage:(NSString * _Nullable)message;
+// - (void)promptMessage:(NSString * _Nullable)message inView:(UIView * __nonnull)view;
 
 @end

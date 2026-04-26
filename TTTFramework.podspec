@@ -37,7 +37,6 @@ Pod::Spec.new do |s|
 
     s.frameworks   =  'SystemConfiguration', 'MobileCoreServices', 'WebKit', 'AVFoundation', 'Photos', 'MessageUI'
 
-    s.dependency 'MBProgressHUD'
     s.dependency 'Masonry'
     s.dependency 'uchardet'
 

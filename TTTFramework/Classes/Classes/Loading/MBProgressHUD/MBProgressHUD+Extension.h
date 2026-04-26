@@ -6,7 +6,7 @@
 //  Copyright © 2016年 jia. All rights reserved.
 //
 
-#import <MBProgressHUD/MBProgressHUD.h>
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM (NSInteger, MBProgressHUDTheme)
 {
@@ -15,12 +15,4 @@ typedef NS_ENUM (NSInteger, MBProgressHUDTheme)
     MBProgressHUDThemeDark
 };
 
-@interface MBProgressHUD (Extension)
-
-- (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)style;
-
-- (void)setActivityIndicatorTransformScale:(CGFloat)scale;
-
-- (void)setMBProgressHUDLook:(MBProgressHUDTheme)look;
-
-@end
+// Deprecated compatibility shim retained so existing imports continue to compile.

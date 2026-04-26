@@ -120,19 +120,24 @@
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error
 {
+    BOOL succeed = NO;
     NSString *msg;
 
     switch (result) {
         case MFMailComposeResultCancelled:
+            succeed = YES;
             msg = TTTFrameworkLocalizedString(@"取消发送", nil);
             break;
         case MFMailComposeResultSaved:
+            succeed = YES;
             msg = TTTFrameworkLocalizedString(@"已保存邮件", nil);
             break;
         case MFMailComposeResultSent:
+            succeed = YES;
             msg = TTTFrameworkLocalizedString(@"发送成功", nil);
             break;
         case MFMailComposeResultFailed:
+            succeed = NO;
             msg = TTTFrameworkLocalizedString(@"发送失败", nil);
             break;
         default:
@@ -140,7 +145,15 @@
     }
 
     [self dismissViewControllerAnimated:YES completion:^{
-        [self promptMessage:msg];
+        if (succeed) {
+            if (msg) {
+                [self promptSuccessMessage:msg];
+            }
+        } else {
+            if (msg) {
+                [self promptFailureMessage:msg];
+            }
+        }
     }];
 }
 
@@ -148,7 +161,7 @@
 - (void)shareItems:(NSArray<id<NSSecureCoding>> *)items customized:(void (^)(UIActivityViewController *activityViewController))customized completion:(void (^)(BOOL completed, NSString *message))completionHandler
 {
     if (!items.count) {
-        [self promptMessage:TTTFrameworkLocalizedString(@"发生异常错误，请稍后重试", nil)];
+        [self promptFailureMessage:TTTFrameworkLocalizedString(@"发生异常错误，请稍后重试", nil)];
         return;
     }
 
