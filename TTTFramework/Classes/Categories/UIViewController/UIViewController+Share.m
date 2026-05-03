@@ -124,10 +124,6 @@
     NSString *msg;
 
     switch (result) {
-        case MFMailComposeResultCancelled:
-            succeed = YES;
-            msg = TTTFrameworkLocalizedString(@"取消发送", nil);
-            break;
         case MFMailComposeResultSaved:
             succeed = YES;
             msg = TTTFrameworkLocalizedString(@"已保存邮件", nil);
@@ -135,6 +131,10 @@
         case MFMailComposeResultSent:
             succeed = YES;
             msg = TTTFrameworkLocalizedString(@"发送成功", nil);
+            break;
+        case MFMailComposeResultCancelled:
+            succeed = NO;
+            msg = TTTFrameworkLocalizedString(@"取消发送", nil);
             break;
         case MFMailComposeResultFailed:
             succeed = NO;
