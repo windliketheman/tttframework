@@ -10,7 +10,72 @@
 #import "NSObject+Helper.h"
 #import <objc/runtime.h>
 
+static UILabel *TTTFindLabelWithText(UIView *view, NSString *text)
+{
+    if (![view isKindOfClass:UIView.class] || text.length == 0) {
+        return nil;
+    }
+    if ([view isKindOfClass:UILabel.class]) {
+        UILabel *label = (UILabel *)view;
+        if ([label.text isEqualToString:text]) {
+            return label;
+        }
+    }
+    for (UIView *subview in view.subviews) {
+        UILabel *label = TTTFindLabelWithText(subview, text);
+        if (label) {
+            return label;
+        }
+    }
+    return nil;
+}
+
+static void TTTApplyAlertTitleAlignment(UIAlertController *alertController, NSTextAlignment titleTextAlignment)
+{
+    if (![alertController isKindOfClass:UIAlertController.class]) {
+        return;
+    }
+    NSString *title = alertController.title;
+    if (title.length == 0) {
+        return;
+    }
+
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.alignment = titleTextAlignment;
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{
+        NSParagraphStyleAttributeName : paragraphStyle,
+    }];
+    [alertController setValue:attributedTitle forKey:@"attributedTitle"];
+
+    UILabel *titleLabel = TTTFindLabelWithText(alertController.view, title);
+    if (titleLabel) {
+        titleLabel.textAlignment = titleTextAlignment;
+    }
+}
+
 @implementation UIAlertController (Alignment)
+
+static const void *kTTTAlertTitleTextAlignmentKey = &kTTTAlertTitleTextAlignmentKey;
+
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method originalMethod = class_getInstanceMethod(self, @selector(viewDidLayoutSubviews));
+        Method swizzledMethod = class_getInstanceMethod(self, @selector(ttt_alignment_viewDidLayoutSubviews));
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    });
+}
+
+- (void)ttt_alignment_viewDidLayoutSubviews
+{
+    [self ttt_alignment_viewDidLayoutSubviews];
+
+    NSNumber *alignmentValue = objc_getAssociatedObject(self, kTTTAlertTitleTextAlignmentKey);
+    if (alignmentValue) {
+        [self setTitleTextAlignment:alignmentValue.integerValue];
+    }
+}
 
 - (void)setMessageTextAlignment:(NSTextAlignment)messageTextAlignment
 {
@@ -33,11 +98,8 @@
                             UILabel *message = subView5.subviews[2];
                             message.textAlignment = messageTextAlignment;
                         } else {
-                            // 取title和message：
-                            // UILabel *title = subView5.subviews[0];
                             UILabel *message = subView5.subviews[1];
                             message.textAlignment = messageTextAlignment;
-                            // title.textAlignment = NSTextAlignmentLeft;
                         }
                     }
                 }
@@ -70,7 +132,19 @@
             }
         }
     }
-    return NSTextAlignmentCenter; // 可能没取到label，但系统AlertView默认是居中
+    return NSTextAlignmentCenter;
+}
+
+- (void)setTitleTextAlignment:(NSTextAlignment)titleTextAlignment
+{
+    objc_setAssociatedObject(self, kTTTAlertTitleTextAlignmentKey, @(titleTextAlignment), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    TTTApplyAlertTitleAlignment(self, titleTextAlignment);
+}
+
+- (NSTextAlignment)titleTextAlignment
+{
+    NSNumber *alignmentValue = objc_getAssociatedObject(self, kTTTAlertTitleTextAlignmentKey);
+    return alignmentValue ? alignmentValue.integerValue : NSTextAlignmentNatural;
 }
 
 @end
@@ -217,6 +291,7 @@
                                              sureHandlers:(NSArray * __nullable)sureHandlers
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:style];
+    [alertController setTitleTextAlignment:NSTextAlignmentCenter];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         if (textFieldConfigs.count) {

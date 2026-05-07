@@ -10,6 +10,7 @@
 
 @interface UIAlertController (Alignment)
 
+@property (nonatomic, readwrite) NSTextAlignment titleTextAlignment;
 @property (nonatomic, readwrite) NSTextAlignment messageTextAlignment;
 
 @end
